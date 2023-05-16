@@ -14,7 +14,7 @@ class Team(db.Model):
     created_at = db.Column(db.Date, default=datetime.today)
     updated_at = db.Column(db.Date, default=datetime.today)
 
-    items = db.relationship("Item", back_populates="teams")
+    items = db.relationship("Item", back_populates="teams", cascade="all, delete-orphan")
 
     def to_dict(self):
         return {

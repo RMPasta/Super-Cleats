@@ -21,7 +21,7 @@ class Item(db.Model):
 
     users = db.relationship("User", back_populates="items")
     carts = db.relationship("Cart", back_populates="items")
-    teams = db.relationship("Team", back_populates="items", cascade="all, delete-orphan")
+    teams = db.relationship("Team", back_populates="items")
 
     def to_dict(self):
         return {
