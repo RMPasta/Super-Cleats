@@ -14,6 +14,10 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
+    items = db.relationship("Item", back_populates="users", cascade="all, delete-orphan")
+    favorites = db.relationship("Favorite", back_populates="users", cascade="all, delete-orphan")
+    carts = db.relationship("Cart", back_populates="users", cascade="all, delete-orphan")
+
     @property
     def password(self):
         return self.hashed_password
