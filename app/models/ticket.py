@@ -15,6 +15,7 @@ class Ticket(db.Model):
     ticket_img = db.Column(db.String)
     price = db.Column(db.Integer)
     event_date = db.Column(db.Date)
+    cart_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('carts.id')))
     created_at = db.Column(db.Date, default=datetime.today)
     updated_at = db.Column(db.Date, default=datetime.today)
 
@@ -30,6 +31,7 @@ class Ticket(db.Model):
             'ticket_img': self.ticket_img,
             'price': self.price,
             'event_date': self.event_date,
+            'cart_id': self.cart_id,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
         }

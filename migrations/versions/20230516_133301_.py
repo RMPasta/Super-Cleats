@@ -77,8 +77,6 @@ def upgrade():
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('created_at', sa.Date(), nullable=True),
     sa.Column('updated_at', sa.Date(), nullable=True),
-    sa.ForeignKeyConstraint(['item_id'], ['items.id'], ),
-    sa.ForeignKeyConstraint(['ticket_id'], ['tickets.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

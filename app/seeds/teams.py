@@ -6,94 +6,94 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_teams():
     team1 = Team(
-        name='Leeds United',
-        league="EPL",
-        badge_img="https://supercleats-pics.s3.amazonaws.com/leeds-epl.png",
-    )
-    team2 = Team(
-        name='West Ham',
-        league="EPL",
-        badge_img="https://supercleats-pics.s3.amazonaws.com/west-ham-epl.png",
-    )
-    team3 = Team(
         name='Fulham',
         league="EPL",
         badge_img="https://supercleats-pics.s3.amazonaws.com/fulham-epl.png",
     )
-    team4 = Team(
+    team2 = Team(
         name='Brentford',
         league="EPL",
         badge_img="https://supercleats-pics.s3.amazonaws.com/brentford-epl.png",
     )
-    team5 = Team(
+    team3 = Team(
         name='Brighton',
         league="EPL",
         badge_img="https://supercleats-pics.s3.amazonaws.com/brighton-epl.png",
     )
-    team6 = Team(
-        name='Manchester United',
-        league="EPL",
-        badge_img="https://supercleats-pics.s3.amazonaws.com/man-united-epl.png",
-    )
-    team7 = Team(
-        name='Wolverhampton Wanderers',
-        league="EPL",
-        badge_img="https://supercleats-pics.s3.amazonaws.com/wolves-epl.png",
-    )
-    team8 = Team(
-        name='Liverpool',
-        league="EPL",
-        badge_img="https://supercleats-pics.s3.amazonaws.com/liverpool-epl.png",
-    )
-    team9 = Team(
-        name='Crystal Palace',
-        league="EPL",
-        badge_img="https://supercleats-pics.s3.amazonaws.com/crystal-palace.png",
-    )
-    team10 = Team(
-        name='Chelsea',
-        league="EPL",
-        badge_img="https://supercleats-pics.s3.amazonaws.com/chelsea-epl.png",
-    )
-    team11 = Team(
-        name='Newcastle United',
-        league="EPL",
-        badge_img="https://supercleats-pics.s3.amazonaws.com/newcastle-epl.png",
-    )
-    team12 = Team(
-        name='Arsenal',
-        league="EPL",
-        badge_img="https://supercleats-pics.s3.amazonaws.com/arsenal-epl.png",
-    )
-    team13 = Team(
-        name='Aston Villa',
-        league="EPL",
-        badge_img="https://supercleats-pics.s3.amazonaws.com/aston-villa-epl.png",
-    )
-    team14 = Team(
+    team4 = Team(
         name='Manchester City',
         league="EPL",
         badge_img="https://supercleats-pics.s3.amazonaws.com/man-city-epl.png",
     )
-    team15 = Team(
+    team5 = Team(
+        name='Manchester United',
+        league="EPL",
+        badge_img="https://supercleats-pics.s3.amazonaws.com/man-united-epl.png",
+    )
+    team6 = Team(
+        name='Wolverhampton Wanderers',
+        league="EPL",
+        badge_img="https://supercleats-pics.s3.amazonaws.com/wolves-epl.png",
+    )
+    team7 = Team(
+        name='Liverpool',
+        league="EPL",
+        badge_img="https://supercleats-pics.s3.amazonaws.com/liverpool-epl.png",
+    )
+    team8 = Team(
+        name='Crystal Palace',
+        league="EPL",
+        badge_img="https://supercleats-pics.s3.amazonaws.com/crystal-palace.png",
+    )
+    team9 = Team(
+        name='Chelsea',
+        league="EPL",
+        badge_img="https://supercleats-pics.s3.amazonaws.com/chelsea-epl.png",
+    )
+    team10 = Team(
+        name='Newcastle United',
+        league="EPL",
+        badge_img="https://supercleats-pics.s3.amazonaws.com/newcastle-epl.png",
+    )
+    team11 = Team(
+        name='Leicester',
+        league="EPL",
+        badge_img="https://supercleats-pics.s3.amazonaws.com/leicester-epl.png",
+    )
+    team12 = Team(
         name='Everton',
         league="EPL",
         badge_img="https://supercleats-pics.s3.amazonaws.com/everton-epl.png",
     )
+    team13 = Team(
+        name='Arsenal',
+        league="EPL",
+        badge_img="https://supercleats-pics.s3.amazonaws.com/arsenal-epl.png",
+    )
+    team14 = Team(
+        name='Aston Villa',
+        league="EPL",
+        badge_img="https://supercleats-pics.s3.amazonaws.com/aston-villa-epl.png",
+    )
+    team15 = Team(
+        name='Leeds United',
+        league="EPL",
+        badge_img="https://supercleats-pics.s3.amazonaws.com/leeds-epl.png",
+    )
     team16 = Team(
+        name='West Ham',
+        league="EPL",
+        badge_img="https://supercleats-pics.s3.amazonaws.com/west-ham-epl.png",
+    )
+    team17 = Team(
         name='Tottenham Hotspur',
         league="EPL",
         badge_img="https://supercleats-pics.s3.amazonaws.com/spurs-epl.png",
     )
-    team17 = Team(
+    team18 = Team(
         name='Bournemouth',
         league="EPL",
         badge_img="https://supercleats-pics.s3.amazonaws.com/bournemouth-epl.png",
-    )
-    team18 = Team(
-        name='Leicester',
-        league="EPL",
-        badge_img="https://supercleats-pics.s3.amazonaws.com/leicester-epl.png",
     )
 
     db.session.add(team1)

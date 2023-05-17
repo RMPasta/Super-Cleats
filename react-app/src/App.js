@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Items from "./components/Items";
 import Teams from "./components/Teams";
+import Cart from "./components/Cart";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ function App() {
         </Switch>
       )}
       <Teams />
+      <Cart />
       <Items />
     </>
   );
