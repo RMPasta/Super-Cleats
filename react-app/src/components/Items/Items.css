@@ -1,5 +1,5 @@
-img {
-    width: 300px;
+.card-img {
+    width: 320px;
 }
 
 .type-header {
@@ -16,26 +16,26 @@ img {
 .cleats-gallery {
     display: flex;
     border: 1px solid black;
-    width: 60%;
+    width: 70%;
     overflow: scroll;
+    gap: 20px;
 }
 
 .ball-gallery {
     display: flex;
     border: 1px solid black;
-    width: 60%;
+    width: 70%;
     overflow: scroll;
+    gap: 20px;
 }
 
 .socks-gallery {
     display: flex;
     border: 1px solid black;
-    width: 60%;
+    width: 70%;
     overflow: scroll;
+    gap: 20px;
 }
-
-
-
 
 .item-card {
     display: flex;
@@ -45,6 +45,5 @@ img {
     width: 340px;
     margin: 10px auto;
     border: 1px solid black;
-    gap: 20px;
     /* box-shadow: 2px 2px 2px grey; */
 }

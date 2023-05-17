@@ -19,18 +19,7 @@ export default function Items() {
         <div className='cleats-gallery'>
             {items.filter(item => item.type === "cleats").map((item) => (
                 <div key={item.id} className='item-card'>
-                    <img src={item.item_img} alt={item.name} />
-                    <div>{item.name}</div>
-                    <div>$ {item.price}</div>
-                    <div>{item.description}</div>
-                </div>
-            ))}
-        </div>
-        <h2 className='type-header'>Soccer Balls</h2>
-        <div className='ball-gallery'>
-            {items.filter(item => item.type === "ball").map((item) => (
-                <div key={item.id} className='item-card'>
-                    <img src={item.item_img} alt={item.name} />
+                    <img className='card-img' src={item.item_img} alt={item.name} />
                     <div>{item.name}</div>
                     <div>$ {item.price}</div>
                     <div>{item.description}</div>
@@ -41,7 +30,18 @@ export default function Items() {
         <div className='socks-gallery'>
             {items.filter(item => item.type === "socks").map((item) => (
                 <div key={item.id} className='item-card'>
-                    <img src={item.item_img} alt={item.name} />
+                    <img className='card-img' src={item.item_img} alt={item.name} />
+                    <div>{item.name}</div>
+                    <div>$ {item.price}</div>
+                    <div>{item.description}</div>
+                </div>
+            ))}
+        </div>
+        <h2 className='type-header'>Soccer Balls</h2>
+        <div className='ball-gallery'>
+            {items.filter(item => item.type === "ball").map((item) => (
+                <div key={item.id} className='item-card'>
+                    <img className='card-img' src={item.item_img} alt={item.name} />
                     <div>{item.name}</div>
                     <div>$ {item.price}</div>
                     <div>{item.description}</div>

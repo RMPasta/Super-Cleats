@@ -1,0 +1,17 @@
+.team-gallery {
+    display: flex;
+}
+
+.badge-gallery {
+    display: flex;
+    overflow: scroll;
+}
+
+.team-card:hover {
+    border-radius: 50%;
+    background-color: rgb(163, 162, 162);
+}
+
+.team-img {
+    width: 140px;
+}

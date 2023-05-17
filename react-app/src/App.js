@@ -6,6 +6,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Items from "./components/Items";
+import Teams from "./components/Teams";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ function App() {
           </Route>
         </Switch>
       )}
+      <Teams />
       <Items />
     </>
   );
