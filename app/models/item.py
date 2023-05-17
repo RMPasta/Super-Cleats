@@ -16,12 +16,12 @@ class Item(db.Model):
     location = db.Column(db.String)
     team_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('teams.id')))
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
-    cart_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('carts.id')))
+    # cart_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('carts.id')))
     created_at = db.Column(db.Date, default=datetime.today)
     updated_at = db.Column(db.Date, default=datetime.today)
 
     users = db.relationship("User", back_populates="items")
-    carts = db.relationship("Cart", back_populates="items")
+    # carts = db.relationship("Cart", back_populates="items")
     teams = db.relationship("Team", back_populates="items")
 
     def to_dict(self):
@@ -35,7 +35,7 @@ class Item(db.Model):
             'location': self.location,
             'team_id': self.team_id,
             'user_id': self.user_id,
-            'cart_id': self.cart_id,
+            # 'cart_id': self.cart_id,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
         }

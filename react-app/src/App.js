@@ -8,6 +8,8 @@ import Navigation from "./components/Navigation";
 import Items from "./components/Items";
 import Teams from "./components/Teams";
 import Cart from "./components/Cart";
+import AddItemForm from "./components/AddItemForm";
+import UsersItems from "./components/UsersItems.js";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,19 +21,27 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
+      <Teams />
       {isLoaded && (
         <Switch>
+          <Route exact path="/">
+            <Cart />
+            <Items />
+          </Route>
           <Route path="/login" >
             <LoginFormPage />
           </Route>
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <Route path="/items/new">
+            <AddItemForm />
+          </Route>
+          <Route path="/user">
+            <UsersItems />
+          </Route>
         </Switch>
       )}
-      <Teams />
-      <Cart />
-      <Items />
     </>
   );
 }
