@@ -1,0 +1,50 @@
+img {
+    width: 300px;
+}
+
+.type-header {
+
+}
+
+.item-gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    border: 1px solid black;
+}
+
+.cleats-gallery {
+    display: flex;
+    border: 1px solid black;
+    width: 60%;
+    overflow: scroll;
+}
+
+.ball-gallery {
+    display: flex;
+    border: 1px solid black;
+    width: 60%;
+    overflow: scroll;
+}
+
+.socks-gallery {
+    display: flex;
+    border: 1px solid black;
+    width: 60%;
+    overflow: scroll;
+}
+
+
+
+
+.item-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 340px;
+    margin: 10px auto;
+    border: 1px solid black;
+    gap: 20px;
+    /* box-shadow: 2px 2px 2px grey; */
+}
