@@ -1,40 +1,57 @@
 .card-img {
-    width: 320px;
+    width: 230px;
 }
 
 .type-header {
-
+    font-size: 32px;
+    align-self: center;
 }
 
 .item-gallery {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    border: 1px solid black;
+    border: 1px solid rgb(235, 235, 235);
+    width: 70%;
 }
 
 .cleats-gallery {
     display: flex;
-    border: 1px solid black;
-    width: 70%;
-    overflow: scroll;
+    width: 100%;
     gap: 20px;
 }
 
 .ball-gallery {
     display: flex;
-    border: 1px solid black;
-    width: 70%;
-    overflow: scroll;
+    width: 100%;
     gap: 20px;
 }
 
 .socks-gallery {
     display: flex;
-    border: 1px solid black;
-    width: 70%;
-    overflow: scroll;
+    width: 100%;
     gap: 20px;
+}
+
+.scrollable-x {
+    overflow-x: scroll;
+    /* scrollbar-width: none;
+    -ms-overflow-style: none; */
+}
+
+.scrollable-x::-webkit-scrollbar {
+    height: 14px;
+    border-radius: 10px;
+}
+
+.scrollable-x::-webkit-scrollbar-track {
+    background-color: rgb(0, 0, 0, 0.2);
+}
+
+.scrollable-x::-webkit-scrollbar-thumb {
+    background-color: white;
+    border: 1px solid rgb(158, 158, 158);
+    border-radius: 20px;
 }
 
 .item-card {
@@ -43,7 +60,18 @@
     align-items: center;
     justify-content: center;
     width: 340px;
+    min-height: 300px;
     margin: 10px auto;
+    padding: 10px;
     border: 1px solid black;
+    border-radius: 20px;
     /* box-shadow: 2px 2px 2px grey; */
+}
+
+.item-card-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-self: flex-end; */
+    /* max-height: 60px; */
 }

@@ -15,7 +15,7 @@ export default function Teams() {
 
   return (
     <div className='team-gallery'>
-        <div className='badge-gallery'>
+        <div className='badge-gallery scrollable-x'>
             {teams.map((team) => (
                 <div key={team.id} className='team-card'>
                     <img className='team-img' src={team.badge_img} alt={team.name} />
