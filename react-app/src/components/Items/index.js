@@ -9,7 +9,8 @@ export default function Items() {
     const dispatch = useDispatch();
     const items = useSelector(state => state.item.items);
     const user = useSelector(state => state.session.user);
-    const cart = useSelector(state => state.cart.cart);
+    const storeCart = useSelector(state => state.cart.cart);
+    const cart = storeCart?.cart;
     const [quantity, setQuantity] = useState(0);
     const [total, setTotal] = useState(0);
 
@@ -22,9 +23,12 @@ export default function Items() {
     if (!items) return <h1>Loading...</h1>
     if (!cart) return <h1>Loading...</h1>
 
-    console.log("CART TOTAL", cart.total_price)
-    const addToCart = async (itemPrice) => {
-        await dispatch(editCartThunk({id: cart.id, quantity: quantity + 1, total_price: total + itemPrice}))
+    const addToCart = async (item) => {
+        const newQty = quantity + 1;
+        const newTotalPrice = total + parseInt(item.price)
+        // pass in cart id for fetch request
+        // send in user id and item id to create the association
+        await dispatch(editCartThunk({id: cart.id, quantity: newQty, total_price: newTotalPrice, item_id: item.id}))
     }
 
   return (
@@ -39,7 +43,7 @@ export default function Items() {
                         <div>$ {item.price}</div>
                         <div>{item.description}</div>
                         {user && user.id !== item.user_id ?
-                        <button onClick={() => {addToCart(parseInt(item.price))}}>Add to cart</button> :
+                        <button onClick={() => {addToCart(item)}}>Add to cart</button> :
                         <NavLink to="/user">Manage Items</NavLink>}
                     </div>
                 ))}
@@ -53,7 +57,7 @@ export default function Items() {
                         <div>$ {item.price}</div>
                         <div>{item.description}</div>
                         {user && user.id !== item.user_id ?
-                        <button onClick={() => {addToCart(parseInt(item.price))}}>Add to cart</button> :
+                        <button onClick={() => {addToCart(item)}}>Add to cart</button> :
                         <NavLink to="/user">Manage Items</NavLink>}
                     </div>
                 ))}
@@ -67,7 +71,7 @@ export default function Items() {
                         <div>$ {item.price}</div>
                         <div>{item.description}</div>
                         {user && user.id !== item.user_id ?
-                        <button onClick={() => {addToCart(parseInt(item.price))}}>Add to cart</button> :
+                        <button onClick={() => {addToCart(item)}}>Add to cart</button> :
                         <NavLink to="/user">Manage Items</NavLink>}
                     </div>
                 ))}

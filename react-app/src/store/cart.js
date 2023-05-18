@@ -23,7 +23,7 @@ const deleteCart = (cart) => ({
 	payload: cart,
 });
 
-const initialState = { cart: null };
+const initialState = { cart: null, cartItems: null };
 
 export const getCartThunk = (userId) => async (dispatch) => {
 	const response = await fetch(`/api/cart/${userId}`, {
@@ -36,6 +36,7 @@ export const getCartThunk = (userId) => async (dispatch) => {
 		if (data.errors) {
 			return;
 		}
+		console.log("THUNK DATA ~~~~~~~~~~~~~>", data)
 		dispatch(getCart(data));
 	}
 };
@@ -93,7 +94,7 @@ export const deleteCartThunk = (cart) => async (dispatch) => {
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
 		case GET_CART: {
-            const newState = {...state, cart: action.payload}
+            const newState = {...state, cart: action.payload.cart, cartItems: action.payload.items}
 			return newState;
         }
 		case ADD_CART: {

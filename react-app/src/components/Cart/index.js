@@ -7,7 +7,6 @@ export default function Cart() {
     const dispatch = useDispatch();
     const cart = useSelector(state => state.cart.cart);
     const user = useSelector(state => state.session.user);
-
     useEffect(() => {
         if (user) {
             dispatch(getCartThunk(user.id))
