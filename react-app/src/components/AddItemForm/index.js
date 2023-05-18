@@ -15,16 +15,15 @@ export default function AddItemForm() {
     const [description, setDescription] = useState("");
     const [itemImg, setItemImg] = useState("");
     const [imageLoading, setImageLoading] = useState(false);
-    const [location, setLocation] = useState("");
     const [teamId, setTeamId] = useState("1");
     const [errors, setErrors] = useState({});
 
-    if (!user) history.push("/");
 
     useEffect(() => {
+        if (!user) history.push("/");
         // fill the store so we can push new item to state
         dispatch(getItemsThunk())
-    }, [dispatch]);
+    }, [dispatch, user, history]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -33,28 +32,28 @@ export default function AddItemForm() {
         setErrors({})
 
         if (!name) {
-        setErrors(errors => ({...errors, name: "Item name is required"}));
-        hasErrors = true;
+            setErrors(errors => ({...errors, name: "Item name is required"}));
+            hasErrors = true;
         }
         if (!type) {
-        setErrors(errors => ({...errors, type: "Please choose a type"}))
-        hasErrors = true;
+            setErrors(errors => ({...errors, type: "Please choose a type"}))
+            hasErrors = true;
         }
         if (!price) {
-        setErrors(errors => ({...errors, price: "Please enter a price"}));
-        hasErrors = true;
+            setErrors(errors => ({...errors, price: "Please enter a price"}));
+            hasErrors = true;
         }
         if (!description) {
-        setErrors(errors => ({...errors, description: "Please enter a description"}))
-        hasErrors = true;
+            setErrors(errors => ({...errors, description: "Please enter a description"}))
+            hasErrors = true;
         }
         if (!itemImg) {
-        setErrors(errors => ({...errors, itemImg: "Please upload an image for your item"}));
-        hasErrors = true;
+            setErrors(errors => ({...errors, itemImg: "Please upload an image for your item"}));
+            hasErrors = true;
         }
         if (!teamId) {
-        setErrors(errors => ({...errors, teamId: "Please choose an associated team"}))
-        hasErrors = true;
+            setErrors(errors => ({...errors, teamId: "Please choose an associated team"}))
+            hasErrors = true;
         }
         if (hasErrors) return;
 
@@ -65,7 +64,6 @@ export default function AddItemForm() {
         if (price) formData.append("price", Number(price));
         if (description) formData.append("description", description);
         if (itemImg) formData.append("item_img", itemImg);
-        if (location) formData.append("location", location);
         if (teamId) formData.append("team_id", Number(teamId));
 
         setImageLoading(true);
@@ -74,6 +72,8 @@ export default function AddItemForm() {
         setImageLoading(false)
         return history.push("/user")
     }
+
+    if (!user) return <div>Go Home</div>
 
     return(
         <form
@@ -134,15 +134,6 @@ export default function AddItemForm() {
                             type="file"
                             accept="image/*"
                             onChange={(e) => setItemImg(e.target.files[0])}
-                        />
-                    </label>
-                    <label>
-                        Location
-                        <input
-                            type="text"
-                            value={location}
-                            placeholder="Location of item..."
-                            onChange={(e) => setLocation(e.target.value)}
                         />
                     </label>
                     <label>

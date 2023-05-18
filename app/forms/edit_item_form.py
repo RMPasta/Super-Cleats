@@ -10,5 +10,4 @@ class EditItemForm(FlaskForm):
     price = IntegerField('Price', validators=[DataRequired()])
     description = StringField('Description', validators=[DataRequired()])
     item_img = FileField("Item Image", validators=[FileAllowed(list(ALLOWED_EXTENSIONS))])
-    location = StringField('Location')
     team_id = IntegerField('Team Id', validators=[DataRequired()])

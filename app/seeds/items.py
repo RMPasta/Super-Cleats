@@ -11,7 +11,6 @@ def seed_items():
         price=32,
         description='these things weigh nothing!',
         item_img='https://supercleats-pics.s3.amazonaws.com/cleats1.jpg',
-        location='',
         team_id=1,
         user_id='1'
     )
@@ -21,7 +20,6 @@ def seed_items():
         price=50,
         description='buy one for you friend too!',
         item_img='https://supercleats-pics.s3.amazonaws.com/cleats2.jpg',
-        location='',
         team_id=2,
         user_id='2'
     )
@@ -31,7 +29,6 @@ def seed_items():
         price=222,
         description='sooo many cleats',
         item_img='https://supercleats-pics.s3.amazonaws.com/cleats3.jpg',
-        location='',
         team_id=3,
         user_id='3'
     )
@@ -41,7 +38,6 @@ def seed_items():
         price=14,
         description='very sharp',
         item_img='https://supercleats-pics.s3.amazonaws.com/cleats4.jpg',
-        location='',
         team_id=4,
         user_id='4'
     )
@@ -51,7 +47,6 @@ def seed_items():
         price=43,
         description='you can run for days in these, no blisters',
         item_img='https://supercleats-pics.s3.amazonaws.com/cleats5.jpg',
-        location='',
         team_id=5,
         user_id='5'
     )
@@ -61,7 +56,6 @@ def seed_items():
         price=66,
         description='great leisure cleats',
         item_img='https://supercleats-pics.s3.amazonaws.com/cleats6.jpg',
-        location='',
         team_id=6,
         user_id='1'
     )
@@ -71,7 +65,6 @@ def seed_items():
         price=74,
         description='these are the best cleats and i wont take no for an answer',
         item_img='https://supercleats-pics.s3.amazonaws.com/cleats7.jpg',
-        location='',
         team_id=7,
         user_id='2'
     )
@@ -81,7 +74,6 @@ def seed_items():
         price=99,
         description='im telling you to buy these cleats!!!',
         item_img='https://supercleats-pics.s3.amazonaws.com/cleats8.jpg',
-        location='',
         team_id=8,
         user_id='3'
     )
@@ -91,7 +83,6 @@ def seed_items():
         price=21,
         description='these are the highest quality spider man cleats ive ever sold',
         item_img='https://supercleats-pics.s3.amazonaws.com/cleats9.jpg',
-        location='',
         team_id=9,
         user_id='4'
     )
@@ -101,7 +92,6 @@ def seed_items():
         price=32,
         description='run forever in these things',
         item_img='https://supercleats-pics.s3.amazonaws.com/cleats10.jpg',
-        location='',
         team_id=10,
         user_id='5'
     )
@@ -111,7 +101,6 @@ def seed_items():
         price=200,
         description='these things weigh nothing!',
         item_img='https://supercleats-pics.s3.amazonaws.com/sock1.jpg',
-        location='',
         team_id=11,
         user_id='1'
     )
@@ -121,7 +110,6 @@ def seed_items():
         price=50,
         description='buy one for you friend too!',
         item_img='https://supercleats-pics.s3.amazonaws.com/sock2.jpg',
-        location='',
         team_id=12,
         user_id='2'
     )
@@ -131,7 +119,6 @@ def seed_items():
         price=142,
         description='sooo light weight',
         item_img='https://supercleats-pics.s3.amazonaws.com/sock3.jpg',
-        location='',
         team_id=13,
         user_id='3'
     )
@@ -141,7 +128,6 @@ def seed_items():
         price=45,
         description='very sharp',
         item_img='https://supercleats-pics.s3.amazonaws.com/sock4.jpg',
-        location='',
         team_id=14,
         user_id='4'
     )
@@ -151,7 +137,6 @@ def seed_items():
         price=93,
         description='make no mistake when putting these things on',
         item_img='https://supercleats-pics.s3.amazonaws.com/sock5.jpg',
-        location='',
         team_id=15,
         user_id='5'
     )
@@ -161,7 +146,6 @@ def seed_items():
         price=10,
         description='you can run for days in these, no blisters',
         item_img='https://supercleats-pics.s3.amazonaws.com/sock6.jpg',
-        location='',
         team_id=16,
         user_id='1'
     )
@@ -171,7 +155,6 @@ def seed_items():
         price=22,
         description='warm knees, yes please!',
         item_img='https://supercleats-pics.s3.amazonaws.com/sock7.jpg',
-        location='',
         team_id=17,
         user_id='2'
     )
@@ -181,7 +164,6 @@ def seed_items():
         price=12,
         description='cooool ankles',
         item_img='https://supercleats-pics.s3.amazonaws.com/sock8.jpg',
-        location='',
         team_id=16,
         user_id='3'
     )
@@ -191,7 +173,6 @@ def seed_items():
         price=7,
         description='we stitched together two pairs of socks so you didnt have to',
         item_img='https://supercleats-pics.s3.amazonaws.com/sock9.jpg',
-        location='',
         team_id=15,
         user_id='4'
     )
@@ -201,7 +182,6 @@ def seed_items():
         price=2,
         description='need these gone ASAP',
         item_img='https://supercleats-pics.s3.amazonaws.com/sock10.jpg',
-        location='',
         team_id=14,
         user_id='5'
     )
@@ -211,7 +191,6 @@ def seed_items():
         price=87,
         description='great for kicking into the goal',
         item_img='https://supercleats-pics.s3.amazonaws.com/ball1.jpg',
-        location='',
         team_id=1,
         user_id='1'
     )
@@ -221,7 +200,6 @@ def seed_items():
         price=76,
         description='buy one for you friend too!',
         item_img='https://supercleats-pics.s3.amazonaws.com/ball2.jpg',
-        location='',
         team_id=2,
         user_id='2'
     )
@@ -231,7 +209,6 @@ def seed_items():
         price=65,
         description='sooo light weight',
         item_img='https://supercleats-pics.s3.amazonaws.com/ball3.jpg',
-        location='',
         team_id=3,
         user_id='3'
     )
@@ -241,7 +218,6 @@ def seed_items():
         price=54,
         description='this is the ball to SELECT',
         item_img='https://supercleats-pics.s3.amazonaws.com/ball4.jpg',
-        location='',
         team_id=4,
         user_id='4'
     )
@@ -251,7 +227,6 @@ def seed_items():
         price=88,
         description='top notch ball',
         item_img='https://supercleats-pics.s3.amazonaws.com/ball5.jpg',
-        location='',
         team_id=5,
         user_id='5'
     )
@@ -261,7 +236,6 @@ def seed_items():
         price=2,
         description='not a bad ball at all',
         item_img='https://supercleats-pics.s3.amazonaws.com/ball6.jpg',
-        location='',
         team_id=14,
         user_id='5'
     )
@@ -271,7 +245,6 @@ def seed_items():
         price=87,
         description='this ones priceless really',
         item_img='https://supercleats-pics.s3.amazonaws.com/ball7.jpg',
-        location='',
         team_id=1,
         user_id='1'
     )
@@ -281,7 +254,6 @@ def seed_items():
         price=76,
         description='buy three for you friends!',
         item_img='https://supercleats-pics.s3.amazonaws.com/ball8.jpg',
-        location='',
         team_id=2,
         user_id='2'
     )
@@ -291,7 +263,6 @@ def seed_items():
         price=65,
         description='you will become a legend gaurenteed',
         item_img='https://supercleats-pics.s3.amazonaws.com/ball9.jpg',
-        location='',
         team_id=3,
         user_id='3'
     )
@@ -301,7 +272,6 @@ def seed_items():
         price=54,
         description='super red',
         item_img='https://supercleats-pics.s3.amazonaws.com/ball10.jpg',
-        location='',
         team_id=4,
         user_id='4'
     )

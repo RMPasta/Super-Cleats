@@ -13,7 +13,6 @@ class Item(db.Model):
     price = db.Column(db.Integer, nullable=False)
     description = db.Column(db.String, nullable=False)
     item_img = db.Column(db.String, nullable=False)
-    location = db.Column(db.String)
     team_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('teams.id')))
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     # cart_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('carts.id')))
@@ -32,10 +31,8 @@ class Item(db.Model):
             'price': self.price,
             'description': self.description,
             'item_img': self.item_img,
-            'location': self.location,
             'team_id': self.team_id,
             'user_id': self.user_id,
-            # 'cart_id': self.cart_id,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
         }

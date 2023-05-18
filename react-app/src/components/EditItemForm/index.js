@@ -16,7 +16,6 @@ export default function EditItemForm({item, setItemId}) {
     const [description, setDescription] = useState(item.description);
     const [itemImg, setItemImg] = useState(item.item_img);
     const [imageLoading, setImageLoading] = useState(false);
-    const [location, setLocation] = useState(item.location || "");
     const [teamId, setTeamId] = useState(item.team_id);
     const [errors, setErrors] = useState({});
 
@@ -64,7 +63,6 @@ export default function EditItemForm({item, setItemId}) {
         if (price) formData.append("price", Number(price));
         if (description) formData.append("description", description);
         if (itemImg) formData.append("item_img", itemImg);
-        if (location) formData.append("location", location);
         if (teamId) formData.append("team_id", Number(teamId));
 
         setImageLoading(true);
@@ -126,12 +124,6 @@ export default function EditItemForm({item, setItemId}) {
                             type="file"
                             accept="image/*"
                             onChange={(e) => setItemImg(e.target.files[0])}
-                        />
-                        <input
-                            type="text"
-                            value={location}
-                            placeholder="Location of item..."
-                            onChange={(e) => setLocation(e.target.value)}
                         />
                         <select
                             value={teamId}

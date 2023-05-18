@@ -39,7 +39,6 @@ def add_item():
             type=form.data['type'],
             price=form.data['price'],
             description=form.data['description'],
-            location=form.data['location'],
             item_img=upload["url"],
             team_id=form.data['team_id'],
             user_id=user_id,
@@ -75,7 +74,6 @@ def edit_item(item_id):
         item.type=form.data['type']
         item.price=form.data['price']
         item.description=form.data['description']
-        item.location=form.data['location']
         item.team_id=form.data['team_id']
         item.user_id=user_id
 
