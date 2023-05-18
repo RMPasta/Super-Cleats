@@ -11,7 +11,7 @@ export default function AddItemForm() {
     const user = useSelector(state => state.session.user);
     const [name, setName] = useState("");
     const [type, setType] = useState("cleats");
-    const [price, setPrice] = useState("");
+    const [price, setPrice] = useState(0);
     const [description, setDescription] = useState("");
     const [itemImg, setItemImg] = useState("");
     const [imageLoading, setImageLoading] = useState(false);
@@ -30,6 +30,7 @@ export default function AddItemForm() {
 
         let hasErrors = false;
         setErrors({})
+        console.log(price)
 
         if (!name) {
             setErrors(errors => ({...errors, name: "Item name is required"}));
@@ -41,6 +42,10 @@ export default function AddItemForm() {
         }
         if (!price) {
             setErrors(errors => ({...errors, price: "Please enter a price"}));
+            hasErrors = true;
+        }
+        if (isNaN(price)) {
+            setErrors(errors => ({...errors, price: "Please enter a valid price"}));
             hasErrors = true;
         }
         if (!description) {
