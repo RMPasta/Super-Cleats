@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { getItemsThunk } from '../../store/item';
+import { deleteItemThunk, getItemsThunk } from '../../store/item';
 // import './UsersItems.css'
 
 export default function UsersItems() {
@@ -11,6 +11,11 @@ export default function UsersItems() {
     useEffect(() => {
         dispatch(getItemsThunk())
     }, [dispatch]);
+
+    const handleDelete = async (itemId) => {
+        await dispatch(deleteItemThunk(itemId))
+        await dispatch(getItemsThunk())
+    }
 
     if (!items) return <h1>...Loading</h1>
     const usersItems = items.filter(item => item.user_id === user.id)
@@ -24,6 +29,7 @@ export default function UsersItems() {
                     <div>{item.name}</div>
                     <div>$ {item.price}</div>
                     <div>{item.description}</div>
+                    <button onClick={() => handleDelete(item.id)}>Delete</button>
                 </div>
             ))}
         </div>

@@ -23,7 +23,6 @@ def add_item():
     """
     form = CreateItemForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print("FORM.DATA ~~~~~~~~~~~~~~~~>", form.data)
     if form.validate_on_submit():
         user_id = current_user.id
         item_img=form.data['item_img']
@@ -44,9 +43,18 @@ def add_item():
             team_id=form.data['team_id'],
             user_id=user_id,
         )
-
         db.session.add(item)
         db.session.commit()
         return item.to_dict()
     # Returns validation errors
     return {'errors': form.errors}, 401
+
+@item_routes.route('/<int:item_id>', methods=["DELETE"])
+def delete_item(item_id):
+    """
+    Delete item
+    """
+    item = Item.query.get(item_id)
+    db.session.delete(item)
+    db.session.commit()
+    return {'message': "Successfully deleted"}

@@ -20,7 +20,7 @@ function SignupFormPage() {
     e.preventDefault();
     if (password === confirmPassword) {
         const data = await dispatch(signUp(username, email, password));
-        const cart = await dispatch(addCartThunk(sessionUser.id))
+        await dispatch(addCartThunk(sessionUser.id))
 
         if (data) {
           setErrors(data)
