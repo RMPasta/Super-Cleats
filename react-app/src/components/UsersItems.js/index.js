@@ -15,7 +15,7 @@ export default function UsersItems() {
     useEffect(() => {
         if (!user) return history.push('/')
         dispatch(getItemsThunk())
-    }, [dispatch, user, history]);
+    }, [dispatch]);
 
     const handleDelete = async (itemId) => {
         await dispatch(deleteItemThunk(itemId))
@@ -23,6 +23,7 @@ export default function UsersItems() {
     }
 
     if (!items) return <h1>...Loading</h1>
+    if (!user) return <></>
     const usersItems = items.filter(item => item.user_id === user.id)
   return (
     <div className='gallery-container'>
