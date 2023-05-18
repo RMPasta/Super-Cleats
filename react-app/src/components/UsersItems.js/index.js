@@ -15,7 +15,7 @@ export default function UsersItems() {
     useEffect(() => {
         if (!user) return history.push('/')
         dispatch(getItemsThunk())
-    }, [dispatch]);
+    }, [dispatch, history, user]);
 
     const handleDelete = async (itemId) => {
         await dispatch(deleteItemThunk(itemId))

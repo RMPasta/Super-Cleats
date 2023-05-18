@@ -8,8 +8,8 @@ class Cart(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    quantity = db.Column(db.Integer)
-    total_price = db.Column(db.Integer)
+    quantity = db.Column(db.Integer, default=0)
+    total_price = db.Column(db.Integer, default=0)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     created_at = db.Column(db.Date, default=datetime.today)
     updated_at = db.Column(db.Date, default=datetime.today)

@@ -14,16 +14,14 @@ export default function Cart() {
         }
     }, [dispatch, user]);
 
-    if (!cart) return <h1>...Loading</h1>
+    if (!user) return <h2>Sign in to view cart</h2>
+    if (!cart) return <h2>Sign in to view cart</h2>
 
   return (
     <div className='cart-container'>
-        {
-            user ?
-            <div>{cart.id}</div> :
-            <div>Log In</div>
-        }
-
+        <div>{user.email}</div>
+        <div>{cart.quantity} Items</div>
+        <div>$ {cart.total_price} Total</div>
     </div>
   )
 }

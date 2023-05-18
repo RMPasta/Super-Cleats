@@ -5,6 +5,7 @@
 .type-header {
     font-size: 32px;
     align-self: center;
+    border-bottom: 1px solid rgb(206, 206, 206);
 }
 
 .item-gallery {
@@ -31,27 +32,6 @@
     display: flex;
     width: 100%;
     gap: 20px;
-}
-
-.scrollable-x {
-    overflow-x: scroll;
-    /* scrollbar-width: none;
-    -ms-overflow-style: none; */
-}
-
-.scrollable-x::-webkit-scrollbar {
-    height: 14px;
-    border-radius: 10px;
-}
-
-.scrollable-x::-webkit-scrollbar-track {
-    background-color: rgb(0, 0, 0, 0.2);
-}
-
-.scrollable-x::-webkit-scrollbar-thumb {
-    background-color: white;
-    border: 1px solid rgb(158, 158, 158);
-    border-radius: 20px;
 }
 
 .item-card {
