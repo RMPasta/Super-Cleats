@@ -1,10 +1,22 @@
 const GET_ITEMS = "items/GET_ITEMS";
-const DELETE_ITEM = "items/DELETE_ITEM";
 const ADD_ITEM = "items/ADD_ITEM";
+const EDIT_ITEM = "items/EDIT_ITEM";
+const DELETE_ITEM = "items/DELETE_ITEM";
 
 const getItems = (items) => ({
 	type: GET_ITEMS,
 	payload: items,
+});
+
+
+const addItem = (item) => ({
+	type: ADD_ITEM,
+	payload: item,
+});
+
+const editItem = (item) => ({
+	type: EDIT_ITEM,
+	payload: item,
 });
 
 const deleteItem = (item) => ({
@@ -12,10 +24,6 @@ const deleteItem = (item) => ({
 	payload: item,
 });
 
-const addItem = (item) => ({
-	type: ADD_ITEM,
-	payload: item,
-});
 
 const initialState = { items: null, userItems: null };
 
@@ -48,6 +56,20 @@ export const addItemThunk = (item) => async (dispatch) => {
 	}
 };
 
+export const editItemThunk = (item, itemId) => async (dispatch) => {
+	const response = await fetch(`/api/items/${itemId}`, {
+		method: "PUT",
+		body: item
+	});
+	if (response.ok) {
+		const data = await response.json();
+		if (data.errors) {
+			return;
+		}
+		dispatch(editItem(data));
+	}
+};
+
 export const deleteItemThunk = (itemId) => async (dispatch) => {
 	const response = await fetch(`/api/items/${itemId}`, {
 		method: "DELETE",
@@ -58,7 +80,6 @@ export const deleteItemThunk = (itemId) => async (dispatch) => {
 		if (data.errors) {
 			return;
 		}
-		console.log(data)
 		dispatch(deleteItem(itemId));
 	}
 };
@@ -72,6 +93,11 @@ export default function reducer(state = initialState, action) {
 		case ADD_ITEM: {
             const newState = {...state}
 			newState.items.push(action.payload)
+			return newState;
+		}
+		case EDIT_ITEM: {
+            const newState = {...state}
+			newState.items[action.payload.id] = action.payload
 			return newState;
 		}
 		case DELETE_ITEM: {

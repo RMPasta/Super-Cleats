@@ -1,0 +1,32 @@
+.edit-item-container {
+    position: absolute;
+    left: 50%;
+    border: 1px solid black;
+    border-radius: 30px;
+    padding: 20px;
+    background-color: white;
+    transition: left 1s;
+}
+
+.edit-item-container:hover {
+    box-shadow: 3px 3px 5px black;
+}
+
+.edit-item-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-item-inputs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.error-container {
+    color: red;
+    height: 150px;
+}
