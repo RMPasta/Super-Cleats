@@ -1,0 +1,27 @@
+.slide-out-cart {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 50px;
+    right: -10px;
+    padding: 20px 30px;
+    width: 320px;
+    height: 90%;
+    transition: right 1s;
+    text-decoration: none;
+    list-style: none;
+    margin-right: 10px;
+    background-color: whitesmoke;
+    border-top: rgb(77, 76, 76) 1px solid;
+    margin-left: -20px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .hidden-cart {
+    right: -400px;
+  }
+
+  #cart {
+    font-size: 24px;
+  }

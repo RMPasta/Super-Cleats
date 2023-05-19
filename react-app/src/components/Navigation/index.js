@@ -1,31 +1,43 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import './Navigation.css';
 import AddItemForm from '../AddItemForm';
+import SlideOutMenu from '../SlideOutMenu';
+import SlideOutCart from '../SlideOutCart';
+import { getCartThunk } from '../../store/cart';
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
+	const cart = useSelector(state => state.cart.cart);
 	const [showMenu, setShowMenu] = useState(false);
+	const dispatch = useDispatch();
 
 	const closeMenu = () => setShowMenu(false);
+
+	useEffect(() => {
+		isLoaded && dispatch(getCartThunk(sessionUser?.id))
+	}, [sessionUser, dispatch, isLoaded])
+
+	if (!sessionUser) return <h1>Loading...</h1>
+	if (!cart) return <h1>Loading...</h1>
 
 	return (
 		<ul className='nav-ul'>
 			{sessionUser ? (
 				<>
 					<li>
-						<i className="fas fa-bars" />
+						<SlideOutMenu />
 					</li>
 					<li>
 						<NavLink exact to="/">LOGO</NavLink>
 					</li>
 					<li>
-						<NavLink exact to="/user">User Profile</NavLink>
+						<NavLink  exact to="/user">User Profile</NavLink>
 					</li>
 					<li>
 						<OpenModalButton
@@ -37,6 +49,10 @@ function Navigation({ isLoaded }){
 					</li>
 					<li>
 						<ProfileButton user={sessionUser} />
+					</li>
+					<li className='cart-section-nav'>
+						{cart.quantity}
+						<SlideOutCart />
 					</li>
 				</>
 			) : (

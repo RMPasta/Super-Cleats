@@ -36,13 +36,23 @@ export default function Cart() {
     <div className='cart-container'>
         <div>{user.email}</div>
         <div>{cart.quantity} Items</div>
-        <div>$ {cart.total_price} Total</div>
-        {cartItems && cartItems.map(item => (
-          <div key={item.id}>
-            <div>{item.name}</div>
-            <button onClick={() => removeItem(item)}>-</button>
-          </div>
-        ))}
+        <div className='map-container'>
+          {cartItems && cartItems.map(item => (
+            <div className='cart-item-info' key={item.id}>
+              <div className="item-info">
+              <div>{item.name}</div>
+              <div>${item.price}</div>
+              <img src={item.item_img} className='cart-item-image' alt={item.name} />
+              </div>
+              <i className="fa fa-trash cursor-pointer" id="cart-trash" onClick={() => removeItem(item)}></i>
+            </div>
+          ))}
+        </div>
+        <div className='checkout-section'>
+          <div className="subtotal">Subtotal ${cart.total_price}</div>
+          <button className='checkout-button cursor-pointer' onClick={() => "2"}>Checkout</button>
+          <button className='add-items-button cursor-pointer' onClick={() => "5"}>Add Items</button>
+        </div>
     </div>
   )
 }
