@@ -22,3 +22,20 @@
     background-color: rgb(0, 0, 0, 0.7);
     border-radius: 20px;
 }
+
+.text-cushion {
+    height: 20px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+li {
+    list-style: none;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+}

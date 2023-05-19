@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { deleteItemThunk, getItemsThunk } from '../../store/item';
+import OpenModalButton from "../OpenModalButton";
 import EditItemForm from '../EditItemForm';
 import './UsersItems.css'
 
 export default function UsersItems() {
     const dispatch = useDispatch();
     const history = useHistory();
-    const [itemId, setItemId] = useState(null);
+    const [showMenu, setShowMenu] = useState(false);
     const items = useSelector(state => state.item.items);
     const user = useSelector(state => state.session.user);
 
@@ -24,7 +25,10 @@ export default function UsersItems() {
 
     if (!items) return <h1>...Loading</h1>
     if (!user) return <></>
+
     const usersItems = items.filter(item => item.user_id === user.id)
+    const closeMenu = () => setShowMenu(false);
+
   return (
     <div className='gallery-container'>
         <div className='item-gallery'>
@@ -37,11 +41,12 @@ export default function UsersItems() {
                             <div>{item.name}</div>
                             <div>$ {item.price}</div>
                             <div>{item.description}</div>
+                            <OpenModalButton
+                                buttonText="Edit"
+                                onItemClick={closeMenu}
+                                modalComponent={<EditItemForm item={item} setShowMenu={setShowMenu} showMenu={showMenu} />}
+					        />
                             <button onClick={() => handleDelete(item.id)}>Delete</button>
-                                {itemId === item.id ?
-                                <button onClick={() => setItemId(null)}>Close</button> :
-                                <button onClick={() => setItemId(item.id)}>Edit</button>}
-                            {itemId === item.id ? <EditItemForm item={item} setItemId={setItemId} /> : <></>}
                         </div>
                     </div>
                 ))}

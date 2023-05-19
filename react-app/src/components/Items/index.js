@@ -47,14 +47,16 @@ export default function Items() {
                 {items.filter(item => item.type === "cleats").map((item) => (
                     <div key={item.id} className='item-card'>
                         <img className='card-img' src={item.item_img} alt={item.name} />
-                        <div>{item.name}</div>
-                        <div>$ {item.price}</div>
-                        <div>{item.description}</div>
-                        {user && user.id !== item.user_id ?
-                        cartItems && cartItems.filter(cartItem => cartItem.id === item.id).length === 0 ?
-                        <button onClick={() => {addToCart(item)}}>Add to cart</button> :
-                        <button onClick={() => {removeItem(item)}}>Remove from cart</button> :
-                        <NavLink to="/user">Manage Items</NavLink>}
+                        <div className='item-card-info'>
+                            <div>{item.name}</div>
+                            <div>$ {item.price}</div>
+                            <div>{item.description}</div>
+                            {user && user.id !== item.user_id ?
+                            cartItems && cartItems.filter(cartItem => cartItem.id === item.id).length === 0 ?
+                            <button onClick={() => {addToCart(item)}}>Add to cart</button> :
+                            <button onClick={() => {removeItem(item)}}>Remove from cart</button> :
+                            user && <NavLink to="/user">Manage Items</NavLink>}
+                        </div>
                     </div>
                 ))}
             </div>
@@ -63,14 +65,16 @@ export default function Items() {
                 {items.filter(item => item.type === "socks").map((item) => (
                     <div key={item.id} className='item-card'>
                         <img className='card-img' src={item.item_img} alt={item.name} />
-                        <div>{item.name}</div>
-                        <div>$ {item.price}</div>
-                        <div>{item.description}</div>
-                        {user && user.id !== item.user_id ?
-                        cartItems && cartItems.filter(cartItem => cartItem.id === item.id).length === 0 ?
-                        <button onClick={() => {addToCart(item)}}>Add to cart</button> :
-                        <button onClick={() => {removeItem(item)}}>Remove from cart</button> :
-                        <NavLink to="/user">Manage Items</NavLink>}
+                        <div className='item-card-info'>
+                            <div>{item.name}</div>
+                            <div>$ {item.price}</div>
+                            <div>{item.description}</div>
+                            {user && user.id !== item.user_id ?
+                            cartItems && cartItems.filter(cartItem => cartItem.id === item.id).length === 0 ?
+                            <button onClick={() => {addToCart(item)}}>Add to cart</button> :
+                            <button onClick={() => {removeItem(item)}}>Remove from cart</button> :
+                            user && <NavLink to="/user">Manage Items</NavLink>}
+                        </div>
                     </div>
                 ))}
             </div>
@@ -79,14 +83,16 @@ export default function Items() {
                 {items.filter(item => item.type === "ball").map((item) => (
                     <div key={item.id} className='item-card'>
                         <img className='card-img' src={item.item_img} alt={item.name} />
-                        <div>{item.name}</div>
-                        <div>$ {item.price}</div>
-                        <div>{item.description}</div>
-                        {user && user.id !== item.user_id ?
-                        cartItems && cartItems.filter(cartItem => cartItem.id === item.id).length === 0 ?
-                        <button onClick={() => {addToCart(item)}}>Add to cart</button> :
-                        <button onClick={() => {removeItem(item)}}>Remove from cart</button> :
-                        <NavLink to="/user">Manage Items</NavLink>}
+                        <div className='item-card-info'>
+                            <div>{item.name}</div>
+                            <div>$ {item.price}</div>
+                            <div>{item.description}</div>
+                            {user && user.id !== item.user_id ?
+                            cartItems && cartItems.filter(cartItem => cartItem.id === item.id).length === 0 ?
+                            <button onClick={() => {addToCart(item)}}>Add to cart</button> :
+                            <button onClick={() => {removeItem(item)}}>Remove from cart</button> :
+                            user && <NavLink to="/user">Manage Items</NavLink>}
+                        </div>
                     </div>
                 ))}
             </div>

@@ -1,5 +1,6 @@
 .card-img {
     width: 230px;
+    margin: auto 0;
 }
 
 .type-header {
@@ -37,15 +38,21 @@
 .item-card {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    /* align-items: space-between; */
+    justify-content: space-between;
     width: 340px;
     min-height: 300px;
     margin: 10px auto;
     padding: 10px;
-    border: 1px solid black;
     border-radius: 20px;
-    /* box-shadow: 2px 2px 2px grey; */
+    transition: box-shadow .5s ease-in;
+}
+
+.item-card:hover {
+    /* border: 1px solid black; */
+    box-shadow: 1px 1px 6px rgb(194, 194, 194);
+    /* counter balance 1px border shift */
+    /* padding: 9px; */
 }
 
 .item-card-info {

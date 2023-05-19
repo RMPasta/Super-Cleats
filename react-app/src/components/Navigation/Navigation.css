@@ -5,3 +5,50 @@
 .hidden {
   display: none;
 }
+
+.nav-ul {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-right-side {
+  display: flex;
+  gap: 20px;
+}
+
+.test {
+  background-color: black;
+}
+
+.login-button-nav {
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+}
+
+.signup-button-nav {
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+}
+
+.cart-button-nav {
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  background-color: black;
+  color: white;
+}
+
+.login-button-nav:hover {
+  background-color: rgb(233, 233, 233);
+}
+
+.signup-button-nav:hover {
+  background-color: rgb(233, 233, 233);
+}
+
+.cart-button-nav:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+}

@@ -1,23 +1,57 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
+import OpenModalButton from "../OpenModalButton";
+import LoginFormModal from "../LoginFormModal";
+import SignupFormModal from "../SignupFormModal";
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
+	const [showMenu, setShowMenu] = useState(false);
+
+	const closeMenu = () => setShowMenu(false);
 
 	return (
-		<ul>
-			<li>
-				<NavLink exact to="/">Home</NavLink>
-				<NavLink exact to="/user">User Profile</NavLink>
-				<NavLink exact to="/items/new">Create Item</NavLink>
-			</li>
-			{isLoaded && (
-				<li>
-					<ProfileButton user={sessionUser} />
-				</li>
+		<ul className='nav-ul'>
+			{sessionUser ? (
+				<>
+					<li>
+						<NavLink exact to="/">Home</NavLink>
+					</li>
+					<li>
+						<NavLink exact to="/user">User Profile</NavLink>
+					</li>
+					<li>
+						<NavLink exact to="/items/new">Create Item</NavLink>
+					</li>
+					<li>
+						<ProfileButton user={sessionUser} />
+					</li>
+				</>
+			) : (
+				<>
+					<li>
+						<NavLink exact to="/">Home</NavLink>
+					</li>
+					<li className='nav-right-side'>
+						<button className='cart-button-nav cursor-pointer'>Cart</button>
+						<OpenModalButton
+							className="login-button-nav cursor-pointer"
+							buttonText="Log In"
+							onItemClick={closeMenu}
+							modalComponent={<LoginFormModal showMenu={showMenu} />}
+						/>
+						<OpenModalButton
+							className="signup-button-nav cursor-pointer"
+							buttonText="Sign Up"
+							onItemClick={closeMenu}
+							modalComponent={<SignupFormModal />}
+						/>
+					</li>
+
+				</>
 			)}
 		</ul>
 	);
