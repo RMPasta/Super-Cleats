@@ -8,9 +8,9 @@ const getCart = (cart) => ({
 	payload: cart,
 });
 
-const addCart = (cart) => ({
+const addCart = (cart_and_items) => ({
 	type: ADD_CART,
-	payload: cart,
+	payload: cart_and_items,
 });
 
 const editCart = (cart) => ({
@@ -36,7 +36,7 @@ export const getCartThunk = (userId) => async (dispatch) => {
 		if (data.errors) {
 			return;
 		}
-		console.log("THUNK DATA ~~~~~~~~~~~~~>", data)
+		console.log("GET CART THUNK DATA ~~~~~~~~>", data)
 		dispatch(getCart(data));
 	}
 };
@@ -57,13 +57,13 @@ export const addCartThunk = (userId) => async (dispatch) => {
 	}
 };
 
-export const editCartThunk = (cart) => async (dispatch) => {
-	const response = await fetch(`/api/cart/${cart.id}`, {
+export const editCartThunk = (obj) => async (dispatch) => {
+	const response = await fetch(`/api/cart/${obj.id}`, {
         method: "PUT",
 		headers: {
 			"Content-Type": "application/json",
 		},
-		body: JSON.stringify(cart)
+		body: JSON.stringify(obj)
 	});
 	if (response.ok) {
 		const data = await response.json();

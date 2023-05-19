@@ -6,6 +6,7 @@ import './Cart.css'
 export default function Cart() {
     const dispatch = useDispatch();
     const cart = useSelector(state => state.cart.cart);
+    const cartItems = useSelector(state => state.cart.cartItems);
     const user = useSelector(state => state.session.user);
     useEffect(() => {
         if (user) {
@@ -21,6 +22,11 @@ export default function Cart() {
         <div>{user.email}</div>
         <div>{cart.quantity} Items</div>
         <div>$ {cart.total_price} Total</div>
+        {cartItems && cartItems.map(item => (
+          <div key={item.id}>
+            <div>{item.name}</div>
+          </div>
+        ))}
     </div>
   )
 }

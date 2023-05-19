@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from 'react-router-dom';
 import { getItemsThunk } from '../../store/item';
-import { editCartThunk } from '../../store/cart';
+import { editCartThunk, getCartThunk } from '../../store/cart';
 import './Items.css'
 
 export default function Items() {
     const dispatch = useDispatch();
     const items = useSelector(state => state.item.items);
     const user = useSelector(state => state.session.user);
-    const storeCart = useSelector(state => state.cart.cart);
-    const cart = storeCart?.cart;
+    const cart = useSelector(state => state.cart.cart);
+    // const cart = storeCart?.cart;
     const [quantity, setQuantity] = useState(0);
     const [total, setTotal] = useState(0);
 
@@ -21,14 +21,15 @@ export default function Items() {
     }, [dispatch, cart]);
 
     if (!items) return <h1>Loading...</h1>
-    if (!cart) return <h1>Loading...</h1>
+    // if (!cart) return <h1>Loading...</h1>
 
     const addToCart = async (item) => {
         const newQty = quantity + 1;
         const newTotalPrice = total + parseInt(item.price)
         // pass in cart id for fetch request
-        // send in user id and item id to create the association
+        // send in cart id and item id to create the association
         await dispatch(editCartThunk({id: cart.id, quantity: newQty, total_price: newTotalPrice, item_id: item.id}))
+        await dispatch(getCartThunk(cart.id))
     }
 
   return (

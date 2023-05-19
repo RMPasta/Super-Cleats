@@ -15,13 +15,14 @@ class Item(db.Model):
     item_img = db.Column(db.String, nullable=False)
     team_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('teams.id')))
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
-    cart_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('carts.id')))
     created_at = db.Column(db.Date, default=datetime.today)
     updated_at = db.Column(db.Date, default=datetime.today)
 
     users = db.relationship("User", back_populates="items")
-    carts = db.relationship("Cart", back_populates="items")
     teams = db.relationship("Team", back_populates="items")
+    carts = db.relationship("Cart",
+                            secondary="cart_items",
+                            back_populates="items")
 
     def to_dict(self):
         return {
