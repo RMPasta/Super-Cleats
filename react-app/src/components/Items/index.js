@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from 'react-router-dom';
 import { getItemsThunk } from '../../store/item';
-import { addToCartThunk, getCartThunk } from '../../store/cart';
+import { addToCartThunk, getCartThunk, removeFromCartThunk } from '../../store/cart';
 import './Items.css'
 
 export default function Items() {
@@ -10,6 +10,7 @@ export default function Items() {
     const items = useSelector(state => state.item.items);
     const user = useSelector(state => state.session.user);
     const cart = useSelector(state => state.cart.cart);
+    const cartItems = useSelector(state => state.cart.cartItems);
     const [quantity, setQuantity] = useState(0);
     const [total, setTotal] = useState(0);
 
@@ -31,6 +32,13 @@ export default function Items() {
         await dispatch(getCartThunk(cart.id))
     }
 
+    const removeItem = async (item) => {
+        const newQty = quantity - 1;
+        const newTotalPrice = total - parseInt(item.price)
+        await dispatch(removeFromCartThunk({id: cart.id, quantity: newQty, total_price: newTotalPrice, item_id: item.id}))
+        await dispatch(getCartThunk(user.id))
+    }
+
   return (
     <div className='gallery-container'>
         <div className='item-gallery'>
@@ -43,7 +51,9 @@ export default function Items() {
                         <div>$ {item.price}</div>
                         <div>{item.description}</div>
                         {user && user.id !== item.user_id ?
+                        cartItems && cartItems.filter(cartItem => cartItem.id === item.id).length === 0 ?
                         <button onClick={() => {addToCart(item)}}>Add to cart</button> :
+                        <button onClick={() => {removeItem(item)}}>Remove from cart</button> :
                         <NavLink to="/user">Manage Items</NavLink>}
                     </div>
                 ))}
@@ -57,7 +67,9 @@ export default function Items() {
                         <div>$ {item.price}</div>
                         <div>{item.description}</div>
                         {user && user.id !== item.user_id ?
+                        cartItems && cartItems.filter(cartItem => cartItem.id === item.id).length === 0 ?
                         <button onClick={() => {addToCart(item)}}>Add to cart</button> :
+                        <button onClick={() => {removeItem(item)}}>Remove from cart</button> :
                         <NavLink to="/user">Manage Items</NavLink>}
                     </div>
                 ))}
@@ -71,7 +83,9 @@ export default function Items() {
                         <div>$ {item.price}</div>
                         <div>{item.description}</div>
                         {user && user.id !== item.user_id ?
+                        cartItems && cartItems.filter(cartItem => cartItem.id === item.id).length === 0 ?
                         <button onClick={() => {addToCart(item)}}>Add to cart</button> :
+                        <button onClick={() => {removeItem(item)}}>Remove from cart</button> :
                         <NavLink to="/user">Manage Items</NavLink>}
                     </div>
                 ))}
