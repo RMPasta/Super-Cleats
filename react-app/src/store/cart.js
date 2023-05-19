@@ -2,6 +2,7 @@ const GET_CART = "cart/GET_CART";
 const CREATE_CART = "cart/CREATE_CART";
 const ADD_TO_CART = "cart/ADD_TO_CART";
 const REMOVE_FROM_CART = "cart/REMOVE_FROM_CART";
+const CLEAR_CART = "cart/REMOVE_FROM_CART";
 const DELETE_CART = "cart/DELETE_CART";
 
 const getCart = (cart) => ({
@@ -21,6 +22,11 @@ const addToCart = (cart) => ({
 
 const removeFromCart = (cart) => ({
 	type: REMOVE_FROM_CART,
+	payload: cart,
+});
+
+const clearCart = (cart) => ({
+	type: CLEAR_CART,
 	payload: cart,
 });
 
@@ -95,6 +101,23 @@ export const removeFromCartThunk = (obj) => async (dispatch) => {
 	}
 };
 
+export const clearCartThunk = (cartId) => async (dispatch) => {
+	const response = await fetch(`/api/cart/${cartId}/clear`, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(cartId)
+	});
+	if (response.ok) {
+		const data = await response.json();
+		if (data.errors) {
+			return;
+		}
+		dispatch(clearCart(data));
+	}
+};
+
 export const deleteCartThunk = (cart) => async (dispatch) => {
 	const response = await fetch(`/api/cart/${cart.id}`, {
 		method: "PUT",
@@ -132,6 +155,11 @@ export default function reducer(state = initialState, action) {
 		case REMOVE_FROM_CART: {
             const newState = {...state}
 			newState.cart = action.payload;
+			return newState;
+        }
+		case CLEAR_CART: {
+            const newState = {...state}
+			newState.cart = {};
 			return newState;
         }
 		case DELETE_CART: {

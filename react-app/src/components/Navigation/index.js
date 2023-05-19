@@ -23,8 +23,8 @@ function Navigation({ isLoaded }){
 		isLoaded && dispatch(getCartThunk(sessionUser?.id))
 	}, [sessionUser, dispatch, isLoaded])
 
-	if (!sessionUser) return <h1>Loading...</h1>
-	if (!cart) return <h1>Loading...</h1>
+	if (sessionUser && !cart) return <h1>Loading...</h1>
+	// if (!cart) return <h1>Loading...</h1>
 
 	return (
 		<ul className='nav-ul'>
@@ -46,9 +46,6 @@ function Navigation({ isLoaded }){
 							onItemClick={closeMenu}
 							modalComponent={<AddItemForm showMenu={showMenu} />}
 						/>
-					</li>
-					<li>
-						<ProfileButton user={sessionUser} />
 					</li>
 					<li className='cart-section-nav'>
 						{cart.quantity}

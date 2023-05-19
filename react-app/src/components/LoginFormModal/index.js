@@ -21,6 +21,11 @@ function LoginFormModal() {
     }
   };
 
+  const demoUser = async () => {
+    await dispatch(login("vinnie@aa.io", "password"))
+    closeModal()
+  }
+
   return (
     <>
       <form className="form-modal" onSubmit={handleSubmit}>
@@ -36,7 +41,6 @@ function LoginFormModal() {
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
           />
         </label>
         <label>
@@ -45,10 +49,10 @@ function LoginFormModal() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required
           />
         </label>
         <button type="submit">Log In</button>
+        <button onClick={() => demoUser()}>Demo User</button>
       </form>
     </>
   );

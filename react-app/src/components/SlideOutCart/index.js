@@ -40,7 +40,7 @@ export default function SlideOutCart({ addItemRef }) {
     <div>
       <i onClick={openMenu} className="fa fa-cart-plus cursor-pointer" id="cart"></i>
         <ul className={ulClassName} ref={ulRef}>
-            <Cart />
+            <Cart setShowMenu={setShowMenu}/>
         </ul>
     </div>
   )

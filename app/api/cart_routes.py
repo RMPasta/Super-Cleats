@@ -66,3 +66,23 @@ def remove_from_cart(cart_id):
 
     db.session.commit()
     return cart.to_dict()
+
+@cart_routes.route('/<int:cart_id>/clear', methods=["PUT"])
+def clear_cart(cart_id):
+    """
+    Clear cart
+    """
+
+    cart = Cart.query.get(cart_id)
+    items = [item for item in cart.items if cart.id == cart_id]
+    print("BACKEND CARTITEMS ~~~~~~~~~>", items)
+    for item in items:
+        cart.items.remove(item)
+    cart.quantity=0
+    cart.total_price=0
+
+    # if cart and item:
+    #     cart.items.remove(item[0])
+
+    db.session.commit()
+    return cart.to_dict()
