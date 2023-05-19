@@ -6,6 +6,7 @@ import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import './Navigation.css';
+import AddItemForm from '../AddItemForm';
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
@@ -24,7 +25,12 @@ function Navigation({ isLoaded }){
 						<NavLink exact to="/user">User Profile</NavLink>
 					</li>
 					<li>
-						<NavLink exact to="/items/new">Create Item</NavLink>
+						<OpenModalButton
+							className="login-button-nav cursor-pointer"
+							buttonText="Create Item"
+							onItemClick={closeMenu}
+							modalComponent={<AddItemForm showMenu={showMenu} />}
+						/>
 					</li>
 					<li>
 						<ProfileButton user={sessionUser} />

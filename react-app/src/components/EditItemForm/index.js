@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import { getItemsThunk } from "../../store/item";
 import './EditItemForm.css'
 
-export default function EditItemForm({item, setShowMenu}) {
+export default function EditItemForm({item}) {
     const dispatch = useDispatch();
     const history = useHistory();
     const user = useSelector(state => state.session.user);

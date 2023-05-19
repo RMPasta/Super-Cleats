@@ -53,7 +53,7 @@ export default function AddItemForm() {
             hasErrors = true;
         }
         if (!itemImg) {
-            setErrors(errors => ({...errors, itemImg: "Please upload an image for your item"}));
+            setErrors(errors => ({...errors, itemImg: "Please upload an image"}));
             hasErrors = true;
         }
         if (!teamId) {

@@ -34,9 +34,6 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/items/new">
-            <AddItemForm />
-          </Route>
           <Route path="/user">
             <UsersItems />
           </Route>

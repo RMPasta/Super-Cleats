@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { deleteItemThunk, getItemsThunk } from '../../store/item';
+import { getItemsThunk } from '../../store/item';
 import OpenModalButton from "../OpenModalButton";
 import EditItemForm from '../EditItemForm';
+import DeleteModal from '../DeleteModal';
 import './UsersItems.css'
 
 export default function UsersItems() {
@@ -17,11 +18,6 @@ export default function UsersItems() {
         if (!user) return history.push('/')
         dispatch(getItemsThunk())
     }, [dispatch, history, user]);
-
-    const handleDelete = async (itemId) => {
-        await dispatch(deleteItemThunk(itemId))
-        await dispatch(getItemsThunk())
-    }
 
     if (!items) return <h1>...Loading</h1>
     if (!user) return <></>
@@ -44,9 +40,13 @@ export default function UsersItems() {
                             <OpenModalButton
                                 buttonText="Edit"
                                 onItemClick={closeMenu}
-                                modalComponent={<EditItemForm item={item} setShowMenu={setShowMenu} showMenu={showMenu} />}
+                                modalComponent={<EditItemForm item={item} showMenu={showMenu} />}
 					        />
-                            <button onClick={() => handleDelete(item.id)}>Delete</button>
+                            <OpenModalButton
+                                buttonText="Delete"
+                                onItemClick={closeMenu}
+                                modalComponent={<DeleteModal item={item} showMenu={showMenu} />}
+					        />
                         </div>
                     </div>
                 ))}
