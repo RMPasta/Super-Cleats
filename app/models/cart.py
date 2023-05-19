@@ -1,4 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .cart_item import CartItem
 from datetime import datetime
 
 class Cart(db.Model):
@@ -17,7 +18,7 @@ class Cart(db.Model):
     users = db.relationship("User", back_populates="carts")
     tickets = db.relationship("Ticket", back_populates="carts")
     items = db.relationship("Item",
-                            secondary="cart_items",
+                            secondary=CartItem.__tablename__,
                             back_populates="carts")
 
     def to_dict(self):
