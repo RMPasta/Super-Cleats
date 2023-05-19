@@ -1,5 +1,6 @@
 .profile-dropdown {
   position: absolute;
+  right: 0;
 }
 
 .hidden {
@@ -14,10 +15,6 @@
 .nav-right-side {
   display: flex;
   gap: 20px;
-}
-
-.test {
-  background-color: black;
 }
 
 .login-button-nav {

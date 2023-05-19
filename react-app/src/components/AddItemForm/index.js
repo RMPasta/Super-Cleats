@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addItemThunk } from '../../store/item';
 import { useHistory } from "react-router-dom";
+import { useModal } from "../../context/Modal";
 import './AddItemForm.css'
 import { getItemsThunk } from "../../store/item";
 
@@ -17,6 +18,8 @@ export default function AddItemForm() {
     const [imageLoading, setImageLoading] = useState(false);
     const [teamId, setTeamId] = useState("1");
     const [errors, setErrors] = useState({});
+    const { closeModal } = useModal();
+
 
 
     useEffect(() => {
@@ -75,6 +78,7 @@ export default function AddItemForm() {
         await dispatch(addItemThunk(formData))
         await dispatch(getItemsThunk())
         setImageLoading(false)
+        closeModal();
         return history.push("/user")
     }
 

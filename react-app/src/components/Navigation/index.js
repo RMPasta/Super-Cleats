@@ -19,7 +19,10 @@ function Navigation({ isLoaded }){
 			{sessionUser ? (
 				<>
 					<li>
-						<NavLink exact to="/">Home</NavLink>
+						<i className="fas fa-bars" />
+					</li>
+					<li>
+						<NavLink exact to="/">LOGO</NavLink>
 					</li>
 					<li>
 						<NavLink exact to="/user">User Profile</NavLink>
