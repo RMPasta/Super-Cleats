@@ -1,6 +1,7 @@
 const GET_CART = "cart/GET_CART";
-const ADD_CART = "cart/ADD_CART";
-const EDIT_CART = "cart/EDIT_CART";
+const CREATE_CART = "cart/CREATE_CART";
+const ADD_TO_CART = "cart/ADD_TO_CART";
+const REMOVE_FROM_CART = "cart/REMOVE_FROM_CART";
 const DELETE_CART = "cart/DELETE_CART";
 
 const getCart = (cart) => ({
@@ -8,13 +9,18 @@ const getCart = (cart) => ({
 	payload: cart,
 });
 
-const addCart = (cart_and_items) => ({
-	type: ADD_CART,
+const createCart = (cart_and_items) => ({
+	type: CREATE_CART,
 	payload: cart_and_items,
 });
 
-const editCart = (cart) => ({
-	type: EDIT_CART,
+const addToCart = (cart) => ({
+	type: ADD_TO_CART,
+	payload: cart,
+});
+
+const removeFromCart = (cart) => ({
+	type: REMOVE_FROM_CART,
 	payload: cart,
 });
 
@@ -23,7 +29,6 @@ const deleteCart = (cart) => ({
 	payload: cart,
 });
 
-const initialState = { cart: null, cartItems: null };
 
 export const getCartThunk = (userId) => async (dispatch) => {
 	const response = await fetch(`/api/cart/${userId}`, {
@@ -36,14 +41,13 @@ export const getCartThunk = (userId) => async (dispatch) => {
 		if (data.errors) {
 			return;
 		}
-		console.log("GET CART THUNK DATA ~~~~~~~~>", data)
 		dispatch(getCart(data));
 	}
 };
 
-export const addCartThunk = (userId) => async (dispatch) => {
+export const createCartThunk = (userId) => async (dispatch) => {
 	const response = await fetch(`/api/cart/${userId}`, {
-        method: "POST",
+		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 		},
@@ -53,13 +57,13 @@ export const addCartThunk = (userId) => async (dispatch) => {
 		if (data.errors) {
 			return;
 		}
-		dispatch(addCart(data));
+		dispatch(createCart(data));
 	}
 };
 
-export const editCartThunk = (obj) => async (dispatch) => {
+export const addToCartThunk = (obj) => async (dispatch) => {
 	const response = await fetch(`/api/cart/${obj.id}`, {
-        method: "PUT",
+		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",
 		},
@@ -70,13 +74,30 @@ export const editCartThunk = (obj) => async (dispatch) => {
 		if (data.errors) {
 			return;
 		}
-		dispatch(editCart(data));
+		dispatch(addToCart(data));
+	}
+};
+
+export const removeFromCartThunk = (obj) => async (dispatch) => {
+	const response = await fetch(`/api/cart/${obj.id}/remove`, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(obj)
+	});
+	if (response.ok) {
+		const data = await response.json();
+		if (data.errors) {
+			return;
+		}
+		dispatch(removeFromCart(data));
 	}
 };
 
 export const deleteCartThunk = (cart) => async (dispatch) => {
 	const response = await fetch(`/api/cart/${cart.id}`, {
-        method: "PUT",
+		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",
 		},
@@ -91,17 +112,24 @@ export const deleteCartThunk = (cart) => async (dispatch) => {
 	}
 };
 
+const initialState = { cart: null, cartItems: null };
+
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
 		case GET_CART: {
             const newState = {...state, cart: action.payload.cart, cartItems: action.payload.items}
 			return newState;
         }
-		case ADD_CART: {
+		case CREATE_CART: {
             const newState = {...state, cart: action.payload}
 			return newState;
         }
-		case EDIT_CART: {
+		case ADD_TO_CART: {
+            const newState = {...state}
+			newState.cart = action.payload;
+			return newState;
+        }
+		case REMOVE_FROM_CART: {
             const newState = {...state}
 			newState.cart = action.payload;
 			return newState;

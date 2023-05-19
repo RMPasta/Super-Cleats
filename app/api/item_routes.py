@@ -56,7 +56,6 @@ def edit_item(item_id):
     """
     form = EditItemForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print("LOOK AT ME FORM DATA ~~~~~~~~~~~~~>", form.data)
     item = Item.query.get(item_id)
     if form.validate_on_submit():
         user_id = current_user.id

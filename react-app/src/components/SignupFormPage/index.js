@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { signUp } from "../../store/session";
+import { createCartThunk } from "../../store/cart";
 import './SignupForm.css';
-import { addCartThunk } from "../../store/cart";
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ function SignupFormPage() {
     e.preventDefault();
     if (password === confirmPassword) {
         const data = await dispatch(signUp(username, email, password));
-        await dispatch(addCartThunk(sessionUser.id))
+        await dispatch(createCartThunk(sessionUser.id))
 
         if (data) {
           setErrors(data)

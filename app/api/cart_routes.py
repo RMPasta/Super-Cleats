@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import db, Cart, Item, cart_items
+from app.models import db, Cart, Item
 
 cart_routes = Blueprint('cart', __name__)
 
@@ -29,9 +29,9 @@ def add_cart(user_id):
     return cart.to_dict()
 
 @cart_routes.route('/<int:cart_id>', methods=["PUT"])
-def edit_cart(cart_id):
+def add_to_cart(cart_id):
     """
-    Edit the content a cart for new user
+    Add item to cart
     """
 
     data = request.json
@@ -44,6 +44,25 @@ def edit_cart(cart_id):
         cart.items.append(item)
         cart.quantity=data["quantity"]
         cart.total_price=data["total_price"]
+
+    db.session.commit()
+    return cart.to_dict()
+
+@cart_routes.route('/<int:cart_id>/remove', methods=["PUT"])
+def remove_from_cart(cart_id):
+    """
+    Remove item from cart
+    """
+
+    data = request.json
+    item_id=data["item_id"]
+    cart = Cart.query.get(cart_id)
+    item = [item for item in cart.items if item.id == item_id]
+
+    if cart and item:
+        cart.quantity=data["quantity"]
+        cart.total_price=data["total_price"]
+        cart.items.remove(item[0])
 
     db.session.commit()
     return cart.to_dict()
