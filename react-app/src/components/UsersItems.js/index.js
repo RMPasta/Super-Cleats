@@ -42,7 +42,7 @@ export default function UsersItems() {
                         <div className='item-card-info'>
                             <div>{item.name}</div>
                             <div>$ {item.price}</div>
-                            <div>{item.description}</div>
+                            <div>{item.description.length > 30 ? item.description.slice(0, 30) + "..." : item.description}</div>
                             <OpenModalButton
                                 buttonText="Edit"
                                 onItemClick={closeMenu}

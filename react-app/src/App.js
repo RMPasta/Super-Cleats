@@ -9,6 +9,7 @@ import Items from "./components/Items";
 import Teams from "./components/Teams";
 import UsersItems from "./components/UsersItems.js";
 import ItemDetails from "./components/ItemDetails";
+import ItemsPageHeader from "./components/ItemsPageHeader";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/">
+            <ItemsPageHeader />
             <Items />
           </Route>
           <Route path="/item/:id">

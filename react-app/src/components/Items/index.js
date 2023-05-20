@@ -52,7 +52,7 @@ export default function Items() {
             <h2 className='type-header'>Cleats</h2>
             <div className='cleats-gallery scrollable-x'>
                 {items.filter(item => item.type === "cleats").map((item) => (
-                    <div key={item.id} className='item-card' onClick={() => history.push(`/item/${item.id}`)}>
+                    <div key={item.id} className='item-card cursor-pointer' onClick={() => history.push(`/item/${item.id}`)}>
                         <img className="card-badge" src={getItemBadge(item)} alt="item-team-badge" />
                         <img className='card-img' src={item.item_img} alt={item.name} />
                         <div className='item-card-info'>
@@ -62,15 +62,15 @@ export default function Items() {
                         </div>
                         {user && user.id !== item.user_id ?
                         cartItems && cartItems.filter(cartItem => cartItem.id === item.id).length === 0 ?
-                        <button className='checkout-button' onClick={(e) => {
+                        <button className='checkout-button cursor-pointer' onClick={(e) => {
                             e.stopPropagation();
                             addToCart(item)
                         }}>Add to cart</button> :
-                        <button className='add-items-button' onClick={(e) => {
+                        <button className='add-items-button cursor-pointer' onClick={(e) => {
                             e.stopPropagation();
                             removeItem(item)
                         }}>Remove from cart</button> :
-                        user && <button className='add-items-button' onClick={(e) => {
+                        user && <button className='add-items-button cursor-pointer' onClick={(e) => {
                             e.stopPropagation();
                             history.push('/user')
                         }}>Manage Items</button>}
@@ -80,24 +80,24 @@ export default function Items() {
             <h2 className='type-header'>Socks</h2>
             <div className='socks-gallery scrollable-x'>
                 {items.filter(item => item.type === "socks").map((item) => (
-                    <div key={item.id} className='item-card' onClick={() => history.push(`/item/${item.id}`)}>
+                    <div key={item.id} className='item-card cursor-pointer' onClick={() => history.push(`/item/${item.id}`)}>
                         <img className="card-badge" src={getItemBadge(item)} alt="item-team-badge" />
                         <img className='card-img' src={item.item_img} alt={item.name} />
                         <div className='item-card-info'>
                             <div>{item.name}</div>
                             <div>$ {item.price}</div>
-                            <div>{item.description}</div>
+                            <div>{item.description.length > 30 ? item.description.slice(0, 30) + "..." : item.description}</div>
                             {user && user.id !== item.user_id ?
                             cartItems && cartItems.filter(cartItem => cartItem.id === item.id).length === 0 ?
-                            <button className='checkout-button' onClick={(e) => {
+                            <button className='checkout-button cursor-pointer' onClick={(e) => {
                                 e.stopPropagation();
                                 addToCart(item)
                             }}>Add to cart</button> :
-                            <button className='add-items-button' onClick={(e) => {
+                            <button className='add-items-button cursor-pointer' onClick={(e) => {
                                 e.stopPropagation();
                                 removeItem(item)
                             }}>Remove from cart</button> :
-                            user && <button className='add-items-button' onClick={(e) => {
+                            user && <button className='add-items-button cursor-pointer' onClick={(e) => {
                                 e.stopPropagation();
                                 history.push('/user')
                             }}>Manage Items</button>}
@@ -108,24 +108,24 @@ export default function Items() {
             <h2 className='type-header'>Soccer Balls</h2>
             <div className='ball-gallery scrollable-x'>
                 {items.filter(item => item.type === "ball").map((item) => (
-                    <div key={item.id} className='item-card' onClick={() => history.push(`/item/${item.id}`)}>
+                    <div key={item.id} className='item-card cursor-pointer' onClick={() => history.push(`/item/${item.id}`)}>
                         <img className="card-badge" src={getItemBadge(item)} alt="item-team-badge" />
                         <img className='card-img' src={item.item_img} alt={item.name} />
                         <div className='item-card-info'>
                             <div>{item.name}</div>
                             <div>$ {item.price}</div>
-                            <div>{item.description}</div>
+                            <div>{item.description.length > 30 ? item.description.slice(0, 30) + "..." : item.description}</div>
                             {user && user.id !== item.user_id ?
                             cartItems && cartItems.filter(cartItem => cartItem.id === item.id).length === 0 ?
-                            <button className='checkout-button' onClick={(e) => {
+                            <button className='checkout-button cursor-pointer' onClick={(e) => {
                                 e.stopPropagation();
                                 addToCart(item)
                             }}>Add to cart</button> :
-                            <button className='add-items-button' onClick={(e) => {
+                            <button className='add-items-button cursor-pointer' onClick={(e) => {
                                 e.stopPropagation();
                                 removeItem(item)
                             }}>Remove from cart</button> :
-                            user && <button className='add-items-button' onClick={(e) => {
+                            user && <button className='add-items-button cursor-pointer' onClick={(e) => {
                                 e.stopPropagation();
                                 history.push('/user')
                             }}>Manage Items</button>}
