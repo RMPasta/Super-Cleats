@@ -13,27 +13,35 @@ import ItemsPageHeader from "./components/ItemsPageHeader";
 import Filter from "./components/Filter";
 import "./App.css";
 import Landing from "./components/Landing";
+import { getTeamsThunk } from "./store/team";
 
 function App() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const [isLoaded, setIsLoaded] = useState(false);
   const [teamPicked, setTeamPicked] = useState(false);
+  const teamId = localStorage.getItem("teamId");
 
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
-  }, [dispatch]);
+    dispatch(getTeamsThunk());
+    if (teamId) setTeamPicked(teamId);
+  }, [dispatch, teamId]);
 
   return (
     <>
-      <Navigation setTeamPicked={setTeamPicked} isLoaded={isLoaded} />
-      {user && <Teams />}
+      <Navigation
+        teamPicked={teamPicked}
+        setTeamPicked={setTeamPicked}
+        isLoaded={isLoaded}
+      />
       {isLoaded && (
         <Switch>
           <Route exact path="/">
             {}
             {user || teamPicked ? (
               <>
+                {user && <Teams />}
                 <ItemsPageHeader />
                 <div className="filter-items-container">
                   <div className="filter-app">
@@ -45,7 +53,7 @@ function App() {
                 </div>
               </>
             ) : (
-              <Landing setTeamPicked={setTeamPicked} />
+              <Landing setTeamPicked={setTeamPicked} teamPicked={teamPicked} />
             )}
           </Route>
           <Route path="/item/:id">

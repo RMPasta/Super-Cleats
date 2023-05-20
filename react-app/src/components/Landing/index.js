@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getTeamsThunk } from "../../store/team";
 import "./Landing.css";
 
-export default function Landing({ setTeamPicked }) {
+export default function Landing({ teamPicked, setTeamPicked }) {
   const dispatch = useDispatch();
   const teams = useSelector((state) => state.team.teams);
 
@@ -24,7 +24,9 @@ export default function Landing({ setTeamPicked }) {
         {teams.map((team) => (
           <div key={team.id} className="splash-team-card">
             <img
-              onClick={() => setTeamPicked(team.id)}
+              onClick={() => {
+                setTeamPicked(team.id);
+              }}
               className="splash-badge cursor-pointer"
               src={team.badge_img}
               alt={team.name}

@@ -1,3 +1,8 @@
+.gallery-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .item-gallery {
     display: flex;
     flex-direction: column;
@@ -28,6 +33,7 @@
     margin: 6px 4px;
     padding: 0 10px 20px 10px;
     border-radius: 20px;
+    background-color: white;
     transition: box-shadow .5s ease-in;
 }
 

@@ -2,9 +2,11 @@
     height: 20px;
 }
 
-.gallery-container {
+.gallery-container-user {
     display: flex;
     justify-content: flex-end;
+    margin-top: 100px;
+    height: 100vh;
 }
 
 .card-badge {

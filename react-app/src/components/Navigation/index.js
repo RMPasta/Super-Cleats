@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
@@ -10,9 +11,11 @@ import SlideOutMenu from "../SlideOutMenu";
 import SlideOutCart from "../SlideOutCart";
 import { getCartThunk } from "../../store/cart";
 
-function Navigation({ setTeamPicked, isLoaded }) {
+function Navigation({ setTeamPicked, teamPicked, isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
   const cart = useSelector((state) => state.cart.cart);
+  const teams = useSelector((state) => state.team.teams);
+  const history = useHistory();
   const [showMenu, setShowMenu] = useState(false);
   const dispatch = useDispatch();
 
@@ -20,51 +23,70 @@ function Navigation({ setTeamPicked, isLoaded }) {
 
   useEffect(() => {
     isLoaded && dispatch(getCartThunk(sessionUser?.id));
-  }, [sessionUser, dispatch, isLoaded]);
+    teamPicked && localStorage.setItem("teamId", teamPicked);
+  }, [sessionUser, dispatch, isLoaded, teamPicked]);
 
   if (sessionUser && !cart) return <h1>Loading...</h1>;
+  if (!teams) return <h1>Loading...</h1>;
+  const team = teams[teamPicked - 1];
   // if (!cart) return <h1>Loading...</h1>
 
   return (
     <ul className="nav-ul">
       {sessionUser ? (
         <>
-          <li>
+          <li className="nav-left-side">
             <SlideOutMenu setTeamPicked={setTeamPicked} />
+            <div
+              className="logo cursor-pointer"
+              onClick={() => {
+                history.push("/");
+              }}
+            >
+              SUPER CLEATS
+            </div>
           </li>
-          <li>
-            <NavLink exact to="/">
-              LOGO
-            </NavLink>
-          </li>
-          <li>
+          <li className="nav-right-side-logged-in">
             <NavLink exact to="/user">
               User Profile
             </NavLink>
-          </li>
-          <li>
             <OpenModalButton
               className="login-button-nav cursor-pointer"
               buttonText="Create Item"
               onItemClick={closeMenu}
               modalComponent={<AddItemForm showMenu={showMenu} />}
             />
-          </li>
-          <li className="cart-section-nav">
-            {cart.quantity}
-            <SlideOutCart />
+            {teamPicked && (
+              <img
+                className="favorite-team-nav"
+                src={team.badge_img}
+                alt={team.name}
+              />
+            )}
+            <div className="cart-section-nav">
+              {cart.quantity}
+              <SlideOutCart />
+            </div>
           </li>
         </>
       ) : (
         <>
-          <li>
+          <li className="nav-left-side">
             <SlideOutMenu />
+            <div className="logo cursor-pointer">SUPER CLEATS</div>
             {/* <NavLink exact to="/">
               Home
             </NavLink> */}
           </li>
-          <li className="nav-right-side">
+          <li className="nav-right-side-logged-out">
             {/* <button className='cart-button-nav cursor-pointer'>Cart</button> */}
+            {teamPicked && (
+              <img
+                className="favorite-team-nav"
+                src={team.badge_img}
+                alt={team.name}
+              />
+            )}
             <OpenModalButton
               className="login-button-nav cursor-pointer"
               buttonText="Log In"

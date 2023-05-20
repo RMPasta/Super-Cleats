@@ -12,16 +12,33 @@
   justify-content: space-between;
   position: fixed;
   width: 100%;
-  padding: 10px 0;
+  height: 50px;
+  padding: 5px 0;
   margin: 0 auto;
   top: 0;
   z-index: 1;
   background-color: white;
 }
 
-.nav-right-side {
+.nav-right-side-logged-in {
   display: flex;
-  gap: 20px;
+  justify-content: space-around;
+  align-items: center;
+  width: 36%;
+}
+
+.nav-right-side-logged-out {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 25%;
+}
+
+.nav-left-side {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 20%;
 }
 
 .login-button-nav {
@@ -32,8 +49,18 @@
 
 .signup-button-nav {
   border: none;
+  background-color: black;
+  color: white;
   padding: 10px 20px;
   border-radius: 20px;
+}
+
+.login-button-nav:hover {
+  background-color: rgb(233, 233, 233);
+}
+
+.signup-button-nav:hover {
+  background-color: rgba(0, 0, 0, 0.815);
 }
 
 .cart-button-nav {
@@ -42,14 +69,6 @@
   border-radius: 20px;
   background-color: black;
   color: white;
-}
-
-.login-button-nav:hover {
-  background-color: rgb(233, 233, 233);
-}
-
-.signup-button-nav:hover {
-  background-color: rgb(233, 233, 233);
 }
 
 .cart-button-nav:hover {
@@ -61,4 +80,13 @@
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.favorite-team-nav {
+  width: 50px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
 }

@@ -20,7 +20,6 @@ export default function SlideOutMenu({ setTeamPicked }) {
     e.preventDefault();
     await dispatch(logout());
     setShowMenu(false);
-    setTeamPicked(false);
     return history.push("/");
   };
 
@@ -48,9 +47,26 @@ export default function SlideOutMenu({ setTeamPicked }) {
           <>
             <div>Hello, {user.username}!</div>
             <button onClick={handleLogout}>Sign Out</button>
+            <a href="">
+              <div
+                onClick={() => {
+                  localStorage.removeItem("teamId");
+                  // history.push("/");
+                }}
+              >
+                Clear favorite team
+              </div>
+            </a>
           </>
         ) : (
-          <div>sign in</div>
+          <>
+            <div>sign in</div>
+            <a href="">
+              <div onClick={localStorage.removeItem("teamId")}>
+                Clear favorite team
+              </div>
+            </a>
+          </>
         )}
       </ul>
     </div>

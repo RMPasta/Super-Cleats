@@ -26,18 +26,7 @@ export default function Filter() {
         </div>
         <div className="filter-bottom">
           <div>Filter by team</div>
-          <div className="filter-teams scrollable-x">
-            {teams.map((team) => (
-              <div key={team.id} className="team-card">
-                <img
-                  className="team-img"
-                  src={team.badge_img}
-                  alt={team.name}
-                />
-                {/* <div>{team.name}</div> */}
-              </div>
-            ))}
-          </div>
+          <div className="filter-teams scrollable-x"></div>
         </div>
       </div>
     </div>
