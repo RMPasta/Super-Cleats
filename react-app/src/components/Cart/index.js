@@ -44,20 +44,29 @@ export default function Cart({ setShowMenu }) {
       </div>
         <div className='map-container  scrollable-y'>
           {cartItems && cartItems.map(item => (
-            <div className='cart-item-info' key={item.id}>
+            <div className='cart-item-info' key={item.id} onClick={() => {
+              history.push(`/item/${item.id}`)
+              setShowMenu(false)
+            }}>
               <div className="item-info">
                 <div>{item.name}</div>
               </div>
               <div className='image-trash-container'>
                 <div>${item.price}</div>
                 <img src={item.item_img} className='cart-item-image' alt={item.name} />
-                <i className="fa fa-trash cursor-pointer" id="cart-trash" onClick={() => removeItem(item)}></i>
+                <i className="fa fa-trash cursor-pointer" id="cart-trash" onClick={(e) => {
+                  e.stopPropagation();
+                  removeItem(item);
+                }}></i>
               </div>
             </div>
           ))}
         </div>
+        <div className='subtotal-container'>
+          <div className='subtotal'>Subtotal</div>
+          <div className="subtotal">${cart.total_price}</div>
+        </div>
         <div className='checkout-section'>
-          <div className="subtotal">Subtotal ${cart.total_price}</div>
           <button className='checkout-button cursor-pointer' onClick={() => "2"}>Checkout</button>
           <button className='add-items-button cursor-pointer' onClick={() => {
             history.push('/')
