@@ -11,8 +11,8 @@ export default function Filter() {
     <div className="filter-layout">
       <div className="filter-container">
         <div className="filter top section">
-          <div>Sort</div>
-          <ul>
+          <h2>Filter Products:</h2>
+          <ul className="type-filter">
             <li>Cleats</li>
             <li>Socks</li>
             <li>Soccer Balls</li>

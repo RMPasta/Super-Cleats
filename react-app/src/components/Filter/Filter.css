@@ -1,11 +1,29 @@
 .filter-container {
     display: flex;
     flex-direction: column;
-    /* width: 30%; */
-    /* width: 10%; */
-    border: 1px solid red;
+    padding: 40px;
+}
+
+.filter-container > div {
+    margin: 20px 0;
+}
+
+.type-filter {
+    font-size: 20px;
 }
 
 .filter-teams {
     display: flex;
+}
+
+.filter-middle {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.filter-middle > div {
+    padding: 4px 12px;
+    border-radius: 30px;
+    background-color: rgb(225, 225, 225);
 }

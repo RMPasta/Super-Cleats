@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
@@ -12,10 +12,13 @@ import ItemDetails from "./components/ItemDetails";
 import ItemsPageHeader from "./components/ItemsPageHeader";
 import Filter from "./components/Filter";
 import "./App.css";
+import Landing from "./components/Landing";
 
 function App() {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.session.user);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [teamPicked, setTeamPicked] = useState(false);
 
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
@@ -23,20 +26,27 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
-      <Teams />
+      <Navigation setTeamPicked={setTeamPicked} isLoaded={isLoaded} />
+      {user && <Teams />}
       {isLoaded && (
         <Switch>
           <Route exact path="/">
-            <ItemsPageHeader />
-            <div className="filter-items-container">
-              <div className="filter-app">
-                <Filter />
-              </div>
-              <div className="items-app">
-                <Items />
-              </div>
-            </div>
+            {}
+            {user || teamPicked ? (
+              <>
+                <ItemsPageHeader />
+                <div className="filter-items-container">
+                  <div className="filter-app">
+                    <Filter />
+                  </div>
+                  <div className="items-app">
+                    <Items />
+                  </div>
+                </div>
+              </>
+            ) : (
+              <Landing setTeamPicked={setTeamPicked} />
+            )}
           </Route>
           <Route path="/item/:id">
             <ItemDetails />
