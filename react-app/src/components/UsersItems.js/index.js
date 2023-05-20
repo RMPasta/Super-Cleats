@@ -13,6 +13,7 @@ export default function UsersItems() {
     const [showMenu, setShowMenu] = useState(false);
     const items = useSelector(state => state.item.items);
     const user = useSelector(state => state.session.user);
+    const teams = useSelector(state => state.team.teams);
 
     useEffect(() => {
         if (!user) return history.push('/')
@@ -24,6 +25,10 @@ export default function UsersItems() {
 
     const usersItems = items.filter(item => item.user_id === user.id)
     const closeMenu = () => setShowMenu(false);
+    const getItemBadge = (item) => {
+        const team = teams.find(team => team.id === item.team_id)
+        return team.badge_img;
+    }
 
   return (
     <div className='gallery-container'>
@@ -31,7 +36,8 @@ export default function UsersItems() {
             <h2 className='type-header'>Users Items</h2>
             <div className='cleats-gallery scrollable-x'>
                 {usersItems.map((item) => (
-                    <div key={item.id} className='item-card'>
+                    <div key={item.id} className='item-card' onClick={() => history.push(`/item/${item.id}`)}>
+                        <img className="card-badge" src={getItemBadge(item)} alt="item-team-badge" />
                         <img className='card-img' src={item.item_img} alt={item.name} />
                         <div className='item-card-info'>
                             <div>{item.name}</div>

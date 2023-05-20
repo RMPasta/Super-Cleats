@@ -37,10 +37,6 @@ export default function Cart({ setShowMenu }) {
   return (
     <div className='cart-container'>
       <div className='user-cart-info'>
-        <button onClick={async () => {
-          await dispatch(clearCartThunk(cart.id))
-          await dispatch(getCartThunk(cart.id))
-        }}>CLEAR CART</button>
         <div className='user-cart-info-text'>
           <div>{user.email}</div>
           <div>{cart.quantity} Items</div>
@@ -51,9 +47,9 @@ export default function Cart({ setShowMenu }) {
             <div className='cart-item-info' key={item.id}>
               <div className="item-info">
                 <div>{item.name}</div>
-                <div>${item.price}</div>
               </div>
               <div className='image-trash-container'>
+                <div>${item.price}</div>
                 <img src={item.item_img} className='cart-item-image' alt={item.name} />
                 <i className="fa fa-trash cursor-pointer" id="cart-trash" onClick={() => removeItem(item)}></i>
               </div>
@@ -67,6 +63,10 @@ export default function Cart({ setShowMenu }) {
             history.push('/')
             setShowMenu();
           }}>Add Items</button>
+                  <button className='clear-button cursor-pointer' onClick={async () => {
+          await dispatch(clearCartThunk(cart.id))
+          await dispatch(getCartThunk(cart.id))
+        }}>Clear</button>
         </div>
     </div>
   )

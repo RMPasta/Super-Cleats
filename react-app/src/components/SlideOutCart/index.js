@@ -21,12 +21,12 @@ export default function SlideOutCart({ addItemRef }) {
       };
 
     useEffect(() => {
-    if (!showMenu) return;
+      if (!showMenu) return;
 
-    const closeMenu = (e) => {
-        if (!ulRef.current.contains(e.target)) {
-        setShowMenu(false);
-        }
+      const closeMenu = (e) => {
+          if (!ulRef.current.contains(e.target)) {
+          setShowMenu(false);
+          }
     };
 
     document.addEventListener("click", closeMenu);

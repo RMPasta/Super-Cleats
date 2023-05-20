@@ -6,3 +6,10 @@
     display: flex;
     justify-content: flex-end;
 }
+
+.card-badge {
+    position: relative;
+    top: 60px;
+    left: 160px;
+    width: 80px;
+}

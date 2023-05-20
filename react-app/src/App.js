@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import Items from "./components/Items";
 import Teams from "./components/Teams";
 import UsersItems from "./components/UsersItems.js";
+import ItemDetails from "./components/ItemDetails";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +26,9 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Items />
+          </Route>
+          <Route path="/item/:id">
+            <ItemDetails />
           </Route>
           <Route path="/login" >
             <LoginFormPage />
