@@ -2,6 +2,14 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+body {
+    margin: 0;
+}
+
+#root {
+    overflow-x: hidden;
+}
+
 .scrollable-x {
     overflow-x: scroll;
     /* scrollbar-width: none;

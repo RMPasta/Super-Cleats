@@ -1,0 +1,16 @@
+.filter-items-container {
+/* display: grid;
+grid-template-columns: 1fr 2fr; */
+display: flex;
+justify-content: center;
+/* width: 100vh; */
+/* border: 1px solid black; */
+}
+
+.filter-app {
+    width: 30%;
+}
+
+.items-app {
+    width: 70%;
+}

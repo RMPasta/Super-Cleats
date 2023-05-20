@@ -10,6 +10,8 @@ import Teams from "./components/Teams";
 import UsersItems from "./components/UsersItems.js";
 import ItemDetails from "./components/ItemDetails";
 import ItemsPageHeader from "./components/ItemsPageHeader";
+import Filter from "./components/Filter";
+import "./App.css";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,12 +29,19 @@ function App() {
         <Switch>
           <Route exact path="/">
             <ItemsPageHeader />
-            <Items />
+            <div className="filter-items-container">
+              <div className="filter-app">
+                <Filter />
+              </div>
+              <div className="items-app">
+                <Items />
+              </div>
+            </div>
           </Route>
           <Route path="/item/:id">
             <ItemDetails />
           </Route>
-          <Route path="/login" >
+          <Route path="/login">
             <LoginFormPage />
           </Route>
           <Route path="/signup">
