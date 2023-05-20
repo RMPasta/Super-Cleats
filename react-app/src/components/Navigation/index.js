@@ -5,11 +5,11 @@ import { useHistory } from "react-router-dom";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
-import "./Navigation.css";
 import AddItemForm from "../AddItemForm";
 import SlideOutMenu from "../SlideOutMenu";
 import SlideOutCart from "../SlideOutCart";
 import { getCartThunk } from "../../store/cart";
+import "./Navigation.css";
 
 function Navigation({ setTeamPicked, teamPicked, isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
@@ -22,7 +22,7 @@ function Navigation({ setTeamPicked, teamPicked, isLoaded }) {
   const closeMenu = () => setShowMenu(false);
 
   useEffect(() => {
-    isLoaded && dispatch(getCartThunk(sessionUser?.id));
+    sessionUser && isLoaded && dispatch(getCartThunk(sessionUser?.id));
     teamPicked && localStorage.setItem("teamId", teamPicked);
   }, [sessionUser, dispatch, isLoaded, teamPicked]);
 

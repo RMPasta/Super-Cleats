@@ -23,11 +23,13 @@
 
 .text-container {
     overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 .text-container::-webkit-scrollbar {
     width: 8px;
     border-radius: 10px;
+    /* background-color: white; */
 }
 
 .text-container::-webkit-scrollbar-track {

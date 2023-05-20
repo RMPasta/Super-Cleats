@@ -41,7 +41,7 @@ function App() {
             {}
             {user || teamPicked ? (
               <>
-                {user && <Teams />}
+                <Teams />
                 <ItemsPageHeader />
                 <div className="filter-items-container">
                   <div className="filter-app">
