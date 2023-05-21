@@ -289,10 +289,10 @@ export default function Items() {
         <h2 className="type-header">Cleats</h2>
         <div className="cleats-gallery scrollable-x">
           <AliceCarousel
-            autoPlayInterval={4400}
-            autoPlay
             infinite
             mouseTracking
+            touchMoveDefaultEvents={false}
+            preventEventOnTouchMove
             responsive={responsive}
             items={cleatsArr}
           />
@@ -300,10 +300,10 @@ export default function Items() {
         <h2 className="type-header">Socks</h2>
         <div className="socks-gallery scrollable-x">
           <AliceCarousel
-            autoPlayInterval={4600}
-            autoPlay
             infinite
             mouseTracking
+            touchMoveDefaultEvents={false}
+            preventEventOnTouchMove
             responsive={responsive}
             items={socksArr}
           />
@@ -311,10 +311,10 @@ export default function Items() {
         <h2 className="type-header">Soccer Balls</h2>
         <div className="ball-gallery scrollable-x">
           <AliceCarousel
-            autoPlayInterval={4800}
-            autoPlay
             infinite
             mouseTracking
+            touchMoveDefaultEvents={false}
+            preventEventOnTouchMove
             responsive={responsive}
             items={ballArr}
           />

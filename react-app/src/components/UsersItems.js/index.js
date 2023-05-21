@@ -16,6 +16,26 @@ export default function UsersItems() {
   const items = useSelector((state) => state.item.items);
   const user = useSelector((state) => state.session.user);
   const teams = useSelector((state) => state.team.teams);
+  const [isNotMobile, setIsNotMobile] = useState(true);
+
+  // JAVASCRIPT MEDIA QUERY
+  useEffect(() => {
+    const mQuery = window.matchMedia("(max-width: 600px)");
+    function handleMobileSize(e) {
+      // Check if the media query is true
+      if (e.matches) {
+        setIsNotMobile(false);
+        return;
+      }
+      setIsNotMobile(true);
+      return;
+    }
+    // Set up event listener
+    mQuery.addListener(handleMobileSize);
+    return () => {
+      mQuery.removeListener(handleMobileSize);
+    };
+  }, [isNotMobile]);
 
   useEffect(() => {
     if (!user) return history.push("/");
@@ -93,9 +113,11 @@ export default function UsersItems() {
       <div style={{ width: "90%", margin: "0 auto" }}>
         <AliceCarousel
           autoPlayInterval={2200}
-          autoPlay
+          autoPlay={isNotMobile}
           infinite
           mouseTracking
+          touchMoveDefaultEvents={false}
+          preventEventOnTouchMove
           responsive={responsive}
           items={userItemsArr}
         />
