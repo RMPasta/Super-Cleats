@@ -34,3 +34,9 @@
         background-size: 42%;
     }
 }
+
+@media screen and (max-width: 500px) {
+    .item-card-user {
+        margin-left: 40px;
+    }
+}

@@ -90,3 +90,31 @@
   font-size: 24px;
   font-weight: bold;
 }
+
+@media screen and (max-width: 500px) {
+  .nav-ul {
+    /* padding: 0 60px; */
+    margin: 0 auto;
+  }
+  .nav-right-side-logged-in {
+    width: 50%;
+    padding-right: 10px;
+  }
+  .nav-right-side-logged-out {
+    width: 50%;
+    padding-right: 10px;
+  }
+  .nav-left-side {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    width: 50%;
+    padding-left: 10px;
+  }
+  .favorite-team-nav {
+    display: none;
+  }
+  .user-profile-button {
+    display: none;
+  }
+}

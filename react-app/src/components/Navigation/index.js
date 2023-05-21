@@ -47,9 +47,11 @@ function Navigation({ setTeamPicked, teamPicked, isLoaded }) {
             </div>
           </li>
           <li className="nav-right-side-logged-in">
-            <NavLink exact to="/user">
-              User Profile
-            </NavLink>
+            <div className="user-profile-button">
+              <NavLink exact to="/user">
+                User Profile
+              </NavLink>
+            </div>
             <OpenModalButton
               className="login-button-nav cursor-pointer"
               buttonText="Create Item"

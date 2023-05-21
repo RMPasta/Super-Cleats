@@ -58,8 +58,14 @@
 }
 
 
-/* @media screen and (max-width: 1000px) {
-    .items-header-container {
-        display
+@media screen and (max-width: 500px) {
+    .items-header-image {
+        border-radius: 0 24px 24px 0;
+        min-width: 180px;
+        height: 100%;
     }
-} */
+    .text-container {
+        min-width: 140px;
+    }
+
+}
