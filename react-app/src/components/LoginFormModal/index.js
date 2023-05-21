@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
+import OpenModalButton from "../OpenModalButton";
+import SignupFormModal from "../SignupFormModal";
 import "./LoginForm.css";
 
 function LoginFormModal() {
@@ -9,7 +11,10 @@ function LoginFormModal() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const [showMenu, setShowMenu] = useState(false);
   const { closeModal } = useModal();
+
+  const closeMenu = () => setShowMenu(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -55,6 +60,12 @@ function LoginFormModal() {
         <button type="submit">Log In</button>
       </form>
         <button onClick={() => demoUser()}>Demo User</button>
+        <OpenModalButton
+              className="signup-button-nav cursor-pointer"
+              buttonText="Sign Up"
+              onItemClick={closeMenu}
+              modalComponent={<SignupFormModal showMenu={showMenu} />}
+            />
     </div>
     </>
   );

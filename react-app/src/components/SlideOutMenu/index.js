@@ -65,12 +65,12 @@ export default function SlideOutMenu({ setTeamPicked }) {
         {user ? (
           <>
             <p>Hello, {user.username}!</p>
-            <div>
+            <div onClick={() => {closeMenu()}}>
               <NavLink exact to="/user" style={linkStyle}>
                 User Profile
               </NavLink>
             </div>
-            <div>
+            <div onClick={() => {closeMenu()}}>
               <OpenModalButton
                 className="sidebar-modal cursor-pointer"
                 buttonText="Create Item"

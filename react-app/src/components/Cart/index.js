@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { clearCartThunk, getCartThunk, removeFromCartThunk } from '../../store/cart';
+import CheckOutModal from '../CheckOutModal';
+import OpenModalButton from "../OpenModalButton";
 import './Cart.css'
 
 export default function Cart({ setShowMenu }) {
@@ -13,6 +15,7 @@ export default function Cart({ setShowMenu }) {
     const [quantity, setQuantity] = useState(0);
     const [total, setTotal] = useState(0);
 
+
     useEffect(() => {
         if (user) {
             dispatch(getCartThunk(user.id))
@@ -23,6 +26,8 @@ export default function Cart({ setShowMenu }) {
       if (cart) setQuantity(cart.quantity)
       if (cart) setTotal(cart.total_price)
     }, [dispatch, cart]);
+
+    const closeMenu = () => setShowMenu(false);
 
     const removeItem = async (item) => {
       const newQty = quantity - 1;
@@ -67,7 +72,14 @@ export default function Cart({ setShowMenu }) {
           <div className="subtotal">${cart.total_price}</div>
         </div>
         <div className='checkout-section'>
-          <button className='checkout-button cursor-pointer' onClick={() => "2"}>Checkout</button>
+          {cartItems.length > 0 ?
+          <OpenModalButton
+              className="checkout-button cursor-pointer"
+              buttonText="Check Out"
+              onItemClick={closeMenu}
+              modalComponent={<CheckOutModal closeMenu={closeMenu} />}
+            /> :
+            <button disabled className='checkout-button-disabled'>Check Out</button>}
           <button className='add-items-button cursor-pointer' onClick={() => {
             history.push('/')
             setShowMenu();

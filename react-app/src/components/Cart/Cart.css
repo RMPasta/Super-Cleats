@@ -88,8 +88,19 @@
 }
 
 .checkout-button {
+    display: flex;
+    justify-content: center;
     margin-bottom: 10px;
     background-color: black;
+    color: white;
+    padding: 10px 42px;
+}
+
+.checkout-button-disabled {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    background-color: rgba(0, 0, 0, 0.699);
     color: white;
     padding: 10px 42px;
 }

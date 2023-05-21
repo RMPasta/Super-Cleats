@@ -37,8 +37,7 @@ export default function UsersItems() {
       return {
         backgroundImage: `url(${favTeam.badge_img})`,
         backgroundRepeat: "no-repeat",
-        backgroundPosition: "center center",
-        backgroundSize: "60%",
+        backgroundPosition: "center bottom",
       };
     }
   };
@@ -46,7 +45,7 @@ export default function UsersItems() {
   return (
     <div className="gallery-container-user" style={userProfileBackground()}>
       <div className="item-gallery">
-        <h2 className="type-header">Users Items</h2>
+        <h2 className="type-header"></h2>
         <div className="cleats-gallery scrollable-x">
           {usersItems.map((item) => (
             <div

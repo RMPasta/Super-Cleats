@@ -6,7 +6,8 @@
     display: flex;
     justify-content: flex-end;
     margin-top: 100px;
-    height: 100vh;
+    height: 88vh;
+    background-size: 22%;
 }
 
 .card-badge {
@@ -14,4 +15,22 @@
     top: 60px;
     left: 160px;
     width: 80px;
+}
+
+@media screen and (max-width: 1270px) {
+    .gallery-container-user {
+        background-size: 30%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .gallery-container-user {
+        background-size: 35%;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .gallery-container-user {
+        background-size: 42%;
+    }
 }

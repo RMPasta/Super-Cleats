@@ -12,6 +12,7 @@ export default function Landing({ teamPicked, setTeamPicked }) {
   }, [dispatch]);
 
   if (!teams) return <h1>Loading...</h1>;
+
   return (
     <div className="landing-page">
       {/* <img
