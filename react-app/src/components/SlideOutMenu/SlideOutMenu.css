@@ -20,6 +20,15 @@
     -ms-overflow-style: none;
   }
 
+  .sidebar-top {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-top: 100pz;
+  }
+
   .hidden-menu {
     left: -400px;
   }
@@ -47,7 +56,14 @@
     background-color: rgb(231, 231, 231);
   }
 
-  .slide-out-menu > div {
+  .modal-button-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+
+  }
+
+  /* .slide-out-menu > div {
     display: flex;
     width: 100%;
     justify-content: center;
@@ -55,9 +71,9 @@
 
   .slide-out-menu > div:hover {
     background-color: rgb(231, 231, 231);
-  }
+  } */
 
-  .slide-out-menu > a {
+  .a-wrapper {
     display: flex;
     width: 100%;
     justify-content: center;
@@ -65,22 +81,23 @@
     color: black;
   }
 
-  .slide-out-menu > a:hover {
+  .a-wrapper:hover {
     background-color: rgb(231, 231, 231);
   }
 
-  .slide-out-menu > button {
+  .sidebar-button {
     display: flex;
     width: 100%;
     justify-content: center;
     border: none;
+    background-color: rgb(243, 243, 243);
   }
 
-  .slide-out-menu > button:hover {
+  .sidebar-button:hover {
     background-color: rgb(231, 231, 231);
   }
 
-  .slide-out-menu > p {
+  .greeting {
     display: flex;
     width: 100%;
     justify-content: center;
@@ -91,4 +108,20 @@
     justify-content: center;
     align-items: center;
     height: 50px;
+  }
+
+  .slide-out-menu > div > * {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+  }
+
+  .signout-clear {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100px;
   }

@@ -14,7 +14,6 @@ export default function SlideOutMenu({ setTeamPicked }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
 
-
   const closeMenu = () => setShowMenu(false);
 
   const openMenu = () => {
@@ -55,7 +54,7 @@ export default function SlideOutMenu({ setTeamPicked }) {
     width: "100%",
     height: "100%",
     textDecoration: "none",
-    color: 'black'
+    color: "black",
   };
 
   return (
@@ -64,13 +63,23 @@ export default function SlideOutMenu({ setTeamPicked }) {
       <ul className={ulClassName} ref={cartUlRef}>
         {user ? (
           <>
-            <p>Hello, {user.username}!</p>
-            <div onClick={() => {closeMenu()}}>
+            <p className="greeting">Hello, {user.username}!</p>
+            <div
+              className="sidebar-button"
+              onClick={() => {
+                closeMenu();
+              }}
+            >
               <NavLink exact to="/user" style={linkStyle}>
                 User Profile
               </NavLink>
             </div>
-            <div onClick={() => {closeMenu()}}>
+            <div
+              className="modal-button-wrapper"
+              onClick={() => {
+                closeMenu();
+              }}
+            >
               <OpenModalButton
                 className="sidebar-modal cursor-pointer"
                 buttonText="Create Item"
@@ -78,17 +87,26 @@ export default function SlideOutMenu({ setTeamPicked }) {
                 modalComponent={<AddItemForm showMenu={showMenu} />}
               />
             </div>
-            <button className="cursor-pointer" onClick={handleLogout}>Sign Out</button>
-            {teamId && <a href="/">
-              <div
-                onClick={() => {
-                  localStorage.removeItem("teamId");
-                  // history.push("/");
-                }}
+            <div className="signout-clear">
+              <button
+                className=" sidebar-button cursor-pointer"
+                onClick={handleLogout}
               >
-                Clear favorite team
-              </div>
-            </a>}
+                Sign Out
+              </button>
+              {teamId && (
+                <a className="a-wrapper" href="/">
+                  <div
+                    onClick={() => {
+                      localStorage.removeItem("teamId");
+                      // history.push("/");
+                    }}
+                  >
+                    Clear favorite team
+                  </div>
+                </a>
+              )}
+            </div>
           </>
         ) : (
           <>
@@ -98,13 +116,17 @@ export default function SlideOutMenu({ setTeamPicked }) {
               onItemClick={closeMenu}
               modalComponent={<LoginFormModal showMenu={showMenu} />}
             />
-            {teamId && <a href="/">
-              <div onClick={() => {
-                localStorage.removeItem("teamId")
-              }}>
-                Clear favorite team
-              </div>
-            </a>}
+            {teamId && (
+              <a className="a-wrapper" href="/">
+                <div
+                  onClick={() => {
+                    localStorage.removeItem("teamId");
+                  }}
+                >
+                  Clear favorite team
+                </div>
+              </a>
+            )}
           </>
         )}
       </ul>

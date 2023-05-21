@@ -1,6 +1,8 @@
 .gallery-container {
     display: flex;
     justify-content: flex-end;
+    margin-top: 100px;
+    height: 100%;
 }
 
 .item-gallery {
@@ -8,6 +10,7 @@
     flex-direction: column;
     align-items: flex-end;
     max-width: 100%;
+    /* height: 1200px; */
     /* max-width: 1000px; */
     /* border: 1px solid black; */
 }
@@ -35,10 +38,11 @@
     border-radius: 20px;
     background-color: white;
     transition: box-shadow .5s ease-in;
+    height: 700px;
 }
 
 .item-card:hover {
-    box-shadow: 3px 3px 6px 2px rgba(194, 194, 194, 0.692);
+    box-shadow: 3px 3px 6px 6px rgb(194, 194, 194);
 }
 
 .inner-card {
@@ -68,6 +72,7 @@
 .cleats-gallery {
     display: flex;
     width: 100%;
+    height: 800px;
     gap: 20px;
 }
 
@@ -99,4 +104,10 @@
 
 .manage {
     width: 100%;
+}
+
+@media screen and (max-width: 700px) {
+    .item-card {
+        margin-left: 80px;
+    }
 }

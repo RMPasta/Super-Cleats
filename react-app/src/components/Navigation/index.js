@@ -73,7 +73,14 @@ function Navigation({ setTeamPicked, teamPicked, isLoaded }) {
         <>
           <li className="nav-left-side">
             <SlideOutMenu />
-            <div className="logo cursor-pointer">SUPER CLEATS</div>
+            <div
+              className="logo cursor-pointer"
+              onClick={() => {
+                history.push("/");
+              }}
+            >
+              SUPER CLEATS
+            </div>
             {/* <NavLink exact to="/">
               Home
             </NavLink> */}
