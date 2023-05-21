@@ -83,3 +83,18 @@
     margin-left: 40px;
     /* margin: 100px auto; */
 }
+
+@media screen and (max-width: 500px) {
+    .item-details-page {
+        max-width: 400px;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+    .item-details-container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+    }
+}
