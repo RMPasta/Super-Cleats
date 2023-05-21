@@ -85,7 +85,7 @@ export default function Items() {
     .filter((item) => item.type === "cleats")
     .map((item) => (
       <div
-        style={{ height: "460px", width: "240px" }}
+        style={{ width: "240px", overflowY: "none" }}
         key={item.id}
         className="item-card cursor-pointer"
         onClick={() => history.push(`/item/${item.id}`)}
@@ -150,7 +150,7 @@ export default function Items() {
     .filter((item) => item.type === "socks")
     .map((item) => (
       <div
-        style={{ height: "460px", width: "240px" }}
+        style={{ width: "240px" }}
         key={item.id}
         className="item-card cursor-pointer"
         onClick={() => history.push(`/item/${item.id}`)}
@@ -215,7 +215,7 @@ export default function Items() {
     .filter((item) => item.type === "ball")
     .map((item) => (
       <div
-        style={{ height: "460px", width: "240px" }}
+        style={{ width: "240px" }}
         key={item.id}
         className="item-card cursor-pointer"
         onClick={() => history.push(`/item/${item.id}`)}

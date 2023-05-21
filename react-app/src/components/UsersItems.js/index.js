@@ -47,7 +47,7 @@ export default function UsersItems() {
 
   const userItemsArr = usersItems.map((item) => (
     <div
-      style={{ height: "440px", width: "240px" }}
+      style={{ height: "480px", width: "240px" }}
       key={item.id}
       className="item-card item-card-user"
       onClick={() => history.push(`/item/${item.id}`)}
@@ -82,8 +82,8 @@ export default function UsersItems() {
 
   const responsive = {
     400: { items: 1 },
-    900: { items: 2 },
-    1100: { items: 3 },
+    700: { items: 2 },
+    900: { items: 3 },
     1400: { items: 4 },
   };
 
