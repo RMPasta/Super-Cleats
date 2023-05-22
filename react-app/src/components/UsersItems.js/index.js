@@ -61,7 +61,7 @@ export default function UsersItems() {
         backgroundImage: `url(${favTeam.badge_img})`,
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center bottom",
-        backgroundSize: "50%",
+        backgroundSize: "45%",
       };
     }
   };

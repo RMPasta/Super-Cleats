@@ -21,7 +21,6 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
   const teams = useSelector((state) => state.team.teams);
   const [quantity, setQuantity] = useState(0);
   const [total, setTotal] = useState(0);
-  const [isCarouselReady, setIsCarouselReady] = useState(false);
   const [filtered, setFiltered] = useState(items);
 
   useEffect(() => {
@@ -29,16 +28,6 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
     if (cart) setTotal(cart.total_price);
     dispatch(getItemsThunk());
   }, [dispatch, cart]);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsCarouselReady(true);
-    }, 1500);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, []);
 
   useEffect(() => {
     let filteredItems = items;
@@ -53,18 +42,15 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
         filteredItems = filteredItems.filter(
           (item) => item.price < 25
         );
-      }
-      if (parseInt(priceFilter) === 2) {
+      } else if (parseInt(priceFilter) === 2) {
         filteredItems = filteredItems.filter(
           (item) => item.price < 50
         );
-      }
-      if (parseInt(priceFilter) === 3) {
+      } else if (parseInt(priceFilter) === 3) {
         filteredItems = filteredItems.filter(
           (item) => item.price > 50 && item.price < 120
         );
-      }
-      if (parseInt(priceFilter) === 4) {
+      } else if (parseInt(priceFilter) === 4) {
         filteredItems = filteredItems.filter(
           (item) => item.price > 120
         );
@@ -388,7 +374,6 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
     700: { items: 2 },
     1200: { items: 3 },
     1600: { items: 4 },
-    1800: { items: 5 },
   };
 
   return (
