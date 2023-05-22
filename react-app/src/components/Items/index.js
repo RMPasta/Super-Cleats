@@ -44,7 +44,9 @@ export default function Items() {
 
   //   const handleDragStart = (e) => e.preventDefault();
 
-  const addToCart = async (item) => {
+  const addToCart = async (e, item) => {
+    e.preventDefault();
+    e.stopPropagation();
     const newQty = quantity + 1;
     const newTotalPrice = total + parseInt(item.price);
     // pass in cart id for fetch request
@@ -112,8 +114,8 @@ export default function Items() {
             <button
               className="checkout-button cursor-pointer"
               onClick={(e) => {
-                e.stopPropagation();
-                addToCart(item);
+                // e.stopPropagation();
+                addToCart(e, item);
               }}
             >
               Add to cart
@@ -177,6 +179,7 @@ export default function Items() {
                 className="checkout-button cursor-pointer"
                 onClick={(e) => {
                   e.stopPropagation();
+                  e.preventDefault();
                   addToCart(item);
                 }}
               >
@@ -242,7 +245,8 @@ export default function Items() {
                 className="checkout-button cursor-pointer"
                 onClick={(e) => {
                   e.stopPropagation();
-                  addToCart(item);
+                  e.preventDefault();
+                  addToCart(e, item);
                 }}
               >
                 Add to cart
@@ -291,7 +295,6 @@ export default function Items() {
           <AliceCarousel
             infinite
             mouseTracking
-            touchMoveDefaultEvents={false}
             preventEventOnTouchMove
             responsive={responsive}
             items={cleatsArr}
@@ -302,7 +305,6 @@ export default function Items() {
           <AliceCarousel
             infinite
             mouseTracking
-            touchMoveDefaultEvents={false}
             preventEventOnTouchMove
             responsive={responsive}
             items={socksArr}
@@ -313,7 +315,6 @@ export default function Items() {
           <AliceCarousel
             infinite
             mouseTracking
-            touchMoveDefaultEvents={false}
             preventEventOnTouchMove
             responsive={responsive}
             items={ballArr}

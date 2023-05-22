@@ -8,6 +8,7 @@ import DeleteModal from "../DeleteModal";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import "./UsersItems.css";
+import "./carousel-style.css";
 
 export default function UsersItems() {
   const dispatch = useDispatch();
@@ -87,11 +88,13 @@ export default function UsersItems() {
             : item.description}
         </div>
         <OpenModalButton
+          className="edit-button cursor-pointer"
           buttonText="Edit"
           onItemClick={closeMenu}
           modalComponent={<EditItemForm item={item} showMenu={showMenu} />}
         />
         <OpenModalButton
+          className="delete-button cursor-pointer"
           buttonText="Delete"
           onItemClick={closeMenu}
           modalComponent={<DeleteModal item={item} showMenu={showMenu} />}
@@ -110,13 +113,20 @@ export default function UsersItems() {
   return (
     <div className="gallery-container-user" style={userProfileBackground()}>
       <h2 className="type-header"></h2>
-      <div style={{ width: "90%", margin: "0 auto" }}>
+      <div
+        className="alice-container"
+        style={{
+          width: "90%",
+          margin: "0 auto",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
         <AliceCarousel
           autoPlayInterval={2200}
           autoPlay={isNotMobile}
           infinite
           mouseTracking
-          touchMoveDefaultEvents={false}
           preventEventOnTouchMove
           responsive={responsive}
           items={userItemsArr}

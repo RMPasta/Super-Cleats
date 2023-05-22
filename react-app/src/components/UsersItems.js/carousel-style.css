@@ -1,0 +1,55 @@
+/* Custom styling for the dots */
+.alice-carousel__dots {
+    /* Add your styles here */
+    /* width: 40px; */
+    /* background-color:yellow;
+    font-size: 20px; */
+    padding-top: 20px;
+    /* padding-bottom: 50px; */
+    /* display: flex;
+    justify-content: center; */
+    /* width: 80px; */
+    margin: 0 auto;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.79);
+    border-radius: 20px 20px 0 0;
+}
+
+.alice-carousel__dots-item {
+
+    margin: 0 auto;
+}
+
+/* Custom styling for the buttons */
+.alice-carousel__prev-btn {
+    /* display: flex;
+    justify-content: center;
+    width: 80px;
+    margin: 0 auto;
+    background-color: white; */
+    /* width: 80px; */
+    /* margin-left: 47%; */
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.79);
+    padding: 40px 10px;
+    /* border: 1px solid black; */
+    /* width: 40px; */
+    align-self: center;
+}
+
+.alice-carousel__next-btn {
+    /* display: flex; */
+
+    margin: 0 auto;
+    height: 30px;
+    color: blue;
+    background-color: rgba(255, 255, 255, 0.757);
+    padding: 40px 10px;
+    /* border: 1px solid black; */
+    /* width: 40px; */
+}
+
+.alice-carousel__play-btn {
+    /* Add your styles here */
+    color:yellow;
+  }

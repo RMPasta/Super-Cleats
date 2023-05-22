@@ -44,7 +44,7 @@
 }
 
 .item-card:hover {
-    box-shadow: 3px 3px 6px 6px rgb(194, 194, 194);
+    box-shadow: 3px 3px 6px 6px rgba(194, 194, 194, 0.554);
 }
 
 .inner-card {

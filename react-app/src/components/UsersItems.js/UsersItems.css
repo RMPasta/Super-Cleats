@@ -17,6 +17,29 @@
     width: 80px;
 }
 
+.edit-button {
+    border: none;
+    margin-bottom: 10px;
+    background-color: black;
+    color: white;
+    padding: 4px 38px;
+}
+
+.delete-button {
+    border: none;
+    margin-bottom: 10px;
+    background-color: rgba(255, 21, 21, 0.771);
+    color: white;
+    padding: 4px 30px;
+}
+
+.alice-container {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    /* margin: 0 auto; */
+}
+
 /* @media screen and (max-width: 1270px) {
     .gallery-container-user {
         background-size: 30%;

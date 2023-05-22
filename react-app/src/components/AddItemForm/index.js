@@ -92,7 +92,7 @@ export default function AddItemForm() {
   if (!user) return <div>Go Home</div>;
 
   return (
-    <>
+    <div className="form-modal-container">
       <form
         className="add-item-form"
         onSubmit={handleSubmit}
@@ -189,6 +189,6 @@ export default function AddItemForm() {
         </div>
       </form>
       <button onClick={() => closeModal()}>Cancel</button>
-    </>
+    </div>
   );
 }
