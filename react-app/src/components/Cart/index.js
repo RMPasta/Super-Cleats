@@ -27,11 +27,9 @@ export default function Cart({ setShowMenu }) {
       // Check if the media query is true
       if (e.matches) {
         setIsNotMobile(false);
-        console.log("set to false");
         return;
       }
       setIsNotMobile(true);
-      console.log("set to true");
       return;
     }
     // Set up event listener

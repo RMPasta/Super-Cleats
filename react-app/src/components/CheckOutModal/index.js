@@ -35,14 +35,15 @@ export default function CheckOutModal({ isNotMobile, closeMenu }) {
   return (
     <div className="checkout-confirm">
       {loading ? (
-        <div>Confirming transaction...</div>
+        <div className="confirming-modal">Confirming transaction...</div>
       ) : (
         <div>Super Cleats thanks you!</div>
       )}
       {loading ? (
-        <i className="fa fa-spinner fa-spin-pulse" id="spinner"></i>
+        // <i className="fa fa-spinner fa-spin-pulse" id="spinner"></i>
+        <i className="fas fa-spinner fa-pulse" id="spinner"></i>
       ) : (
-        <i className="fa fa-check" id="check"></i>
+        <i className="fas fa-check" id="check"></i>
       )}
     </div>
   );

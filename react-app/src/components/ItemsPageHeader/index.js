@@ -5,7 +5,7 @@ import "./ItemsPageHeader.css";
 
 export default function ItemsPageHeader() {
   const header1 = (
-    <div className="items-header" style={{ width: "80%" }}>
+    <div className="items-header">
       <div className="text-container">
         <div className="items-header-text">
           Wow, you gotta be kidding me with these cleats!
@@ -20,7 +20,7 @@ export default function ItemsPageHeader() {
     </div>
   );
   const header2 = (
-    <div className="items-header" style={{ width: "80%" }}>
+    <div className="items-header">
       <div className="text-container">
         <div className="items-header-text">
           These are top notch sporting balls for kicking
@@ -37,7 +37,7 @@ export default function ItemsPageHeader() {
     </div>
   );
   const header3 = (
-    <div className="items-header" style={{ width: "80%" }}>
+    <div className="items-header">
       <div className="text-container">
         <div className="items-header-text">
           Short socks, long socks, double socks, we have every sock here!

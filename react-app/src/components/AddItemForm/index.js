@@ -31,7 +31,6 @@ export default function AddItemForm() {
 
     let hasErrors = false;
     setErrors({});
-    console.log(price);
 
     if (!name) {
       setErrors((errors) => ({ ...errors, name: "Item name is required" }));

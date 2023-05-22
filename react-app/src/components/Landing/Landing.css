@@ -20,7 +20,7 @@
 .splash-teams{
     display: flex;
     width: 30%;
-    overflow-x: scroll;
+    /* overflow-x: scroll; */
 }
 
 .splash-teams::-webkit-scrollbar {

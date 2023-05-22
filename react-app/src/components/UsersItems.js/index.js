@@ -107,12 +107,12 @@ export default function UsersItems() {
     400: { items: 1 },
     700: { items: 2 },
     900: { items: 3 },
-    1400: { items: 4 },
+    1300: { items: 4 },
+    1500: { items: 5 },
   };
 
   return (
     <div className="gallery-container-user" style={userProfileBackground()}>
-      <h2 className="type-header"></h2>
       <div
         className="alice-container"
         style={{

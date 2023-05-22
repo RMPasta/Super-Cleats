@@ -11,7 +11,7 @@ import {
 } from "../../store/cart";
 import "./Items.css";
 
-export default function Items() {
+export default function Items({ typeFilter, priceFilter, teamFilter}) {
   const dispatch = useDispatch();
   const history = useHistory();
   const items = useSelector((state) => state.item.items);
@@ -22,6 +22,7 @@ export default function Items() {
   const [quantity, setQuantity] = useState(0);
   const [total, setTotal] = useState(0);
   const [isCarouselReady, setIsCarouselReady] = useState(false);
+  const [filtered, setFiltered] = useState(items);
 
   useEffect(() => {
     if (cart) setQuantity(cart.quantity);
@@ -39,14 +40,53 @@ export default function Items() {
     };
   }, []);
 
+  useEffect(() => {
+    let filteredItems = items;
+
+    if (typeFilter && typeFilter !== "All") {
+      filteredItems = filteredItems.filter(
+        (item) => item.type === typeFilter
+      );
+    }
+    if (priceFilter && priceFilter !== "All") {
+      if (parseInt(priceFilter) === 1) {
+        filteredItems = filteredItems.filter(
+          (item) => item.price < 25
+        );
+      }
+      if (parseInt(priceFilter) === 2) {
+        filteredItems = filteredItems.filter(
+          (item) => item.price < 50
+        );
+      }
+      if (parseInt(priceFilter) === 3) {
+        filteredItems = filteredItems.filter(
+          (item) => item.price > 50 && item.price < 120
+        );
+      }
+      if (parseInt(priceFilter) === 4) {
+        filteredItems = filteredItems.filter(
+          (item) => item.price > 120
+        );
+      }
+    }
+    if (teamFilter && teamFilter !== "All") {
+      filteredItems = filteredItems.filter(
+        (item) => item.team_id === parseInt(teamFilter)
+      );
+    }
+
+    setFiltered(filteredItems);
+  }, [items, typeFilter, priceFilter, teamFilter]);
+
   if (!items) return <h1>Loading...</h1>;
   // if (!cart) return <h1>Loading...</h1>
 
   //   const handleDragStart = (e) => e.preventDefault();
 
-  const addToCart = async (e, item) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const addToCart = async (item) => {
+    // e.preventDefault();
+    // e.stopPropagation();
     const newQty = quantity + 1;
     const newTotalPrice = total + parseInt(item.price);
     // pass in cart id for fetch request
@@ -82,9 +122,73 @@ export default function Items() {
       return team.badge_img;
     }
   };
+  // FILTERED ARRAY FOR ALICE CAROUSEL
+  const filteredArr = filtered?.map((item) => (
+      <div
+        style={{ width: "240px", overflowY: "none" }}
+        key={item.id}
+        className="item-card cursor-pointer"
+        onClick={() => history.push(`/item/${item.id}`)}
+      >
+        <img
+          className="card-badge"
+          src={getItemBadge(item)}
+          alt="item-team-badge"
+        />
+        <img className="card-img" src={item.item_img} alt={item.name} />
+        <div className="item-card-info">
+          <div>{item.name}</div>
+          <div>$ {item.price}</div>
+          <div>
+            {item.description.length > 30
+              ? item.description.slice(0, 30) + "..."
+              : item.description}
+          </div>
+        </div>
+        {user && user.id !== item.user_id ? (
+          cartItems &&
+          cartItems.filter((cartItem) => cartItem.id === item.id).length ===
+            0 ? (
+            <button
+              className="checkout-button cursor-pointer"
+              onClick={(e) => {
+                e.stopPropagation();
+                addToCart(item);
+              }}
+            >
+              Add to cart
+            </button>
+          ) : (
+            <button
+              className="add-items-button cursor-pointer"
+              onClick={(e) => {
+                e.stopPropagation();
+                removeItem(item);
+              }}
+            >
+              Remove from cart
+            </button>
+          )
+        ) : (
+          user && (
+            <button
+              className="add-items-button cursor-pointer"
+              onClick={(e) => {
+                e.stopPropagation();
+                history.push("/user");
+              }}
+            >
+              Manage Items
+            </button>
+          )
+        )}
+      </div>
+    ));
+
+
   // CLEATS ARRAY FOR ALICE CAROUSEL
   const cleatsArr = items
-    .filter((item) => item.type === "cleats")
+    .filter((item) => item.type === "cleats" )
     .map((item) => (
       <div
         style={{ width: "240px", overflowY: "none" }}
@@ -114,8 +218,8 @@ export default function Items() {
             <button
               className="checkout-button cursor-pointer"
               onClick={(e) => {
-                // e.stopPropagation();
-                addToCart(e, item);
+                e.stopPropagation();
+                addToCart(item);
               }}
             >
               Add to cart
@@ -245,8 +349,8 @@ export default function Items() {
                 className="checkout-button cursor-pointer"
                 onClick={(e) => {
                   e.stopPropagation();
-                  e.preventDefault();
-                  addToCart(e, item);
+                  // e.preventDefault();
+                  addToCart(item);
                 }}
               >
                 Add to cart
@@ -280,9 +384,9 @@ export default function Items() {
     ));
 
   const responsive = {
-    400: { items: 1 },
-    900: { items: 2 },
-    1100: { items: 3 },
+    300: { items: 1 },
+    700: { items: 2 },
+    1200: { items: 3 },
     1600: { items: 4 },
     1800: { items: 5 },
   };
@@ -290,6 +394,18 @@ export default function Items() {
   return (
     <div className="gallery-container">
       <div className="item-gallery">
+        {/* <div> */}
+        {filtered?.length > 0 ?
+                  <AliceCarousel
+                  infinite
+                  mouseTracking
+                  preventEventOnTouchMove
+                  responsive={responsive}
+                  items={filteredArr}
+                /> :
+                <div className="no-filter-found">Nothing with this combo, adjust the filters!</div>}
+
+        {/* </div> */}
         <h2 className="type-header">Cleats</h2>
         <div className="cleats-gallery scrollable-x">
           <AliceCarousel
