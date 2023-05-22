@@ -31,23 +31,20 @@ function SignupFormModal() {
 		if (password === confirmPassword) {
 			const data = await dispatch(signUp(username, email, password));
 			if (data.errors) {
-				setErrors(data);
-				for (let i = 0; i < data.length; i++) {
-					if (data[i].startsWith("email")) {
-						const message = data[i].split(" : ")[1]
-						setErrors((errors) => ({ ...errors, email: message }));
-						hasErrors = true;
-					}
-					if (data[i].startsWith("username")) {
-						const message = data[i].split(" : ")[1]
-						setErrors((errors) => ({ ...errors, username: message }));
-						hasErrors = true;
-					}
-					if (data[i].startsWith("password")) {
-						const message = data[i].split(" : ")[1]
-						setErrors((errors) => ({ ...errors, password: message }));
-						hasErrors = true;
-					}
+				//backend errors
+				const newData = {}
+				data.errors.forEach(error => {
+					const [key, value] = error.split(" : ")
+					newData[key] = value;
+				})
+
+				if (newData["email"]) {
+					setErrors((errors) => ({ ...errors, email: newData["email"]}));
+					hasErrors = true;
+				}
+				if (newData["username"]) {
+					setErrors((errors) => ({ ...errors, username: newData["username"]}));
+					hasErrors = true;
 				}
 			} else {
 				dispatch(createCartThunk(data.user.id))
