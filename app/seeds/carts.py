@@ -20,12 +20,28 @@ def seed_carts():
     cart5 = Cart(
         user_id='5'
     )
+    cart6 = Cart(
+        user_id='6'
+    )
+    cart7 = Cart(
+        user_id='7'
+    )
+    cart8 = Cart(
+        user_id='8'
+    )
+    cart9 = Cart(
+        user_id='9'
+    )
 
     db.session.add(cart1)
     db.session.add(cart2)
     db.session.add(cart3)
     db.session.add(cart4)
     db.session.add(cart5)
+    db.session.add(cart6)
+    db.session.add(cart7)
+    db.session.add(cart8)
+    db.session.add(cart9)
     db.session.commit()
 
 

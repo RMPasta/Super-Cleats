@@ -83,11 +83,11 @@ export const signUp = (username, email, password) => async (dispatch) => {
 	if (response.ok) {
 		const data = await response.json();
 		dispatch(setUser(data));
-		return null;
+		return {"user": data};
 	} else if (response.status < 500) {
 		const data = await response.json();
 		if (data.errors) {
-			return data.errors;
+			return {"errors": data.errors};
 		}
 	} else {
 		return ["An error occurred. Please try again."];

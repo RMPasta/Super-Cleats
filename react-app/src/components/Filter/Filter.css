@@ -1,7 +1,7 @@
 .filter-container {
     display: flex;
     flex-direction: column;
-    padding: 40px;
+    padding: 10px;
     /* min-width: 300px; */
 }
 
@@ -9,29 +9,44 @@
     margin: 20px 0;
 }
 
+.filter-top-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .type-filter {
     display: flex;
-    gap: 10px;
-    font-size: 18px;
+    justify-content: center;
+    gap: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    width: 100%;
+    /* border: 1px solid black; */
 }
 
 .type-filter > li {
-    width: fit-content;
-    padding: 10px 20px;
-    margin: 4px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100px;
+    padding: 2px 2px;
+    margin-right: 20px;
     border-radius: 20px;
     background-color: rgb(226, 226, 226);
 }
 
 .type-tag {
-    font-size: 28px;
+    font-size: 24px;
 }
 
 .price-tag {
-    font-size: 28px;
+    font-size: 24px;
 }
 .team-tag {
-    font-size: 28px;
+    font-size: 24px;
 }
 
 .filter-teams {
@@ -45,7 +60,13 @@
 }
 
 .filter-middle > div {
-    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100px;
+    font-weight: bold;
+    padding: 10px 0;
     border-radius: 20px;
     background-color: rgb(225, 225, 225);
 }

@@ -11,6 +11,8 @@ def get_cart(id):
     Query for users cart
     """
     cart = Cart.query.get(id)
+    if not cart:
+        return {"cart": None, "items": None}
     user_cart_items = [item.to_dict() for item in cart.items]
 
     return {"cart": cart.to_dict(), "items": user_cart_items}

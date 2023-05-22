@@ -42,7 +42,7 @@ export default function Landing({ teamPicked, setTeamPicked }) {
         src="https://supercleats-pics.s3.amazonaws.com/splash1.jpg"
         alt="landing image"
       /> */}
-      <div className="splash-text">Pick your favorite team</div>
+      <div className="splash-text">Pick your favorite team or log in to enter</div>
       <div className="splash-teams">
         <AliceCarousel
           autoPlayInterval={800}

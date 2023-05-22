@@ -18,6 +18,9 @@ export default function UsersItems() {
   const user = useSelector((state) => state.session.user);
   const teams = useSelector((state) => state.team.teams);
   const [isNotMobile, setIsNotMobile] = useState(true);
+  const [shouldAutoPlay, setShouldAutoPlay] = useState(true);
+
+  const usersItems = items?.filter((item) => item.user_id === user.id);
 
   // JAVASCRIPT MEDIA QUERY
   useEffect(() => {
@@ -43,11 +46,16 @@ export default function UsersItems() {
     dispatch(getItemsThunk());
   }, [dispatch, history, user]);
 
+  useEffect(() => {
+    if (usersItems?.length < 4) {
+      setShouldAutoPlay(false)
+    }
+  }, [usersItems]);
+
   if (!items) return <h1>...Loading</h1>;
   if (!teams) return <></>;
   if (!user) return <></>;
 
-  const usersItems = items.filter((item) => item.user_id === user.id);
   const closeMenu = () => setShowMenu(false);
   const getItemBadge = (item) => {
     const team = teams.find((team) => team.id === item.team_id);
@@ -124,7 +132,7 @@ export default function UsersItems() {
       >
         <AliceCarousel
           autoPlayInterval={2200}
-          autoPlay={isNotMobile}
+          autoPlay={isNotMobile && shouldAutoPlay}
           infinite
           mouseTracking
           preventEventOnTouchMove

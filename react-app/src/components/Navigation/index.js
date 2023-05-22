@@ -13,12 +13,11 @@ import "./Navigation.css";
 
 function Navigation({ setTeamPicked, teamPicked, isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
-  const cart = useSelector((state) => state.cart.cart);
+  const cart = useSelector((state) => state.cart);
   const teams = useSelector((state) => state.team.teams);
   const history = useHistory();
   const [showMenu, setShowMenu] = useState(false);
   const dispatch = useDispatch();
-
   const closeMenu = () => setShowMenu(false);
 
   useEffect(() => {

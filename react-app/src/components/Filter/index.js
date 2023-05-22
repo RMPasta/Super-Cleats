@@ -39,7 +39,7 @@ export default function Filter({ typeFilter, setTypeFilter, priceFilter, setPric
   return (
     <div className="filter-layout">
       <div className="filter-container">
-        <div className="filter top section">
+        <div className="filter-top-section">
           <h2>Filtered by:</h2>
           <h3 className="type-tag">Type: {typeText}</h3>
           <h3 className="price-tag">Price: {priceText}</h3>

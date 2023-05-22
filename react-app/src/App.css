@@ -8,11 +8,11 @@ justify-content: center;
 }
 
 .filter-app {
-    width: 36%;
+    width: 25%;
 }
 
 .items-app {
-    width: 64%;
+    width: 75%;
 }
 
 @media screen and (max-width: 700px) {

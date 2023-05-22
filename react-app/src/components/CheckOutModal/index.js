@@ -14,21 +14,19 @@ export default function CheckOutModal({ isNotMobile, closeMenu }) {
     if (!isNotMobile) {
       closeMenu();
     }
-    setTimeout(() => {
+    const timeout1 = setTimeout(() => {
       setLoading(false);
     }, [3000]);
-    setTimeout(async () => {
+    const timeout2 = setTimeout(async () => {
       await dispatch(clearCartThunk(cart.id));
       await dispatch(getCartThunk(cart.id));
       closeModal();
+      closeMenu();
     }, [5000]);
-    setTimeout(() => {
-      if (isNotMobile) {
-        closeMenu();
-      }
-    }, [6000]);
     return () => {
-      clearTimeout();
+      clearTimeout(timeout1);
+      clearTimeout(timeout2);
+      // clearTimeout(timeout3);
     };
   }, [closeMenu, closeModal, cart, dispatch, isNotMobile]);
 

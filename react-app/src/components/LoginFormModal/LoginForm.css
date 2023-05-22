@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 60px;
+    padding: 0 100px 0px 100px;
     border-radius: 20px;
 }
 
@@ -12,6 +12,13 @@
     flex-direction: column;
     /* justify-content: center; */
     align-items: center;
-    /* padding: 60px;
-    border-radius: 20px; */
+    padding: 74px 100px 0px 100px;
+}
+
+.demo-button {
+    border: none;
+    margin-bottom: 10px;
+    background-color: rgba(3, 91, 150, 0.877);
+    color: white;
+    padding: 10px 28px;
 }

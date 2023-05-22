@@ -10,7 +10,7 @@ function LoginFormModal() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState({});
   const [showMenu, setShowMenu] = useState(false);
   const { closeModal } = useModal();
 
@@ -18,12 +18,40 @@ function LoginFormModal() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let hasErrors = false;
+    setErrors({});
+
+    if (!email) {
+      setErrors((errors) => ({ ...errors, email: "Email is required" }));
+      hasErrors = true;
+    }
+    if (!password) {
+      setErrors((errors) => ({ ...errors, password: "Password is required" }));
+      hasErrors = true;
+    }
+
+
     const data = await dispatch(login(email, password));
     if (data) {
-      setErrors(data);
+      // for (let i = 0; i < data.length; i++) {
+      //   if (data[i].startsWith("email")) {
+      //     const message = data[i].split(" : ")[1]
+      //     setErrors((errors) => ({ ...errors, email: message }));
+      //     hasErrors = true;
+      //   }
+      //   if (data[i].startsWith("password")) {
+      //     const message = data[i].split(" : ")[1]
+      //     setErrors((errors) => ({ ...errors, password: message }));
+      //     hasErrors = true;
+      //   }
+      // }
+      console.log("Server Side Error")
+      // setErrors(data);
+      return;
     } else {
         closeModal()
     }
+    if (hasErrors) return;
   };
 
   const demoUser = async () => {
@@ -35,12 +63,11 @@ function LoginFormModal() {
     <>
     <div className="form-modal-container">
       <form className="form-modal-login" onSubmit={handleSubmit}>
+      <div className="error-container">
+          {errors.email && <p>{errors.email}</p>}
+          {errors.password && <p>{errors.password}</p>}
+        </div>
       <h1>Log In</h1>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
         <label>
           Email
           <input
@@ -57,11 +84,11 @@ function LoginFormModal() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
-        <button type="submit">Log In</button>
+        <button className="submit-button" type="submit">Log In</button>
       </form>
-        <button onClick={() => demoUser()}>Demo User</button>
+        <button className="demo-button" onClick={() => demoUser()}>Demo User</button>
         <OpenModalButton
-              className="signup-button-nav cursor-pointer"
+              className="cancel-button modal-padding-bottom cursor-pointer"
               buttonText="Sign Up"
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal showMenu={showMenu} />}
