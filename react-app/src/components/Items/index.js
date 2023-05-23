@@ -22,6 +22,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
   const [quantity, setQuantity] = useState(0);
   const [total, setTotal] = useState(0);
   const [filtered, setFiltered] = useState(items);
+  const [slidePosition, setSlidePosition] = useState(0);
 
   useEffect(() => {
     if (cart) setQuantity(cart.quantity);
@@ -103,13 +104,13 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
   };
 
   const getItemBadge = (item) => {
-    if (teams) {
+    if (teams && item) {
       const team = teams.find((team) => team.id === item.team_id);
       return team.badge_img;
     }
   };
-  // FILTERED ARRAY FOR ALICE CAROUSEL
-  const filteredArr = filtered?.map((item) => (
+  // // FILTERED ARRAY FOR ALICE CAROUSEL
+  const filteredArr = filtered?.map((item, i) => item ? (
       <div
         style={{ width: "240px", overflowY: "none" }}
         key={item.id}
@@ -121,9 +122,11 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
           src={getItemBadge(item)}
           alt="item-team-badge"
         />
-        <img className="card-img" src={item.item_img} alt={item.name} />
+        <img className="card-img" src={item?.item_img} alt={item.name} />
         <div className="item-card-info">
-          <div>{item.name}</div>
+        <div>{item.name.length > 25
+            ? item.name.slice(0, 25) + "..."
+            : item.name}</div>
           <div>$ {item.price}</div>
           <div>
             {item.description.length > 30
@@ -139,17 +142,19 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
               className="checkout-button cursor-pointer"
               onClick={(e) => {
                 e.stopPropagation();
+                setSlidePosition(i);
                 addToCart(item);
               }}
-            >
+              >
               Add to cart
             </button>
           ) : (
             <button
-              className="add-items-button cursor-pointer"
-              onClick={(e) => {
-                e.stopPropagation();
-                removeItem(item);
+            className="add-items-button cursor-pointer"
+            onClick={(e) => {
+              e.stopPropagation();
+              setSlidePosition(i);
+              removeItem(item);
               }}
             >
               Remove from cart
@@ -169,13 +174,14 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
           )
         )}
       </div>
-    ));
+    ) : <></>);
+    //empty fragment in ternary fixed create on home page bug
 
 
   // CLEATS ARRAY FOR ALICE CAROUSEL
   const cleatsArr = items
     .filter((item) => item.type === "cleats" )
-    .map((item) => (
+    .map((item, i) => (
       <div
         style={{ width: "240px", overflowY: "none" }}
         key={item.id}
@@ -189,7 +195,9 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
         />
         <img className="card-img" src={item.item_img} alt={item.name} />
         <div className="item-card-info">
-          <div>{item.name}</div>
+        <div>{item.name.length > 25
+            ? item.name.slice(0, 25) + "..."
+            : item.name}</div>
           <div>$ {item.price}</div>
           <div>
             {item.description.length > 30
@@ -205,6 +213,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
               className="checkout-button cursor-pointer"
               onClick={(e) => {
                 e.stopPropagation();
+                setSlidePosition(i);
                 addToCart(item);
               }}
             >
@@ -215,6 +224,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
               className="add-items-button cursor-pointer"
               onClick={(e) => {
                 e.stopPropagation();
+                setSlidePosition(i);
                 removeItem(item);
               }}
             >
@@ -240,7 +250,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
   // SOCKS ARRAY FOR ALICE CAROUSEL
   const socksArr = items
     .filter((item) => item.type === "socks")
-    .map((item) => (
+    .map((item, i) => (
       <div
         style={{ width: "240px" }}
         key={item.id}
@@ -254,7 +264,9 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
         />
         <img className="card-img" src={item.item_img} alt={item.name} />
         <div className="item-card-info">
-          <div>{item.name}</div>
+        <div>{item.name.length > 25
+            ? item.name.slice(0, 25) + "..."
+            : item.name}</div>
           <div>$ {item.price}</div>
           <div>
             {item.description.length > 30
@@ -270,6 +282,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
                 onClick={(e) => {
                   e.stopPropagation();
                   e.preventDefault();
+                  setSlidePosition(i);
                   addToCart(item);
                 }}
               >
@@ -280,6 +293,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
                 className="add-items-button cursor-pointer"
                 onClick={(e) => {
                   e.stopPropagation();
+                  setSlidePosition(i);
                   removeItem(item);
                 }}
               >
@@ -306,7 +320,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
   // BALL ARRAY FOR ALICE CAROUSEL
   const ballArr = items
     .filter((item) => item.type === "ball")
-    .map((item) => (
+    .map((item, i) => (
       <div
         style={{ width: "240px" }}
         key={item.id}
@@ -320,7 +334,9 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
         />
         <img className="card-img" src={item.item_img} alt={item.name} />
         <div className="item-card-info">
-          <div>{item.name}</div>
+        <div>{item.name.length > 25
+            ? item.name.slice(0, 25) + "..."
+            : item.name}</div>
           <div>$ {item.price}</div>
           <div>
             {item.description.length > 30
@@ -335,6 +351,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
                 className="checkout-button cursor-pointer"
                 onClick={(e) => {
                   e.stopPropagation();
+                  setSlidePosition(i);
                   // e.preventDefault();
                   addToCart(item);
                 }}
@@ -346,6 +363,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
                 className="add-items-button cursor-pointer"
                 onClick={(e) => {
                   e.stopPropagation();
+                  setSlidePosition(i);
                   removeItem(item);
                 }}
               >
@@ -379,24 +397,23 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
   return (
     <div className="gallery-container">
       <div className="item-gallery">
-        {/* <div> */}
         {filtered?.length > 0 ?
                   <AliceCarousel
                   infinite
                   mouseTracking
                   preventEventOnTouchMove
+                  activeIndex={slidePosition}
                   responsive={responsive}
                   items={filteredArr}
                 /> :
                 <div className="no-filter-found">Nothing with this combo, adjust the filters!</div>}
-
-        {/* </div> */}
         <h2 className="type-header">Cleats</h2>
         <div className="cleats-gallery scrollable-x">
           <AliceCarousel
             infinite
             mouseTracking
             preventEventOnTouchMove
+            activeIndex={slidePosition}
             responsive={responsive}
             items={cleatsArr}
           />
@@ -407,6 +424,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
             infinite
             mouseTracking
             preventEventOnTouchMove
+            activeIndex={slidePosition}
             responsive={responsive}
             items={socksArr}
           />
@@ -417,6 +435,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
             infinite
             mouseTracking
             preventEventOnTouchMove
+            activeIndex={slidePosition}
             responsive={responsive}
             items={ballArr}
           />

@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import { getItemsThunk } from "../../store/item";
 import './EditItemForm.css'
 
-export default function EditItemForm({item}) {
+export default function EditItemForm({item, setSlidePosition, index}) {
     const dispatch = useDispatch();
     const history = useHistory();
     const user = useSelector(state => state.session.user);
@@ -64,6 +64,7 @@ export default function EditItemForm({item}) {
         await dispatch(getItemsThunk());
         setImageLoading(false);
         closeModal();
+        setSlidePosition(index);
         return history.push("/user");
     }
 

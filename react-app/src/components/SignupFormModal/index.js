@@ -28,6 +28,35 @@ function SignupFormModal() {
 		e.preventDefault();
 		let hasErrors = false;
 		setErrors({});
+		if (!email) {
+			setErrors((errors) => ({ ...errors, email: "Email is required" }));
+			hasErrors = true;
+		  }
+		  if (email.length < 7 || email.length >= 180) {
+			setErrors((errors) => ({ ...errors, email: "Email must be between 6 and 180 characters" }));
+			hasErrors = true;
+		  }
+		  if (validateEmail(email) === false) {
+			  setErrors(errors => ({...errors, email: "Please enter a valid email"}));
+			  hasErrors = true;
+		  }
+		  if (!username) {
+			  setErrors((errors) => ({ ...errors, username: "Username is required" }));
+			  hasErrors = true;
+		  }
+		  if (username.length < 4 || username.length >= 60) {
+			setErrors((errors) => ({ ...errors, email: "Username must be between 3 and 60 characters" }));
+			hasErrors = true;
+		  }
+		  if (!password) {
+			  setErrors((errors) => ({ ...errors, password: "Password is required" }));
+			  hasErrors = true;
+		  }
+		  if (password.length < 5 || password.length >= 100) {
+			setErrors((errors) => ({ ...errors, email: "Password must be between 4 and 100 characters" }));
+			hasErrors = true;
+		  }
+		  if (hasErrors) return;
 		if (password === confirmPassword) {
 			const data = await dispatch(signUp(username, email, password));
 			if (data.errors) {
@@ -50,23 +79,8 @@ function SignupFormModal() {
 				dispatch(createCartThunk(data.user.id))
 				closeModal();
 			}
-		if (!email) {
-		  setErrors((errors) => ({ ...errors, email: "Email is required" }));
-		  hasErrors = true;
-		}
-		if (validateEmail(email) === false) {
-			setErrors(errors => ({...errors, email: "Please enter a valid email"}));
-			hasErrors = true;
-		  }
-		if (!username) {
-		  setErrors((errors) => ({ ...errors, username: "Username is required" }));
-		  hasErrors = true;
-		}
-		if (!password) {
-		  setErrors((errors) => ({ ...errors, password: "Password is required" }));
-		  hasErrors = true;
-		}
-		} else {
+
+	} else {
 			setErrors((errors) => ({ ...errors, password: "Confirm Password field must be the same as the Password field" }));
 			hasErrors = true;
 		}

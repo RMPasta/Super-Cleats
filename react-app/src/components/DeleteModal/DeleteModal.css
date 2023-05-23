@@ -25,3 +25,9 @@
     background-color: rgb(226, 226, 226);
     padding: 10px 42px;
 }
+
+.countdown {
+    padding: 4px 110px;
+    font-size: 78px;
+    font-weight: bold;
+}

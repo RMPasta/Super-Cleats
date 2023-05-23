@@ -19,6 +19,7 @@ export default function UsersItems() {
   const teams = useSelector((state) => state.team.teams);
   const [isNotMobile, setIsNotMobile] = useState(true);
   const [shouldAutoPlay, setShouldAutoPlay] = useState(true);
+  const [slidePosition, setSlidePosition] = useState(0);
 
   const usersItems = items?.filter((item) => item.user_id === user.id);
 
@@ -74,7 +75,7 @@ export default function UsersItems() {
     }
   };
 
-  const userItemsArr = usersItems.map((item) => (
+  const userItemsArr = usersItems.map((item, i) => (
     <div
       style={{ height: "480px", width: "240px" }}
       key={item.id}
@@ -88,25 +89,31 @@ export default function UsersItems() {
       />
       <img className="card-img" src={item.item_img} alt={item.name} />
       <div className="item-card-info">
-        <div>{item.name}</div>
+        <div>{item.name.length > 25
+            ? item.name.slice(0, 25) + "..."
+            : item.name}</div>
         <div>$ {item.price}</div>
         <div>
           {item.description.length > 30
             ? item.description.slice(0, 30) + "..."
             : item.description}
         </div>
-        <OpenModalButton
-          className="edit-button cursor-pointer"
-          buttonText="Edit"
-          onItemClick={closeMenu}
-          modalComponent={<EditItemForm item={item} showMenu={showMenu} />}
-        />
-        <OpenModalButton
-          className="delete-button cursor-pointer"
-          buttonText="Delete"
-          onItemClick={closeMenu}
-          modalComponent={<DeleteModal item={item} showMenu={showMenu} />}
-        />
+        <div onClick={() => setSlidePosition(i)}>
+          <OpenModalButton
+            className="edit-button cursor-pointer"
+            buttonText="Edit"
+            onItemClick={closeMenu}
+            modalComponent={<EditItemForm item={item} showMenu={showMenu} setSlidePosition={setSlidePosition} index={i} />}
+          />
+        </div>
+        <div onClick={() => setSlidePosition(i)}>
+          <OpenModalButton
+            className="delete-button cursor-pointer"
+            buttonText="Delete"
+            onItemClick={closeMenu}
+            modalComponent={<DeleteModal item={item} showMenu={showMenu} setSlidePosition={setSlidePosition} index={i} />}
+          />
+        </div>
       </div>
     </div>
   ));
@@ -136,6 +143,7 @@ export default function UsersItems() {
           infinite
           mouseTracking
           preventEventOnTouchMove
+          activeIndex={slidePosition}
           responsive={responsive}
           items={userItemsArr}
         />

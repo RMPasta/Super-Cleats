@@ -36,6 +36,10 @@ export default function AddItemForm() {
       setErrors((errors) => ({ ...errors, name: "Item name is required" }));
       hasErrors = true;
     }
+    if (name.length < 5 || name.length >= 100) {
+			setErrors((errors) => ({ ...errors, name: "Item name must be between 4 and 100 characters" }));
+			hasErrors = true;
+		  }
     if (!type) {
       setErrors((errors) => ({ ...errors, type: "Please choose a type" }));
       hasErrors = true;
@@ -44,7 +48,7 @@ export default function AddItemForm() {
       setErrors((errors) => ({ ...errors, price: "Please enter a price" }));
       hasErrors = true;
     }
-    if (isNaN(price)) {
+    if (isNaN(price) || price < 1 || price > 10000) {
       setErrors((errors) => ({
         ...errors,
         price: "Please enter a valid price",
@@ -58,6 +62,10 @@ export default function AddItemForm() {
       }));
       hasErrors = true;
     }
+    if (description.length <= 10 || description.length >= 300) {
+      setErrors((errors) => ({ ...errors, description: "Description must be between 10 and 300 characters" }));
+      hasErrors = true;
+      }
     if (!itemImg) {
       setErrors((errors) => ({ ...errors, itemImg: "Please upload an image" }));
       hasErrors = true;
@@ -184,10 +192,10 @@ export default function AddItemForm() {
         </div>
         {imageLoading && <p>Loading...</p>}
         <div>
-          <button type="submit">CREATE ITEM</button>
+          <button type="submit" className="submit-button cursor-pointer">CREATE ITEM</button>
         </div>
       </form>
-      <button onClick={() => closeModal()}>Cancel</button>
+      <button className="cancel-button cursor-pointer" onClick={() => closeModal()}>Cancel</button>
     </div>
   );
 }

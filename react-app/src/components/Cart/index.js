@@ -81,7 +81,7 @@ export default function Cart({ setShowMenu }) {
         {cartItems &&
           cartItems.map((item) => (
             <div
-              className="cart-item-info"
+              className="cart-item-info cursor-pointer"
               key={item.id}
               onClick={() => {
                 history.push(`/item/${item.id}`);
@@ -89,7 +89,9 @@ export default function Cart({ setShowMenu }) {
               }}
             >
               <div className="item-info">
-                <div>{item.name}</div>
+                <div>{item.name.length > 25
+                  ? item.name.slice(0, 25) + "..."
+                  : item.name}</div>
               </div>
               <div className="image-trash-container">
                 <div>${item.price}</div>
