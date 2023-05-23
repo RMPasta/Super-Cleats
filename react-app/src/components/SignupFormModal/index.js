@@ -128,7 +128,7 @@ function SignupFormModal() {
 						onChange={(e) => setConfirmPassword(e.target.value)}
 					/>
 				</label>
-				<button type="submit" className="submit-button">Sign Up</button>
+				<button type="submit" className="submit-button cursor-pointer">Sign Up</button>
 			</form>
 				<OpenModalButton
 					className="cancel-button modal-padding-bottom cursor-pointer"

@@ -84,9 +84,9 @@ function LoginFormModal() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
-        <button className="submit-button" type="submit">Log In</button>
+        <button className="submit-button cursor-pointer" type="submit">Log In</button>
       </form>
-        <button className="demo-button" onClick={() => demoUser()}>Demo User</button>
+        <button className="demo-button cursor-pointer" onClick={() => demoUser()}>Demo User</button>
         <OpenModalButton
               className="cancel-button modal-padding-bottom cursor-pointer"
               buttonText="Sign Up"

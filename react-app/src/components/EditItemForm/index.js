@@ -120,7 +120,7 @@ export default function EditItemForm({item, setSlidePosition, index}) {
                         </label>
                         <label>Image
                             <input
-                                className="upload-item-img-input"
+                                className="upload-item-img-input cursor-pointer"
                                 type="file"
                                 accept="image/*"
                                 onChange={(e) => setItemImg(e.target.files[0])}
