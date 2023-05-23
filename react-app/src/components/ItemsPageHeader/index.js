@@ -75,8 +75,8 @@ export default function ItemsPageHeader() {
 
   const responsive = {
     400: { items: 1 },
-    900: { items: 2 },
-    1200: { items: 3 },
+    760: { items: 2 },
+    1300: { items: 3 },
   };
 
   const stagePadding = {

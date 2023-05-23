@@ -19,7 +19,7 @@
 
 .type-filter {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     font-weight: bold;
     gap: 5px;
     font-size: 14px;
@@ -56,7 +56,7 @@
 
 .filter-middle {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     gap: 5px;
 }
 
@@ -74,7 +74,7 @@
 
 .filter-bottom {
     display: flex;
-    /* justify-content: center; */
+    justify-content: center;
     /* border: 1px solid red; */
 }
 

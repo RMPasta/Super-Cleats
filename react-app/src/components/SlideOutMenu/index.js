@@ -5,6 +5,7 @@ import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import AddItemForm from "../AddItemForm";
 import LoginFormModal from "../LoginFormModal";
+import SignupFormModal from "../SignupFormModal";
 import "./SlideOutMenu.css";
 
 export default function SlideOutMenu({ setTeamPicked }) {
@@ -110,6 +111,12 @@ export default function SlideOutMenu({ setTeamPicked }) {
           </>
         ) : (
           <>
+            <OpenModalButton
+              className="submit-button cursor-pointer"
+              buttonText="Sign Up"
+              onItemClick={closeMenu}
+              modalComponent={<SignupFormModal />}
+            />
             <OpenModalButton
               className="sidebar-modal cursor-pointer"
               buttonText="Log In"

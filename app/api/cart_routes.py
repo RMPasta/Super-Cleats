@@ -77,7 +77,6 @@ def clear_cart(cart_id):
 
     cart = Cart.query.get(cart_id)
     items = [item for item in cart.items if cart.id == cart_id]
-    print("BACKEND CARTITEMS ~~~~~~~~~>", items)
     for item in items:
         cart.items.remove(item)
     cart.quantity=0

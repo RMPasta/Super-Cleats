@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTeamsThunk } from "../../store/team";
 import AliceCarousel from "react-alice-carousel";
@@ -8,6 +8,28 @@ import "./Landing.css";
 export default function Landing({ teamPicked, setTeamPicked }) {
   const dispatch = useDispatch();
   const teams = useSelector((state) => state.team.teams);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // JAVASCRIPT MEDIA QUERY
+  useEffect(() => {
+    const mQuery = window.matchMedia("(max-width: 600px)");
+    function handleMobileSize(e) {
+      // Check if the media query is true
+      if (e.matches) {
+        setIsMobile(true);
+        return;
+      }
+      setIsMobile(false);
+      return;
+    }
+    // Set up event listener
+    mQuery.addListener(handleMobileSize);
+    return () => {
+      mQuery.removeListener(handleMobileSize);
+    };
+  }, [isMobile]);
+
+
 
   useEffect(() => {
     dispatch(getTeamsThunk());
@@ -29,10 +51,8 @@ export default function Landing({ teamPicked, setTeamPicked }) {
     </div>
   ));
   const responsive = {
-    400: { items: 1 },
-    900: { items: 2 },
-    1200: { items: 3 },
-    1400: { items: 4 },
+    400: { items: 3 },
+    1150: { items: 4 },
   };
 
   return (
@@ -49,6 +69,7 @@ export default function Landing({ teamPicked, setTeamPicked }) {
           autoPlay
           infinite
           mouseTracking
+          disableDotsControls={isMobile}
           responsive={responsive}
           items={teamsArr}
         />

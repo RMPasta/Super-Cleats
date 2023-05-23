@@ -23,6 +23,27 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
   const [total, setTotal] = useState(0);
   const [filtered, setFiltered] = useState(items);
   const [slidePosition, setSlidePosition] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // JAVASCRIPT MEDIA QUERY
+  useEffect(() => {
+    const mQuery = window.matchMedia("(max-width: 600px)");
+    function handleMobileSize(e) {
+      // Check if the media query is true
+      if (e.matches) {
+        setIsMobile(true);
+        return;
+      }
+      setIsMobile(false);
+      return;
+    }
+    // Set up event listener
+    mQuery.addListener(handleMobileSize);
+    return () => {
+      mQuery.removeListener(handleMobileSize);
+    };
+  }, [isMobile]);
+
 
   useEffect(() => {
     if (cart) setQuantity(cart.quantity);
@@ -109,6 +130,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
       return team.badge_img;
     }
   };
+
   // // FILTERED ARRAY FOR ALICE CAROUSEL
   const filteredArr = filtered?.map((item, i) => item ? (
       <div
@@ -402,21 +424,23 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
                   infinite
                   mouseTracking
                   preventEventOnTouchMove
+                  disableDotsControls={isMobile}
                   activeIndex={slidePosition}
                   responsive={responsive}
                   items={filteredArr}
-                /> :
-                <div className="no-filter-found">Nothing with this combo, adjust the filters!</div>}
+                  /> :
+                  <div className="no-filter-found">Nothing with this combo, adjust the filters!</div>}
         <h2 className="type-header">Cleats</h2>
         <div className="cleats-gallery scrollable-x">
           <AliceCarousel
             infinite
             mouseTracking
             preventEventOnTouchMove
+            disableDotsControls={isMobile}
             activeIndex={slidePosition}
             responsive={responsive}
             items={cleatsArr}
-          />
+            />
         </div>
         <h2 className="type-header">Socks</h2>
         <div className="socks-gallery scrollable-x">
@@ -424,10 +448,11 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
             infinite
             mouseTracking
             preventEventOnTouchMove
+            disableDotsControls={isMobile}
             activeIndex={slidePosition}
             responsive={responsive}
             items={socksArr}
-          />
+            />
         </div>
         <h2 className="type-header">Soccer Balls</h2>
         <div className="ball-gallery scrollable-x">
@@ -435,10 +460,11 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
             infinite
             mouseTracking
             preventEventOnTouchMove
+            disableDotsControls={isMobile}
             activeIndex={slidePosition}
             responsive={responsive}
             items={ballArr}
-          />
+            />
         </div>
       </div>
     </div>
