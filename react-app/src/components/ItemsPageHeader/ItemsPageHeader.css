@@ -2,13 +2,14 @@
     /* display: flex;
     flex-wrap: wrap;
     justify-content: space-around; */
-    margin: 80px 0 20px 0;
+    width: 90%;
+    margin: 50px auto;
 
 }
 
 .items-header {
     display: flex;
-    width: 65%;
+    width: 85%;
     /* min-width: 70%; */
     /* border: 1px solid black; */
     border-radius: 24px;
@@ -20,7 +21,7 @@
 
 .items-header-image {
     border-radius: 0 24px 24px 0;
-    min-width: 240px;
+    min-width: 220px;
     height: 100%;
 }
 

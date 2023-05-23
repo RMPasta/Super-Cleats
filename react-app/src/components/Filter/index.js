@@ -63,6 +63,7 @@ export default function Filter({ typeFilter, setTypeFilter, priceFilter, setPric
           <select
               placeholder="Team associated with item..."
               onChange={(e) => setTeamFilter(e.target.value)}
+              className="team-select-field"
             >
               <option value="All">All</option>
               <option value="1">Fulham</option>

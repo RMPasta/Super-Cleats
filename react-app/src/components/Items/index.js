@@ -389,9 +389,9 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
 
   const responsive = {
     300: { items: 1 },
-    700: { items: 2 },
-    1200: { items: 3 },
-    1600: { items: 4 },
+    760: { items: 2 },
+    1120: { items: 3 },
+    1500: { items: 4 },
   };
 
   return (

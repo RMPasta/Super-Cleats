@@ -25,6 +25,7 @@
 }
 
 .item-name {
+    max-width: 90%;
     font-size: 24px;
     margin-left: 40px;
 }
@@ -81,6 +82,7 @@
 
 .item-description {
     margin-left: 40px;
+    max-width: 80%;
     /* margin: 100px auto; */
 }
 

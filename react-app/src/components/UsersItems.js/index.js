@@ -21,7 +21,7 @@ export default function UsersItems() {
   const [shouldAutoPlay, setShouldAutoPlay] = useState(true);
   const [slidePosition, setSlidePosition] = useState(0);
 
-  const usersItems = items?.filter((item) => item.user_id === user.id);
+  const usersItems = items?.filter((item) => item.user_id === user?.id);
 
   // JAVASCRIPT MEDIA QUERY
   useEffect(() => {
@@ -138,7 +138,7 @@ export default function UsersItems() {
         }}
       >
         <AliceCarousel
-          autoPlayInterval={2200}
+          autoPlayInterval={3200}
           autoPlay={isNotMobile && shouldAutoPlay}
           infinite
           mouseTracking

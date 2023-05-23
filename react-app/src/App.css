@@ -15,7 +15,7 @@ justify-content: center;
     width: 75%;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
     .filter-app {
         display: none;
     }

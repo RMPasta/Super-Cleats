@@ -40,7 +40,7 @@ export default function ItemsPageHeader() {
     <div className="items-header">
       <div className="text-container">
         <div className="items-header-text">
-          Short socks, long socks, double socks, we have every sock here!
+          Short socks, long socks, we have every sock here!
         </div>
         <div className="items-header-small-text">
           Don't ask about if we have it because we DO
@@ -53,12 +53,30 @@ export default function ItemsPageHeader() {
       />
     </div>
   );
+  const header4 = (
+    <div className="items-header">
+      <div className="text-container">
+        <div className="items-header-text">
+          The most elite website for three specific soccer related items.
+        </div>
+        <div className="items-header-small-text">
+          Don't miss this chance!
+        </div>
+      </div>
+      <img
+        className="items-header-image"
+        src="https://supercleats-pics.s3.amazonaws.com/splash6.jpg"
+        alt="items header cleats"
+      />
+    </div>
+  );
 
-  const headers = [header1, header2, header3];
+  const headers = [header1, header2, header3, header4];
 
   const responsive = {
     400: { items: 1 },
     900: { items: 2 },
+    1200: { items: 3 },
   };
 
   const stagePadding = {
@@ -69,7 +87,7 @@ export default function ItemsPageHeader() {
   return (
     <div className="items-header-container">
       <AliceCarousel
-        autoPlayInterval={3600}
+        autoPlayInterval={4200}
         autoPlay
         infinite
         disableButtonsControls

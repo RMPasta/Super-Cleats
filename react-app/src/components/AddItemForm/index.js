@@ -62,8 +62,8 @@ export default function AddItemForm() {
       }));
       hasErrors = true;
     }
-    if (description.length <= 10 || description.length >= 300) {
-      setErrors((errors) => ({ ...errors, description: "Description must be between 10 and 300 characters" }));
+    if (description.length <= 10 || description.length >= 900) {
+      setErrors((errors) => ({ ...errors, description: "Description must be between 10 and 900 characters" }));
       hasErrors = true;
       }
     if (!itemImg) {
