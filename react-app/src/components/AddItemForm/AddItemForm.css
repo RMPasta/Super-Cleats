@@ -19,6 +19,11 @@
 
 .error-container {
     color: red;
-    height: 160px;
-    max-width: 200px;
+    height: 200px;
+    max-width: 180px;
+    padding: 10px;
+}
+
+.error-container > p {
+    margin: 2px 0;
 }
