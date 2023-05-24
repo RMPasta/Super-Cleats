@@ -11,7 +11,6 @@ const deleteTicket = (tickets) => ({
 	payload: tickets,
 });
 
-
 const initialState = { tickets: null, userTickets: null };
 
 export const getTicketsThunk = () => async (dispatch) => {

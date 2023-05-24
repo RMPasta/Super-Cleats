@@ -6,6 +6,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Items from "./components/Items";
+import Tickets from "./components/Tickets";
 import Teams from "./components/Teams";
 import UsersItems from "./components/UsersItems.js";
 import ItemDetails from "./components/ItemDetails";
@@ -81,6 +82,9 @@ function App() {
           </Route>
           <Route path="/user">
             <UsersItems />
+          </Route>
+          <Route path="/tickets">
+            <Tickets />
           </Route>
         </Switch>
       )}

@@ -2,6 +2,8 @@ const GET_CART = "cart/GET_CART";
 const CREATE_CART = "cart/CREATE_CART";
 const ADD_TO_CART = "cart/ADD_TO_CART";
 const REMOVE_FROM_CART = "cart/REMOVE_FROM_CART";
+const ADD_TICKET_TO_CART = "cart/ADD_TICKET_TO_CART";
+const REMOVE_TICKET_FROM_CART = "cart/REMOVE_TICKET_FROM_CART";
 const CLEAR_CART = "cart/REMOVE_FROM_CART";
 const DELETE_CART = "cart/DELETE_CART";
 
@@ -22,6 +24,16 @@ const addToCart = (cart) => ({
 
 const removeFromCart = (cart) => ({
 	type: REMOVE_FROM_CART,
+	payload: cart,
+});
+
+const addTicketToCart = (cart) => ({
+	type: ADD_TICKET_TO_CART,
+	payload: cart,
+});
+
+const removeTicketFromCart = (cart) => ({
+	type: REMOVE_TICKET_FROM_CART,
 	payload: cart,
 });
 
@@ -101,6 +113,40 @@ export const removeFromCartThunk = (obj) => async (dispatch) => {
 	}
 };
 
+export const addTicketToCartThunk = (obj) => async (dispatch) => {
+	const response = await fetch(`/api/cart/${obj.id}/ticket`, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(obj)
+	});
+	if (response.ok) {
+		const data = await response.json();
+		if (data.errors) {
+			return;
+		}
+		dispatch(addTicketToCart(data));
+	}
+};
+
+export const removeTicketFromCartThunk = (obj) => async (dispatch) => {
+	const response = await fetch(`/api/cart/${obj.id}/remove/ticket`, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(obj)
+	});
+	if (response.ok) {
+		const data = await response.json();
+		if (data.errors) {
+			return;
+		}
+		dispatch(removeTicketFromCart(data));
+	}
+};
+
 export const clearCartThunk = (cartId) => async (dispatch) => {
 	const response = await fetch(`/api/cart/${cartId}/clear`, {
 		method: "PUT",
@@ -153,6 +199,16 @@ export default function reducer(state = initialState, action) {
 			return newState;
         }
 		case REMOVE_FROM_CART: {
+            const newState = {...state}
+			newState.cart = action.payload;
+			return newState;
+        }
+		case ADD_TICKET_TO_CART: {
+            const newState = {...state}
+			newState.cart = action.payload;
+			return newState;
+        }
+		case REMOVE_TICKET_FROM_CART: {
             const newState = {...state}
 			newState.cart = action.payload;
 			return newState;
