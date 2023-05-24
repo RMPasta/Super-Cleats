@@ -4,11 +4,8 @@ import { useHistory } from "react-router-dom";
 import { getTicketsThunk } from "../../store/ticket";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
-// import {
-//   addToCartThunk,
-//   getCartThunk,
-//   removeFromCartThunk,
-// } from "../../store/cart";
+// import { addToCartThunk, getCartThunk, removeFromCartThunk} from "../../store/cart";
+import MapContainer from "../Maps";
 import "./Tickets.css";
 
 export default function Tickets() {
@@ -95,6 +92,7 @@ useEffect(() => {
 
   return (
     <div className="tickets-container">
+      <MapContainer />
       {/* <div className="item-gallery">
         {filtered?.length > 0 ?
             <AliceCarousel
