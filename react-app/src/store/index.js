@@ -4,12 +4,14 @@ import session from './session';
 import item from './item';
 import team from './team';
 import cart from './cart';
+import ticket from './ticket';
 
 const rootReducer = combineReducers({
   session,
   item,
   team,
   cart,
+  ticket,
 });
 
 
