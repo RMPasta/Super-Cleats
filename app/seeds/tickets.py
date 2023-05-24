@@ -160,23 +160,9 @@ def seed_tickets():
         event_date=date(2024, 9, 7)
     )
 
-    db.session.add(ticket1)
-    db.session.add(ticket2)
-    db.session.add(ticket3)
-    db.session.add(ticket4)
-    db.session.add(ticket5)
-    db.session.add(ticket6)
-    db.session.add(ticket7)
-    db.session.add(ticket8)
-    db.session.add(ticket9)
-    db.session.add(ticket10)
-    db.session.add(ticket11)
-    db.session.add(ticket12)
-    db.session.add(ticket13)
-    db.session.add(ticket14)
-    db.session.add(ticket15)
-    db.session.add(ticket16)
-    db.session.add(ticket17)
+    tickets = [ticket1, ticket2, ticket3, ticket4, ticket5, ticket6, ticket7, ticket8, ticket9,
+                ticket10, ticket11, ticket12, ticket13, ticket14, ticket15, ticket16, ticket17]
+    [db.session.add(ticket) for ticket in tickets]
     db.session.commit()
 
 
