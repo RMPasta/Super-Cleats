@@ -73,6 +73,7 @@
     /* justify-content: center; */
     /* gap: 5px; */
     align-self: center;
+    font-weight: bold;
 }
 
 /* .filter-middle > div {
