@@ -125,6 +125,29 @@
     font-size: 60px;
 }
 
+.add-to-cart {
+    border: none;
+    margin-bottom: 10px;
+    background-color: black;
+    color: white;
+    padding: 10px 42px;
+}
+
+.add-to-cart:hover {
+    background-color: rgba(0, 0, 0, 0.86);
+}
+
+.remove-from-cart {
+    border: none;
+    margin-bottom: 10px;
+    background-color: rgb(226, 226, 226);
+    padding: 10px 42px;
+}
+
+.remove-from-cart:hover {
+    background-color: rgb(216, 216, 216);
+}
+
 @media screen and (max-width: 700px) {
     /* .item-card {
         margin-left: 80px;

@@ -10,8 +10,9 @@
     transition: right 1s;
     text-decoration: none;
     list-style: none;
-    background-color: rgb(247, 247, 247);
-    border-top: rgb(77, 76, 76) 1px solid;
+    background-color: rgb(251, 251, 251);
+    box-shadow: 2px 2px 2px 2px rgb(241, 241, 241);
+    /* border-top: rgb(77, 76, 76) 1px solid; */
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
@@ -23,8 +24,6 @@
   #cart {
     font-size: 24px;
   }
-
-
 
   @media screen and (max-width: 1300px) {
     .slide-out-cart {

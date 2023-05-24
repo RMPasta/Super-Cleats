@@ -161,7 +161,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
           cartItems.filter((cartItem) => cartItem.id === item.id).length ===
             0 ? (
             <button
-              className="checkout-button cursor-pointer"
+              className="add-to-cart cursor-pointer"
               onClick={(e) => {
                 e.stopPropagation();
                 setSlidePosition(i);
@@ -172,7 +172,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
             </button>
           ) : (
             <button
-            className="add-items-button cursor-pointer"
+            className="remove-from-cart cursor-pointer"
             onClick={(e) => {
               e.stopPropagation();
               setSlidePosition(i);
@@ -185,7 +185,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
         ) : (
           user && (
             <button
-              className="add-items-button cursor-pointer"
+              className="remove-from-cart cursor-pointer"
               onClick={(e) => {
                 e.stopPropagation();
                 history.push("/user");
@@ -232,7 +232,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
           cartItems.filter((cartItem) => cartItem.id === item.id).length ===
             0 ? (
             <button
-              className="checkout-button cursor-pointer"
+              className="add-to-cart cursor-pointer"
               onClick={(e) => {
                 e.stopPropagation();
                 setSlidePosition(i);
@@ -243,7 +243,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
             </button>
           ) : (
             <button
-              className="add-items-button cursor-pointer"
+              className="remove-from-cart cursor-pointer"
               onClick={(e) => {
                 e.stopPropagation();
                 setSlidePosition(i);
@@ -256,7 +256,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
         ) : (
           user && (
             <button
-              className="add-items-button cursor-pointer"
+              className="remove-from-cart cursor-pointer"
               onClick={(e) => {
                 e.stopPropagation();
                 history.push("/user");
@@ -300,7 +300,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
             cartItems.filter((cartItem) => cartItem.id === item.id).length ===
               0 ? (
               <button
-                className="checkout-button cursor-pointer"
+                className="add-to-cart cursor-pointer"
                 onClick={(e) => {
                   e.stopPropagation();
                   e.preventDefault();
@@ -312,7 +312,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
               </button>
             ) : (
               <button
-                className="add-items-button cursor-pointer"
+                className="remove-from-cart cursor-pointer"
                 onClick={(e) => {
                   e.stopPropagation();
                   setSlidePosition(i);
@@ -325,7 +325,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
           ) : (
             user && (
               <button
-                className="add-items-button cursor-pointer"
+                className="remove-from-cart cursor-pointer"
                 onClick={(e) => {
                   e.stopPropagation();
                   history.push("/user");
@@ -370,7 +370,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
             cartItems.filter((cartItem) => cartItem.id === item.id).length ===
               0 ? (
               <button
-                className="checkout-button cursor-pointer"
+                className="add-to-cart cursor-pointer"
                 onClick={(e) => {
                   e.stopPropagation();
                   setSlidePosition(i);
@@ -382,7 +382,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
               </button>
             ) : (
               <button
-                className="add-items-button cursor-pointer"
+                className="remove-from-cart cursor-pointer"
                 onClick={(e) => {
                   e.stopPropagation();
                   setSlidePosition(i);

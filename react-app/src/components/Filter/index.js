@@ -48,12 +48,14 @@ export default function Filter({
     <div className="filter-layout">
       <div className="filter-container">
         <div className="filter-top-section">
-          <h2>Filtered by:</h2>
-          <h3 className="type-tag">Type: {typeText}</h3>
-          <h3 className="price-tag">Price: {priceText}</h3>
-          <h3 className="team-tag">
-            Team: {teams[parseInt(teamFilter) - 1]?.name || "All"}
-          </h3>
+          <div>
+            <h2>Filtered by:</h2>
+            <h3 className="type-tag">Type: {typeText}</h3>
+            <h3 className="price-tag">Price: {priceText}</h3>
+            <h3 className="team-tag">
+              Team: {teams[parseInt(teamFilter) - 1]?.name || "All"}
+            </h3>
+          </div>
           <ul className="type-filter cursor-pointer">
             <div className="type-filter-top">
               <li

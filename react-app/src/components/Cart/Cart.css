@@ -15,6 +15,9 @@
     height: 100%;
     padding: 0 16px;
     overflow-x: hidden;
+    border-bottom: 1px solid rgb(219, 219, 219);
+    border-top: 1px solid rgb(219, 219, 219);
+    margin: 10px auto;
     /* border: 1px solid red; */
 }
 
@@ -68,11 +71,15 @@
     color: rgba(255, 1, 1, 0.774);
 }
 
+#cart-trash:hover {
+    color: rgb(255, 0, 0);
+}
+
 .subtotal {
     font-size: 24px;
     font-weight: bold;
     padding-top: 40px;
-    border-top: 1px solid rgb(219, 219, 219);
+    /* border-top: 1px solid rgb(219, 219, 219); */
 }
 
 .subtotal-container {
@@ -106,7 +113,7 @@
 }
 
 .checkout-button:hover {
-    background-color: rgba(0, 0, 0, 0.815);
+    background-color: rgba(0, 0, 0, 0.865);
 }
 
 .add-items-button {
@@ -129,5 +136,5 @@
 }
 
 .clear-button:hover {
-    background-color: rgba(255, 0, 0, 0.884);
+    background-color: rgba(255, 0, 0, 0.924);
 }

@@ -22,7 +22,11 @@
     margin-bottom: 10px;
     background-color: black;
     color: white;
-    padding: 4px 38px;
+    padding: 6px 46px;
+}
+
+.edit-button:hover {
+    background-color: rgba(0, 0, 0, 0.853);
 }
 
 .delete-button {
@@ -30,7 +34,11 @@
     margin-bottom: 10px;
     background-color: rgba(255, 21, 21, 0.771);
     color: white;
-    padding: 4px 30px;
+    padding: 6px 38px;
+}
+
+.delete-button:hover {
+    background-color: rgba(255, 21, 21, 0.867);
 }
 
 .alice-container {
