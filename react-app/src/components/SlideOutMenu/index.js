@@ -64,33 +64,33 @@ export default function SlideOutMenu({ setTeamPicked }) {
       <ul className={ulClassName} ref={cartUlRef}>
         {user ? (
           <>
-            <p className="greeting">Hello, {user.username}!</p>
-            <div
-              className="sidebar-button"
-              onClick={() => {
-                closeMenu();
-              }}
-            >
-              <NavLink exact to="/user" style={linkStyle}>
-                User Profile
-              </NavLink>
-            </div>
-            <div
-              className="modal-button-wrapper"
-              onClick={() => {
-                closeMenu();
-              }}
-            >
-              <OpenModalButton
-                className="sidebar-modal cursor-pointer"
-                buttonText="Create Item"
-                onItemClick={closeMenu}
-                modalComponent={<AddItemForm showMenu={showMenu} />}
-              />
-            </div>
-            <div className="signout-clear">
+            <div className="sidebar-top">
+              <p className="greeting">Hello, {user.username}!</p>
+              <div
+                className="sidebar-button"
+                onClick={() => {
+                  closeMenu();
+                }}
+              >
+                <NavLink exact to="/user" style={linkStyle}>
+                  User Profile
+                </NavLink>
+              </div>
+              <div
+                className="modal-button-wrapper"
+                onClick={() => {
+                  closeMenu();
+                }}
+              >
+                <OpenModalButton
+                  className="sidebar-modal cursor-pointer"
+                  buttonText="Create Item"
+                  onItemClick={closeMenu}
+                  modalComponent={<AddItemForm showMenu={showMenu} />}
+                />
+              </div>
               <button
-                className=" sidebar-button cursor-pointer"
+                className="sidebar-modal cursor-pointer"
                 onClick={handleLogout}
               >
                 Sign Out
@@ -108,32 +108,66 @@ export default function SlideOutMenu({ setTeamPicked }) {
                 </a>
               )}
             </div>
+            <div className="signout-clear">
+              <div className=" a-wrapper">Site By: Ryan Malmos</div>
+              <a
+                className="a-wrapper"
+                href="https://github.com/RMPasta/Super-Cleats"
+              >
+                GitHub Repo <i className="fab fa-github"></i>
+              </a>
+              <a
+                className="a-wrapper"
+                href="https://www.linkedin.com/in/ryan-malmos/"
+              >
+                Linkedin <i className="fab fa-linkedin"></i>
+              </a>
+            </div>
           </>
         ) : (
           <>
-            <OpenModalButton
-              className="submit-button cursor-pointer"
-              buttonText="Sign Up"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
-            <OpenModalButton
-              className="sidebar-modal cursor-pointer"
-              buttonText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal showMenu={showMenu} />}
-            />
-            {teamId && (
-              <a className="a-wrapper" href="/">
-                <div
-                  onClick={() => {
-                    localStorage.removeItem("teamId");
-                  }}
-                >
-                  Clear favorite team
-                </div>
+            <div className="sidebar-top">
+              <OpenModalButton
+                className="submit-button sidebar-signup cursor-pointer"
+                buttonText="Sign Up"
+                onItemClick={closeMenu}
+                modalComponent={<SignupFormModal />}
+              />
+              <OpenModalButton
+                className="sidebar-modal cursor-pointer"
+                buttonText="Log In"
+                onItemClick={closeMenu}
+                modalComponent={<LoginFormModal showMenu={showMenu} />}
+              />
+            </div>
+            <div>
+              {teamId && (
+                <a className="a-wrapper" href="/">
+                  <div
+                    onClick={() => {
+                      localStorage.removeItem("teamId");
+                    }}
+                  >
+                    Clear favorite team
+                  </div>
+                </a>
+              )}
+              <div className=" a-wrapper">Site By: Ryan Malmos</div>
+              <a
+                className="a-wrapper"
+                target="blank"
+                href="https://github.com/RMPasta/Super-Cleats"
+              >
+                GitHub Repo <i className="fab fa-github"></i>
               </a>
-            )}
+              <a
+                className="a-wrapper"
+                target="blank"
+                href="https://www.linkedin.com/in/ryan-malmos/"
+              >
+                Linkedin <i className="fab fa-linkedin"></i>
+              </a>
+            </div>
           </>
         )}
       </ul>

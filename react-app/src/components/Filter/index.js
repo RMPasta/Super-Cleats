@@ -2,39 +2,47 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import "./Filter.css";
 
-export default function Filter({ typeFilter, setTypeFilter, priceFilter, setPriceFilter, teamFilter, setTeamFilter}) {
+export default function Filter({
+  typeFilter,
+  setTypeFilter,
+  priceFilter,
+  setPriceFilter,
+  teamFilter,
+  setTeamFilter,
+}) {
   const teams = useSelector((state) => state.team.teams);
   const [priceText, setPriceText] = useState("All");
   const [typeText, setTypeText] = useState("All");
 
   useEffect(() => {
     if (priceFilter === "All") {
-      setPriceText("All")
+      setPriceText("All");
     } else if (priceFilter === "1") {
-      setPriceText("Low")
+      setPriceText("Low");
     } else if (priceFilter === "2") {
-      setPriceText("Mid-Low")
+      setPriceText("Mid-Low");
     } else if (priceFilter === "3") {
-      setPriceText("Mid-High")
+      setPriceText("Mid-High");
     } else if (priceFilter === "4") {
-      setPriceText("High")
+      setPriceText("High");
     }
-  }, [setPriceText, priceFilter])
+  }, [setPriceText, priceFilter]);
 
   useEffect(() => {
     if (typeFilter === "All") {
-      setTypeText("All")
+      setTypeText("All");
     } else if (typeFilter === "cleats") {
-      setTypeText("Cleats")
+      setTypeText("Cleats");
     } else if (typeFilter === "socks") {
-      setTypeText("Socks")
+      setTypeText("Socks");
     } else if (typeFilter === "ball") {
-      setTypeText("Soccer Balls")
+      setTypeText("Soccer Balls");
     }
-  }, [setTypeText, typeText, typeFilter])
+  }, [setTypeText, typeText, typeFilter]);
 
   if (!teams) return <h1>Loading...</h1>;
 
+  const active = { backgroundColor: "black", color: "white" };
 
   return (
     <div className="filter-layout">
@@ -43,24 +51,89 @@ export default function Filter({ typeFilter, setTypeFilter, priceFilter, setPric
           <h2>Filtered by:</h2>
           <h3 className="type-tag">Type: {typeText}</h3>
           <h3 className="price-tag">Price: {priceText}</h3>
-          <h3 className="team-tag">Team: {teams[parseInt(teamFilter) - 1]?.name || "All"}</h3>
+          <h3 className="team-tag">
+            Team: {teams[parseInt(teamFilter) - 1]?.name || "All"}
+          </h3>
           <ul className="type-filter cursor-pointer">
-            <li onClick={() => setTypeFilter("All")}>All</li>
-            <li onClick={() => setTypeFilter("cleats")}>Cleats</li>
-            <li onClick={() => setTypeFilter("socks")}>Socks</li>
-            <li onClick={() => setTypeFilter("ball")}>Soccer Balls</li>
+            <div className="type-filter-top">
+              <li
+                className="filter-button"
+                style={typeFilter === "All" ? active : {}}
+                onClick={() => setTypeFilter("All")}
+              >
+                All
+              </li>
+              <li
+                className="filter-button"
+                style={typeFilter === "cleats" ? active : {}}
+                onClick={() => setTypeFilter("cleats")}
+              >
+                Cleats
+              </li>
+            </div>
+            <div className="typefilter-bottom">
+              <li
+                className="filter-button"
+                style={typeFilter === "socks" ? active : {}}
+                onClick={() => setTypeFilter("socks")}
+              >
+                Socks
+              </li>
+              <li
+                className="filter-button"
+                style={typeFilter === "ball" ? active : {}}
+                onClick={() => setTypeFilter("ball")}
+              >
+                Soccer Balls
+              </li>
+            </div>
           </ul>
         </div>
         <div className="filter-middle cursor-pointer">
-          <div onClick={() => setPriceFilter("All")}>All</div>
-          <div onClick={() => setPriceFilter("1")}>$</div>
-          <div onClick={() => setPriceFilter("2")}>$$</div>
-          <div onClick={() => setPriceFilter("3")}>$$$</div>
-          <div onClick={() => setPriceFilter("4")}>$$$$</div>
+          <div>
+            <div
+              className="filter-button"
+              style={priceFilter === "All" ? active : {}}
+              onClick={() => setPriceFilter("All")}
+            >
+              All
+            </div>
+            <div
+              className="filter-button"
+              style={priceFilter === "1" ? active : {}}
+              onClick={() => setPriceFilter("1")}
+            >
+              $
+            </div>
+            <div
+              className="filter-button"
+              onClick={() => setPriceFilter("2")}
+              style={priceFilter === "2" ? active : {}}
+            >
+              $$
+            </div>
+          </div>
+          <div>
+            <div
+              className="filter-button"
+              onClick={() => setPriceFilter("3")}
+              style={priceFilter === "3" ? active : {}}
+            >
+              $$$
+            </div>
+            <div
+              className="filter-button"
+              onClick={() => setPriceFilter("4")}
+              style={priceFilter === "4" ? active : {}}
+            >
+              $$$$
+            </div>
+          </div>
         </div>
         <div className="filter-bottom">
-          <label>Filter by team
-          <select
+          <label>
+            Filter by team
+            <select
               placeholder="Team associated with item..."
               onChange={(e) => setTeamFilter(e.target.value)}
               className="team-select-field"

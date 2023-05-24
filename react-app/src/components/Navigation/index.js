@@ -30,6 +30,17 @@ function Navigation({ setTeamPicked, teamPicked, isLoaded }) {
   const team = teams[teamPicked - 1];
   // if (!cart) return <h1>Loading...</h1>
 
+  const linkStyle = {
+    // margin: "1rem",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    height: "100%",
+    textDecoration: "none",
+    color: "black",
+  };
+
   return (
     <ul className="nav-ul">
       {sessionUser ? (
@@ -42,12 +53,12 @@ function Navigation({ setTeamPicked, teamPicked, isLoaded }) {
                 history.push("/");
               }}
             >
-              SUPER CLEATS
+              SUPER <p className="cleats">CLEATS</p>
             </div>
           </li>
           <li className="nav-right-side-logged-in">
             <div className="user-profile-button">
-              <NavLink exact to="/user">
+              <NavLink exact to="/user" style={linkStyle}>
                 User Profile
               </NavLink>
             </div>

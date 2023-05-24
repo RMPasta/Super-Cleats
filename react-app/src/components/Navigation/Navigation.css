@@ -24,7 +24,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 36%;
+  width: 46%;
 }
 
 .nav-right-side-logged-out {
@@ -38,7 +38,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 20%;
+  width: 300px;
 }
 
 .login-button-nav {
@@ -87,8 +87,16 @@
 }
 
 .logo {
-  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  gap: 2px;
   font-weight: bold;
+}
+
+.cleats {
+  font-size: 22px;
 }
 
 @media screen and (max-width: 500px) {

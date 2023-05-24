@@ -20,9 +20,9 @@ function App() {
   const user = useSelector((state) => state.session.user);
   const [isLoaded, setIsLoaded] = useState(false);
   const [teamPicked, setTeamPicked] = useState(false);
-  const [typeFilter, setTypeFilter] = useState("")
-  const [priceFilter, setPriceFilter] = useState("")
-  const [teamFilter, setTeamFilter] = useState("")
+  const [typeFilter, setTypeFilter] = useState("All");
+  const [priceFilter, setPriceFilter] = useState("All");
+  const [teamFilter, setTeamFilter] = useState("All");
   const teamId = localStorage.getItem("teamId");
 
   useEffect(() => {
@@ -49,15 +49,20 @@ function App() {
                 <div className="filter-items-container">
                   <div className="filter-app">
                     <Filter
-                    setTypeFilter={setTypeFilter}
-                    setPriceFilter={setPriceFilter}
-                    setTeamFilter={setTeamFilter}
-                    typeFilter={typeFilter}
-                    priceFilter={priceFilter}
-                    teamFilter={teamFilter} />
+                      setTypeFilter={setTypeFilter}
+                      setPriceFilter={setPriceFilter}
+                      setTeamFilter={setTeamFilter}
+                      typeFilter={typeFilter}
+                      priceFilter={priceFilter}
+                      teamFilter={teamFilter}
+                    />
                   </div>
                   <div className="items-app">
-                    <Items typeFilter={typeFilter} priceFilter={priceFilter} teamFilter={teamFilter} />
+                    <Items
+                      typeFilter={typeFilter}
+                      priceFilter={priceFilter}
+                      teamFilter={teamFilter}
+                    />
                   </div>
                 </div>
               </>
