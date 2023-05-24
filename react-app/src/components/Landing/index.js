@@ -9,6 +9,21 @@ export default function Landing({ teamPicked, setTeamPicked }) {
   const dispatch = useDispatch();
   const teams = useSelector((state) => state.team.teams);
   const [isMobile, setIsMobile] = useState(false);
+  const [backgroundImage, setBackgroundImage] = useState("https://supercleats-pics.s3.amazonaws.com/wembley.jpg");
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (backgroundImage === "https://supercleats-pics.s3.amazonaws.com/wembley.jpg") {
+        setBackgroundImage("https://supercleats-pics.s3.amazonaws.com/splash1.jpg")
+      } else {
+        setBackgroundImage("https://supercleats-pics.s3.amazonaws.com/wembley.jpg")
+      }
+    }, 7000)
+
+    return () => {
+      clearInterval(interval)
+    }
+  }, [backgroundImage])
 
   // JAVASCRIPT MEDIA QUERY
   useEffect(() => {
@@ -56,7 +71,7 @@ export default function Landing({ teamPicked, setTeamPicked }) {
   };
 
   return (
-    <div className="landing-page">
+    <div className="landing-page" style={{backgroundImage: `url(${backgroundImage})`}}>
       {/* <img
         className="landing-image"
         src="https://supercleats-pics.s3.amazonaws.com/splash1.jpg"
