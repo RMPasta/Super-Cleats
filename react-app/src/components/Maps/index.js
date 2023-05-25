@@ -14,7 +14,6 @@ const MapContainer = () => {
       dispatch(getKey());
     }
   }, [dispatch, key]);
-  console.log("CONTAINTER ~~~~~~~~>", key)
   if (!key) {
     return null;
   }

@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 import { getTicketsThunk } from "../../store/ticket";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
@@ -10,7 +9,6 @@ import "./Tickets.css";
 
 export default function Tickets() {
   const dispatch = useDispatch();
-  const history = useHistory();
   const tickets = useSelector((state) => state.ticket.tickets);
 //   const user = useSelector((state) => state.session.user);
 //   const cart = useSelector((state) => state.cart.cart);
@@ -27,7 +25,6 @@ useEffect(() => {
 }, [dispatch])
 
   if (!tickets) return <h1>Loading...</h1>;
-  console.log(tickets)
   // if (!cart) return <h1>Loading...</h1>
 
   //   const handleDragStart = (e) => e.preventDefault();
@@ -84,29 +81,28 @@ useEffect(() => {
 
   const responsive = {
     300: { items: 1 },
-    700: { items: 2 },
-    1000: { items: 3 },
-    1300: { items: 4 },
-    1600: { items: 5 },
+    1000: { items: 2 },
+    1300: { items: 3 },
+    1700: { items: 4 },
+    // 1600: { items: 5 },
   };
 
   return (
     <div className="tickets-container">
-      <MapContainer />
       {/* <div className="item-gallery">
         {filtered?.length > 0 ?
-            <AliceCarousel
-            infinite
-            mouseTracking
-            preventEventOnTouchMove
-            disableDotsControls={isMobile}
-            activeIndex={slidePosition}
-            responsive={responsive}
-            items={filteredArr}
-            /> :
-            <div className="no-filter-found">Nothing with this combo, adjust the filters!</div>}
-      </div> */}
-      <div>
+          <AliceCarousel
+          infinite
+          mouseTracking
+          preventEventOnTouchMove
+          disableDotsControls={isMobile}
+          activeIndex={slidePosition}
+          responsive={responsive}
+          items={filteredArr}
+          /> :
+          <div className="no-filter-found">Nothing with this combo, adjust the filters!</div>}
+        </div> */}
+      <div className="ticket-carousel">
         <AliceCarousel
             infinite
             mouseTracking
@@ -116,6 +112,9 @@ useEffect(() => {
             items={ticketsArr}
         />
       </div>
+        <div>
+          <MapContainer />
+        </div>
     </div>
   );
 }

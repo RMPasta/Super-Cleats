@@ -1,20 +1,30 @@
 import React from 'react';
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { useSelector } from "react-redux";
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 
 function Maps({ apiKey }) {
+    const tickets = useSelector((state) => state.ticket.tickets);
+
     const containerStyle = {
-        width: '400px',
-        height: '400px',
+        width: '100vh',
+        height: '88vh',
       };
 
       const center = {
-        lat: 38.9072,
-        lng: 77.0369,
+        lat: 52.633308139790195,
+        lng: -1.1470759809370266,
       };
+
       const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: apiKey,
       });
+
+      const locations = tickets.map(ticket => {
+        const lat = ticket.location.split(",")[0];
+        const lng = ticket.location.split(",")[1];
+        const location = {lat: parseFloat(lat), lng: parseFloat(lng)}
+      })
 
       return (
         <>
@@ -22,8 +32,14 @@ function Maps({ apiKey }) {
             <GoogleMap
               mapContainerStyle={containerStyle}
               center={center}
-              zoom={10}
-            />
+              zoom={8}>
+                {tickets.map((ticket, index) => {
+                  const lat = ticket.location.split(",")[0];
+                  const lng = ticket.location.split(",")[1];
+                  const location = {lat: parseFloat(lat), lng: parseFloat(lng)}
+                  return <Marker key={index} position={location}/>
+              })}
+            </GoogleMap>
           )}
         </>
       );
