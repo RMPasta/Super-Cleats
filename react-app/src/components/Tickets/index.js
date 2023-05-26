@@ -23,9 +23,15 @@ export default function Tickets() {
 useEffect(() => {
     dispatch(getTicketsThunk());
 }, [dispatch])
+useEffect(() => {
+  setTimeout(() => {
+    dispatch(getTicketsThunk());
+  }, 30)
+}, [dispatch])
 
-  if (!tickets) return <h1>Loading...</h1>;
-  // if (!cart) return <h1>Loading...</h1>
+
+if (!tickets) return <h1>Loading...</h1>;
+// if (!cart) return <h1>Loading...</h1>
 
   //   const handleDragStart = (e) => e.preventDefault();
 
@@ -67,52 +73,62 @@ useEffect(() => {
 //       return team.badge_img;
 //     }
 //   };
+    const getDate = (eventDate) => {
+      const date = new Date(eventDate);
+      let formattedDate = date.toLocaleDateString('en-CA');
+      const day = parseInt(formattedDate.split("-")[2]) + 1;
+      formattedDate = formattedDate.split("-");
+      let finalDate = [formattedDate[1], day, formattedDate[0]]
+      finalDate = finalDate.join("-")
+      return finalDate;
+    }
 
-    const ticketsArr = tickets.map((ticket) => (
+    const ticketsArr1 = tickets.slice(0, tickets.length / 2).map((ticket) => (
         <div className="ticket-card">
+            <img className="ticket-img" src={ticket.ticket_img} alt={ticket.stadium} />
             <div className="stadium">Stadium: {ticket.stadium}</div>
-            <div>Stadium Capacity: {ticket.capacity}</div>
-            <div>Match: {ticket.match}</div>
+            <div>{ticket.match}</div>
             <div>Price: ${ticket.price}</div>
-            <div>Event: {ticket.event_date}</div>
+            <div>{getDate(ticket.event_date)}</div>
+        </div>
+    ));
+
+    const ticketsArr2 = tickets.slice(tickets.length / 2).map((ticket) => (
+        <div className="ticket-card">
+            <img className="ticket-img" src={ticket.ticket_img} alt={ticket.stadium} />
+            <div className="stadium">Stadium: {ticket.stadium}</div>
+            <div>{ticket.match}</div>
+            <div>Price: ${ticket.price}</div>
+            <div>{getDate(ticket.event_date)}</div>
         </div>
     ));
 
 
   const responsive = {
-    300: { items: 1 },
-    1000: { items: 2 },
-    1300: { items: 3 },
-    1700: { items: 4 },
-    // 1600: { items: 5 },
+    400: { items: 1 },
+    1380: { items: 2 },
+    // 1640: { items: 3 },
   };
 
   return (
     <div className="tickets-container">
-      {/* <div className="item-gallery">
-        {filtered?.length > 0 ?
-          <AliceCarousel
-          infinite
-          mouseTracking
-          preventEventOnTouchMove
-          disableDotsControls={isMobile}
-          activeIndex={slidePosition}
-          responsive={responsive}
-          items={filteredArr}
-          /> :
-          <div className="no-filter-found">Nothing with this combo, adjust the filters!</div>}
-        </div> */}
       <div className="ticket-carousel">
         <AliceCarousel
             infinite
             mouseTracking
             preventEventOnTouchMove
-            // activeIndex={slidePosition}
             responsive={responsive}
-            items={ticketsArr}
+            items={ticketsArr1}
+        />
+        <AliceCarousel
+            infinite
+            mouseTracking
+            preventEventOnTouchMove
+            responsive={responsive}
+            items={ticketsArr2}
         />
       </div>
-        <div>
+        <div className="map-container">
           <MapContainer />
         </div>
     </div>

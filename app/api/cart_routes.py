@@ -69,7 +69,7 @@ def remove_from_cart(cart_id):
     db.session.commit()
     return cart.to_dict()
 
-@cart_routes.route('/<int:cart_id>/tickets', methods=["PUT"])
+@cart_routes.route('/<int:cart_id>/ticket', methods=["PUT"])
 def add_ticket_to_cart(cart_id):
     """
     Add ticket to cart

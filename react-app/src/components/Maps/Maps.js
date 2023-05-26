@@ -5,9 +5,9 @@ import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 function Maps({ apiKey }) {
     const tickets = useSelector((state) => state.ticket.tickets);
 
-    const containerStyle = {
-        width: '100vh',
-        height: '88vh',
+      const containerStyle = {
+        width: '100%',
+        height: '100vh',
       };
 
       const center = {
@@ -19,12 +19,6 @@ function Maps({ apiKey }) {
         id: 'google-map-script',
         googleMapsApiKey: apiKey,
       });
-
-      const locations = tickets.map(ticket => {
-        const lat = ticket.location.split(",")[0];
-        const lng = ticket.location.split(",")[1];
-        const location = {lat: parseFloat(lat), lng: parseFloat(lng)}
-      })
 
       return (
         <>

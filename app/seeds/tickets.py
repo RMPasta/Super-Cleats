@@ -10,7 +10,7 @@ def seed_tickets():
         location="53.777974668690774, -1.572123144729378",
         match="Leeds United vs West Ham",
         capacity=37890,
-        ticket_img='https://www.keraflo.co.uk/wp-content/uploads/2019/01/GG-Wembley-Stadium-Case-Image.jpg',
+        ticket_img='https://supercleats-pics.s3.amazonaws.com/ellandroad.jpg',
         price=100,
         event_date=date(2024, 3, 20)
     )
@@ -19,7 +19,7 @@ def seed_tickets():
         location="51.47506831740619, -0.2217906313671848",
         match="Fulham vs Brentford",
         capacity=25678,
-        ticket_img='https://www.keraflo.co.uk/wp-content/uploads/2019/01/GG-Wembley-Stadium-Case-Image.jpg',
+        ticket_img='https://supercleats-pics.s3.amazonaws.com/cravencottage.jpg',
         price=80,
         event_date=date(2024, 6, 10)
     )
@@ -28,7 +28,7 @@ def seed_tickets():
         location="50.861727599413236, -0.08372703140103196",
         match="Brighton vs Manchester United",
         capacity=30750,
-        ticket_img='https://www.keraflo.co.uk/wp-content/uploads/2019/01/GG-Wembley-Stadium-Case-Image.jpg',
+        ticket_img='https://supercleats-pics.s3.amazonaws.com/falmer.jpg',
         price=200,
         event_date=date(2024, 7, 14)
     )
@@ -37,7 +37,7 @@ def seed_tickets():
         location="52.59049036897542, -2.1304180736328036",
         match="Wolverhampton vs Liverpool",
         capacity=31700,
-        ticket_img='https://www.keraflo.co.uk/wp-content/uploads/2019/01/GG-Wembley-Stadium-Case-Image.jpg',
+        ticket_img='https://supercleats-pics.s3.amazonaws.com/molineux.jpg',
         price=120,
         event_date=date(2024, 1, 11)
     )
@@ -46,7 +46,7 @@ def seed_tickets():
         location="51.398301540761835, -0.08567885835518856",
         match="Crystal Palace vs Chelsea",
         capacity=26074,
-        ticket_img='https://www.keraflo.co.uk/wp-content/uploads/2019/01/GG-Wembley-Stadium-Case-Image.jpg',
+        ticket_img='https://supercleats-pics.s3.amazonaws.com/selhurst.jpg',
         price=50,
         event_date=date(2024, 2, 22)
     )
@@ -55,7 +55,7 @@ def seed_tickets():
         location="54.97599958414673, -1.6243956425133987",
         match="Newcastle United vs Arsenal",
         capacity=52338,
-        ticket_img='https://www.keraflo.co.uk/wp-content/uploads/2019/01/GG-Wembley-Stadium-Case-Image.jpg',
+        ticket_img='https://supercleats-pics.s3.amazonaws.com/StJamesPark.jpg',
         price=150,
         event_date=date(2024, 12, 16)
     )
@@ -64,7 +64,7 @@ def seed_tickets():
         location="52.50928145037176, -1.8847720736373603",
         match="Aston Villa vs Manchester City",
         capacity=42660,
-        ticket_img='https://www.keraflo.co.uk/wp-content/uploads/2019/01/GG-Wembley-Stadium-Case-Image.jpg',
+        ticket_img='https://supercleats-pics.s3.amazonaws.com/villa.jpg',
         price=90,
         event_date=date(2024, 3, 10)
 
@@ -74,7 +74,7 @@ def seed_tickets():
         location="53.43901325497202, -2.9661896159126746",
         match="Everton vs Brighton",
         capacity=39571,
-        ticket_img='https://www.keraflo.co.uk/wp-content/uploads/2019/01/GG-Wembley-Stadium-Case-Image.jpg',
+        ticket_img='https://supercleats-pics.s3.amazonaws.com/goodison.jpg',
         price=99,
         event_date=date(2024, 7, 1)
     )
@@ -83,7 +83,7 @@ def seed_tickets():
         location="53.43096743613273, -2.960811416366009",
         match="Liverpool vs Chelsea",
         capacity=54074,
-        ticket_img='https://www.keraflo.co.uk/wp-content/uploads/2019/01/GG-Wembley-Stadium-Case-Image.jpg',
+        ticket_img='https://supercleats-pics.s3.amazonaws.com/anfield.jpg',
         price=76,
         event_date=date(2024, 7, 30)
     )
@@ -92,7 +92,7 @@ def seed_tickets():
         location="51.53876949635654, -0.016491541676943347",
         match="West Ham vs Fulham",
         capacity=62500,
-        ticket_img='https://www.keraflo.co.uk/wp-content/uploads/2019/01/GG-Wembley-Stadium-Case-Image.jpg',
+        ticket_img='https://supercleats-pics.s3.amazonaws.com/londonstadium.jpg',
         price=88,
         event_date=date(2024, 4, 16)
     )
@@ -110,7 +110,7 @@ def seed_tickets():
         location="51.481803284020536, -0.19106379089117598",
         match="Chelsea vs Leeds United",
         capacity=41798,
-        ticket_img='https://www.keraflo.co.uk/wp-content/uploads/2019/01/GG-Wembley-Stadium-Case-Image.jpg',
+        ticket_img='https://supercleats-pics.s3.amazonaws.com/stamfordbridge.jpg',
         price=180,
         event_date=date(2024, 1, 7)
     )
@@ -119,7 +119,7 @@ def seed_tickets():
         location="53.463155033024705, -2.291333791331208",
         match="Manchester United vs Fulham",
         capacity=75653,
-        ticket_img='https://www.keraflo.co.uk/wp-content/uploads/2019/01/GG-Wembley-Stadium-Case-Image.jpg',
+        ticket_img='https://supercleats-pics.s3.amazonaws.com/oldtrafford.jpg',
         price=210,
         event_date=date(2024, 11, 30)
     )
@@ -128,7 +128,7 @@ def seed_tickets():
         location="51.6043387888542, -0.06630103321228151",
         match="Tottenham Hotspur vs Arsenal",
         capacity=62062,
-        ticket_img='https://www.keraflo.co.uk/wp-content/uploads/2019/01/GG-Wembley-Stadium-Case-Image.jpg',
+        ticket_img='https://supercleats-pics.s3.amazonaws.com/tottenham.jpg',
         price=170,
         event_date=date(2024, 10, 30)
     )
@@ -137,7 +137,7 @@ def seed_tickets():
         location="51.5550152170489, -0.10844873136273786",
         match="Arsenal vs Newcastle United",
         capacity=60704,
-        ticket_img='https://www.keraflo.co.uk/wp-content/uploads/2019/01/GG-Wembley-Stadium-Case-Image.jpg',
+        ticket_img='https://supercleats-pics.s3.amazonaws.com/emirates.jpg',
         price=150,
         event_date=date(2024, 11, 11)
     )
@@ -146,7 +146,7 @@ def seed_tickets():
         location="53.78882965125222, -2.230369260072919",
         match="Burnley vs Aston Villa",
         capacity=21401,
-        ticket_img='https://www.keraflo.co.uk/wp-content/uploads/2019/01/GG-Wembley-Stadium-Case-Image.jpg',
+        ticket_img='https://supercleats-pics.s3.amazonaws.com/turfmoor.jpg',
         price=75,
         event_date=date(2024, 9, 28)
     )
@@ -155,7 +155,7 @@ def seed_tickets():
         location="52.62051598016152, -1.142189502467137",
         match="Leicester vs Burnley",
         capacity=32312,
-        ticket_img='https://www.keraflo.co.uk/wp-content/uploads/2019/01/GG-Wembley-Stadium-Case-Image.jpg',
+        ticket_img='https://supercleats-pics.s3.amazonaws.com/kingpower.jpg',
         price=85,
         event_date=date(2024, 9, 7)
     )
