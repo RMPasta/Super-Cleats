@@ -5,6 +5,7 @@ import {
   clearCartThunk,
   getCartThunk,
   removeFromCartThunk,
+  removeTicketFromCartThunk,
 } from "../../store/cart";
 import CheckOutModal from "../CheckOutModal";
 import OpenModalButton from "../OpenModalButton";
@@ -15,6 +16,7 @@ export default function Cart({ setShowMenu }) {
   const history = useHistory();
   const cart = useSelector((state) => state.cart.cart);
   const cartItems = useSelector((state) => state.cart.cartItems);
+  const cartTickets = useSelector((state) => state.cart.cartTickets);
   const user = useSelector((state) => state.session.user);
   const [quantity, setQuantity] = useState(0);
   const [total, setTotal] = useState(0);
@@ -65,6 +67,19 @@ export default function Cart({ setShowMenu }) {
     );
     await dispatch(getCartThunk(user.id));
   };
+  const removeTicket = async (ticket) => {
+    const newQty = quantity - 1;
+    const newTotalPrice = total - parseInt(ticket.price);
+    await dispatch(
+      removeTicketFromCartThunk({
+        id: cart.id,
+        quantity: newQty,
+        total_price: newTotalPrice,
+        ticket_id: ticket.id,
+      })
+    );
+    await dispatch(getCartThunk(user.id));
+  };
 
   if (!user) return <h2>Sign in to view cart</h2>;
   if (!cart) return <h2>Sign in to view cart</h2>;
@@ -89,9 +104,11 @@ export default function Cart({ setShowMenu }) {
               }}
             >
               <div className="item-info">
-                <div>{item.name.length > 25
-                  ? item.name.slice(0, 25) + "..."
-                  : item.name}</div>
+                <div>
+                  {item.name.length > 25
+                    ? item.name.slice(0, 25) + "..."
+                    : item.name}
+                </div>
               </div>
               <div className="image-trash-container">
                 <div>${item.price}</div>
@@ -111,13 +128,44 @@ export default function Cart({ setShowMenu }) {
               </div>
             </div>
           ))}
+        {cartTickets &&
+          cartTickets.map((ticket) => (
+            <div
+              className="cart-item-info cursor-pointer"
+              key={ticket.id}
+              // onClick={() => {
+              //   history.push(`/item/${item.id}`);
+              //   setShowMenu(false);
+              // }}
+            >
+              <div className="item-info">
+                <div>{ticket.match}</div>
+              </div>
+              <div className="image-trash-container">
+                <div>${ticket.price}</div>
+                <img
+                  src={ticket.ticket_img}
+                  className="cart-item-image"
+                  alt={ticket.match}
+                />
+                <i
+                  className="fa fa-trash cursor-pointer"
+                  id="cart-trash"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    removeTicket(ticket);
+                  }}
+                ></i>
+              </div>
+            </div>
+          ))}
       </div>
       <div className="subtotal-container">
         <div className="subtotal">Subtotal</div>
         <div className="subtotal">${cart.total_price}</div>
       </div>
       <div className="checkout-section">
-        {cartItems?.length > 0 ? (
+        {cartItems?.length > 0 || cartTickets.length > 0 ? (
           <OpenModalButton
             className="checkout-button cursor-pointer"
             buttonText="Check Out"

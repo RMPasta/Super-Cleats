@@ -14,8 +14,9 @@ def get_cart(id):
     if not cart:
         return {"cart": None, "items": None}
     user_cart_items = [item.to_dict() for item in cart.items]
+    user_cart_tickets = [ticket.to_dict() for ticket in cart.tickets]
 
-    return {"cart": cart.to_dict(), "items": user_cart_items}
+    return {"cart": cart.to_dict(), "items": user_cart_items, "tickets": user_cart_tickets}
 
 
 @cart_routes.route('/<int:user_id>', methods=["POST"])
@@ -77,9 +78,9 @@ def add_ticket_to_cart(cart_id):
 
     data = request.json
     ticket_id=data["ticket_id"]
-
     cart = Cart.query.get(cart_id)
     ticket = [ticket.to_dict() for ticket in cart.tickets if ticket.id == ticket_id]
+
     if not ticket:
         ticket = Ticket.query.get(ticket_id)
         cart.tickets.append(ticket)
@@ -115,6 +116,9 @@ def clear_cart(cart_id):
     """
 
     cart = Cart.query.get(cart_id)
+    tickets = [ticket for ticket in cart.tickets if cart.id == cart_id]
+    for ticket in tickets:
+        cart.tickets.remove(ticket)
     items = [item for item in cart.items if cart.id == cart_id]
     for item in items:
         cart.items.remove(item)
