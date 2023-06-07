@@ -113,6 +113,5 @@ Super Cleats in an Uber Eats clone for ordering soccer/football items or event t
 ### Built by
 
 Ryan Malmos
-- https://github.com/RMPasta
 - https://www.linkedin.com/in/ryan-malmos/
 - rmpasta.code@gmail.com
