@@ -14,15 +14,17 @@ export default function Teams() {
     if (!teams) return <h1>...Loading</h1>
 
   return (
-    <div className='team-gallery'>
-            <h5>Supported Teams</h5>
-        <div className='badge-gallery scrollable-x'>
-            {teams.map((team) => (
-                <div key={team.id} className='team-card' title={team.name}>
-                    <img className='team-img' src={team.badge_img} alt={team.name} />
-                    {/* <div>{team.name}</div> */}
-                </div>
-            ))}
+    <div className='team-gallery-container'>
+        <h5 className='supported'>Supported Teams</h5>
+        <div className='team-gallery'>
+            <div className='badge-gallery scrollable-x'>
+                {teams.map((team) => (
+                    <div key={team.id} className='team-card' title={team.name}>
+                        <img className='team-img' src={team.badge_img} alt={team.name} />
+                        {/* <div>{team.name}</div> */}
+                    </div>
+                ))}
+            </div>
         </div>
     </div>
   )

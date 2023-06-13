@@ -87,7 +87,7 @@ export default function ItemsPageHeader() {
   return (
     <div className="items-header-container">
       <AliceCarousel
-        autoPlayInterval={4200}
+        autoPlayInterval={4800}
         autoPlay
         infinite
         disableButtonsControls

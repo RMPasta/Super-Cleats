@@ -565,8 +565,8 @@ export default function Items({ typeFilter, priceFilter, teamFilter }) {
 
   const responsive = {
     300: { items: 1 },
-    760: { items: 2 },
-    1120: { items: 3 },
+    1020: { items: 2 },
+    1220: { items: 3 },
     1500: { items: 4 },
   };
 
