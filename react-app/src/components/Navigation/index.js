@@ -17,6 +17,7 @@ function Navigation({ setTeamPicked, teamPicked, isLoaded }) {
   const teams = useSelector((state) => state.team.teams);
   const history = useHistory();
   const [showMenu, setShowMenu] = useState(false);
+  const [isProducts, setIsProducts] = useState(!window.location.href.endsWith("tickets"));
   const dispatch = useDispatch();
   const closeMenu = () => setShowMenu(false);
 
@@ -52,8 +53,23 @@ function Navigation({ setTeamPicked, teamPicked, isLoaded }) {
               onClick={() => {
                 history.push("/");
               }}
-            >
+              >
               SUPER <p className="cleats">CLEATS</p>
+            </div>
+            <div className="pill-shape">
+              <button className={"products" + (isProducts ? " filled" : "")} onClick={() => {
+                history.push('/')
+                setIsProducts(true)
+              }}>
+                Products
+              </button>
+              <button className={"tickets" + (!isProducts ? " filled" : "")} onClick={() => {
+                history.push('/tickets')
+                setIsProducts(false)
+              }}>
+                Tickets
+              </button>
+
             </div>
           </li>
           <li className="nav-right-side-logged-in">
