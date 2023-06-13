@@ -14,18 +14,15 @@ import "./Tickets.css";
 
 export default function Tickets() {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.session.user);
   const tickets = useSelector((state) => state.ticket.tickets);
-  //   const user = useSelector((state) => state.session.user);
   const cart = useSelector((state) => state.cart.cart);
   const cartTickets = useSelector((state) => state.cart.cartTickets);
   const [quantity, setQuantity] = useState(0);
   const [total, setTotal] = useState(0);
-  //   const teams = useSelector((state) => state.team.teams);
-  //   const [quantity, setQuantity] = useState(0);
-  //   const [total, setTotal] = useState(0);
-  //   const [filtered, setFiltered] = useState(items);
-  //   const [slidePosition, setSlidePosition] = useState(0);
-  //   const [isMobile, setIsMobile] = useState(false);
+  const [slidePosition1, setSlidePosition1] = useState(0);
+  const [slidePosition2, setSlidePosition2] = useState(0);
+
 
   useEffect(() => {
     if (cart) setQuantity(cart.quantity);
@@ -47,9 +44,6 @@ export default function Tickets() {
   }, [dispatch]);
 
   if (!tickets) return <h1>Loading...</h1>;
-  // if (!cart) return <h1>Loading...</h1>;
-
-  //   const handleDragStart = (e) => e.preventDefault();
 
   const addToCart = async (ticket) => {
     // e.preventDefault();
@@ -83,12 +77,7 @@ export default function Tickets() {
     await dispatch(getCartThunk(cart.id));
   };
 
-  //   const getItemBadge = (item) => {
-  //     if (teams && item) {
-  //       const team = teams.find((team) => team.id === item.team_id);
-  //       return team.badge_img;
-  //     }
-  //   };
+
   const getDate = (eventDate) => {
     const date = new Date(eventDate);
     let formattedDate = date.toLocaleDateString("en-CA");
@@ -99,7 +88,7 @@ export default function Tickets() {
     return finalDate;
   };
 
-  const ticketsArr1 = tickets.slice(0, tickets.length / 2).map((ticket) => (
+  const ticketsArr1 = tickets.slice(0, tickets.length / 2).map((ticket, i) => (
     <div className="ticket-card">
       <img
         className="ticket-img"
@@ -110,7 +99,7 @@ export default function Tickets() {
       <div>{ticket.match}</div>
       <div>Price: ${ticket.price}</div>
       <div>{getDate(ticket.event_date)}</div>
-      {cartTickets &&
+      {user ? cartTickets &&
       cartTickets.filter((cartTicket) => cartTicket.id === ticket.id).length ===
         0 ? (
         <button
@@ -118,7 +107,7 @@ export default function Tickets() {
           onClick={(e) => {
             e.stopPropagation();
             e.preventDefault();
-            // setSlidePosition(i);
+            setSlidePosition1(i);
             addToCart(ticket);
           }}
         >
@@ -129,19 +118,17 @@ export default function Tickets() {
           className="remove-from-cart cursor-pointer"
           onClick={(e) => {
             e.stopPropagation();
-            // setSlidePosition(i);
+            setSlidePosition1(i);
             removeTicket(ticket);
           }}
         >
           Remove from cart
         </button>
-      )}
-      {/* <button onClick={(e) => addToCart(e, ticket)}>ADD</button>
-      <button onClick={(e) => removeFromCart(e, ticket)}>REMOVE</button> */}
+      ) : <></>}
     </div>
   ));
 
-  const ticketsArr2 = tickets.slice(tickets.length / 2).map((ticket) => (
+  const ticketsArr2 = tickets.slice(tickets.length / 2).map((ticket, i) => (
     <div className="ticket-card">
       <img
         className="ticket-img"
@@ -152,7 +139,7 @@ export default function Tickets() {
       <div>{ticket.match}</div>
       <div>Price: ${ticket.price}</div>
       <div>{getDate(ticket.event_date)}</div>
-      {cartTickets &&
+      {user ? cartTickets &&
       cartTickets.filter((cartTicket) => cartTicket.id === ticket.id).length ===
         0 ? (
         <button
@@ -160,7 +147,7 @@ export default function Tickets() {
           onClick={(e) => {
             e.stopPropagation();
             e.preventDefault();
-            // setSlidePosition(i);
+            setSlidePosition2(i);
             addToCart(ticket);
           }}
         >
@@ -171,21 +158,20 @@ export default function Tickets() {
           className="remove-from-cart cursor-pointer"
           onClick={(e) => {
             e.stopPropagation();
-            // setSlidePosition(i);
+            setSlidePosition2(i);
             removeTicket(ticket);
           }}
         >
           Remove from cart
         </button>
-      )}
-      {/* <button onClick={(e) => addToCart(e, ticket)}>ADD</button>
-      <button onClick={(e) => removeFromCart(e, ticket)}>REMOVE</button> */}
+      ) : <></>}
+
     </div>
   ));
 
   const responsive = {
     400: { items: 1 },
-    1380: { items: 2 },
+    1400: { items: 2 },
     // 1640: { items: 3 },
   };
 
@@ -196,6 +182,7 @@ export default function Tickets() {
           infinite
           mouseTracking
           preventEventOnTouchMove
+          activeIndex={slidePosition1}
           responsive={responsive}
           items={ticketsArr1}
         />
@@ -203,6 +190,7 @@ export default function Tickets() {
           infinite
           mouseTracking
           preventEventOnTouchMove
+          activeIndex={slidePosition2}
           responsive={responsive}
           items={ticketsArr2}
         />
