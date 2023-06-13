@@ -12,6 +12,7 @@ function Maps({ apiKey }) {
     const [hoveredMarker, setHoveredMarker] = useState(null);
     const [zoomLevel, setZoomLevel] = useState(8);
     const [mapCenter, setMapCenter] = useState(center);
+    const [typeId, setTypeId] = useState("roadmap");
 
       const containerStyle = {
         width: '100%',
@@ -26,17 +27,23 @@ function Maps({ apiKey }) {
       const handleMarkerClick = (location) => {
         setZoomLevel(18); // Adjust the desired zoom level here
         setMapCenter(location)
+        setTypeId("satellite")
       };
 
       function handleZoomChanged(){
         setZoomLevel(this.getZoom())
+        if (this.getZoom() >= 10) {
+          setTypeId("roadmap")
+        }
       }
+
 
       return (
         <>
           {isLoaded && (
     <GoogleMap
     mapContainerStyle={containerStyle}
+    mapTypeId={typeId}
     center={mapCenter}
     zoom={zoomLevel} // Use the zoomLevel state variable
     onZoomChanged={handleZoomChanged}
