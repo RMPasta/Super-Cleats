@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import db, Cart, Item
+from app.models import db, Cart, Item, Ticket
 
 cart_routes = Blueprint('cart', __name__)
 
@@ -14,8 +14,9 @@ def get_cart(id):
     if not cart:
         return {"cart": None, "items": None}
     user_cart_items = [item.to_dict() for item in cart.items]
+    user_cart_tickets = [ticket.to_dict() for ticket in cart.tickets]
 
-    return {"cart": cart.to_dict(), "items": user_cart_items}
+    return {"cart": cart.to_dict(), "items": user_cart_items, "tickets": user_cart_tickets}
 
 
 @cart_routes.route('/<int:user_id>', methods=["POST"])
@@ -69,6 +70,45 @@ def remove_from_cart(cart_id):
     db.session.commit()
     return cart.to_dict()
 
+@cart_routes.route('/<int:cart_id>/ticket', methods=["PUT"])
+def add_ticket_to_cart(cart_id):
+    """
+    Add ticket to cart
+    """
+
+    data = request.json
+    ticket_id=data["ticket_id"]
+    cart = Cart.query.get(cart_id)
+    ticket = [ticket.to_dict() for ticket in cart.tickets if ticket.id == ticket_id]
+
+    if not ticket:
+        ticket = Ticket.query.get(ticket_id)
+        cart.tickets.append(ticket)
+        cart.quantity=data["quantity"]
+        cart.total_price=data["total_price"]
+
+    db.session.commit()
+    return cart.to_dict()
+
+@cart_routes.route('/<int:cart_id>/remove/ticket', methods=["PUT"])
+def remove_ticket_from_cart(cart_id):
+    """
+    Remove ticket from cart
+    """
+
+    data = request.json
+    ticket_id=data["ticket_id"]
+    cart = Cart.query.get(cart_id)
+    ticket = [ticket for ticket in cart.tickets if ticket.id == ticket_id]
+
+    if cart and ticket:
+        cart.quantity=data["quantity"]
+        cart.total_price=data["total_price"]
+        cart.tickets.remove(ticket[0])
+
+    db.session.commit()
+    return cart.to_dict()
+
 @cart_routes.route('/<int:cart_id>/clear', methods=["PUT"])
 def clear_cart(cart_id):
     """
@@ -76,6 +116,9 @@ def clear_cart(cart_id):
     """
 
     cart = Cart.query.get(cart_id)
+    tickets = [ticket for ticket in cart.tickets if cart.id == cart_id]
+    for ticket in tickets:
+        cart.tickets.remove(ticket)
     items = [item for item in cart.items if cart.id == cart_id]
     for item in items:
         cart.items.remove(item)

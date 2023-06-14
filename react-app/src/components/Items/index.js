@@ -11,7 +11,7 @@ import {
 } from "../../store/cart";
 import "./Items.css";
 
-export default function Items({ typeFilter, priceFilter, teamFilter}) {
+export default function Items({ typeFilter, priceFilter, teamFilter }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const items = useSelector((state) => state.item.items);
@@ -44,7 +44,6 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
     };
   }, [isMobile]);
 
-
   useEffect(() => {
     if (cart) setQuantity(cart.quantity);
     if (cart) setTotal(cart.total_price);
@@ -55,27 +54,19 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
     let filteredItems = items;
 
     if (typeFilter && typeFilter !== "All") {
-      filteredItems = filteredItems.filter(
-        (item) => item.type === typeFilter
-      );
+      filteredItems = filteredItems.filter((item) => item.type === typeFilter);
     }
     if (priceFilter && priceFilter !== "All") {
       if (parseInt(priceFilter) === 1) {
-        filteredItems = filteredItems.filter(
-          (item) => item.price < 25
-        );
+        filteredItems = filteredItems.filter((item) => item.price < 25);
       } else if (parseInt(priceFilter) === 2) {
-        filteredItems = filteredItems.filter(
-          (item) => item.price < 50
-        );
+        filteredItems = filteredItems.filter((item) => item.price < 50);
       } else if (parseInt(priceFilter) === 3) {
         filteredItems = filteredItems.filter(
           (item) => item.price > 50 && item.price < 120
         );
       } else if (parseInt(priceFilter) === 4) {
-        filteredItems = filteredItems.filter(
-          (item) => item.price > 120
-        );
+        filteredItems = filteredItems.filter((item) => item.price > 120);
       }
     }
     if (teamFilter && teamFilter !== "All") {
@@ -132,7 +123,8 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
   };
 
   // // FILTERED ARRAY FOR ALICE CAROUSEL
-  const filteredArr = filtered?.map((item, i) => item ? (
+  const filteredArr = filtered?.map((item, i) =>
+    item ? (
       <div
         style={{ width: "240px", overflowY: "none" }}
         key={item.id}
@@ -146,9 +138,9 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
         />
         <img className="card-img" src={item?.item_img} alt={item.name} />
         <div className="item-card-info">
-        <div>{item.name.length > 25
-            ? item.name.slice(0, 25) + "..."
-            : item.name}</div>
+          <div>
+            {item.name.length > 25 ? item.name.slice(0, 25) + "..." : item.name}
+          </div>
           <div>$ {item.price}</div>
           <div>
             {item.description.length > 30
@@ -167,16 +159,16 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
                 setSlidePosition(i);
                 addToCart(item);
               }}
-              >
+            >
               Add to cart
             </button>
           ) : (
             <button
-            className="remove-from-cart cursor-pointer"
-            onClick={(e) => {
-              e.stopPropagation();
-              setSlidePosition(i);
-              removeItem(item);
+              className="remove-from-cart cursor-pointer"
+              onClick={(e) => {
+                e.stopPropagation();
+                setSlidePosition(i);
+                removeItem(item);
               }}
             >
               Remove from cart
@@ -196,13 +188,15 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
           )
         )}
       </div>
-    ) : <></>);
-    //empty fragment in ternary fixed create on home page bug
-
+    ) : (
+      <></>
+    )
+  );
+  //empty fragment in ternary fixed create on home page bug
 
   // CLEATS ARRAY FOR ALICE CAROUSEL
   const cleatsArr = items
-    .filter((item) => item.type === "cleats" )
+    .filter((item) => item.type === "cleats")
     .map((item, i) => (
       <div
         style={{ width: "240px", overflowY: "none" }}
@@ -217,9 +211,9 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
         />
         <img className="card-img" src={item.item_img} alt={item.name} />
         <div className="item-card-info">
-        <div>{item.name.length > 25
-            ? item.name.slice(0, 25) + "..."
-            : item.name}</div>
+          <div>
+            {item.name.length > 25 ? item.name.slice(0, 25) + "..." : item.name}
+          </div>
           <div>$ {item.price}</div>
           <div>
             {item.description.length > 30
@@ -286,9 +280,9 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
         />
         <img className="card-img" src={item.item_img} alt={item.name} />
         <div className="item-card-info">
-        <div>{item.name.length > 25
-            ? item.name.slice(0, 25) + "..."
-            : item.name}</div>
+          <div>
+            {item.name.length > 25 ? item.name.slice(0, 25) + "..." : item.name}
+          </div>
           <div>$ {item.price}</div>
           <div>
             {item.description.length > 30
@@ -356,9 +350,9 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
         />
         <img className="card-img" src={item.item_img} alt={item.name} />
         <div className="item-card-info">
-        <div>{item.name.length > 25
-            ? item.name.slice(0, 25) + "..."
-            : item.name}</div>
+          <div>
+            {item.name.length > 25 ? item.name.slice(0, 25) + "..." : item.name}
+          </div>
           <div>$ {item.price}</div>
           <div>
             {item.description.length > 30
@@ -419,17 +413,21 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
   return (
     <div className="gallery-container">
       <div className="item-gallery">
-        {filtered?.length > 0 ?
-                  <AliceCarousel
-                  infinite
-                  mouseTracking
-                  preventEventOnTouchMove
-                  disableDotsControls={isMobile}
-                  activeIndex={slidePosition}
-                  responsive={responsive}
-                  items={filteredArr}
-                  /> :
-                  <div className="no-filter-found">Nothing with this combo, adjust the filters!</div>}
+        {filtered?.length > 0 ? (
+          <AliceCarousel
+            infinite
+            mouseTracking
+            preventEventOnTouchMove
+            disableDotsControls={isMobile}
+            activeIndex={slidePosition}
+            responsive={responsive}
+            items={filteredArr}
+          />
+        ) : (
+          <div className="no-filter-found">
+            Nothing with this combo, adjust the filters!
+          </div>
+        )}
         <h2 className="type-header">Cleats</h2>
         <div className="cleats-gallery scrollable-x">
           <AliceCarousel
@@ -440,7 +438,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
             activeIndex={slidePosition}
             responsive={responsive}
             items={cleatsArr}
-            />
+          />
         </div>
         <h2 className="type-header">Socks</h2>
         <div className="socks-gallery scrollable-x">
@@ -452,7 +450,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
             activeIndex={slidePosition}
             responsive={responsive}
             items={socksArr}
-            />
+          />
         </div>
         <h2 className="type-header">Soccer Balls</h2>
         <div className="ball-gallery scrollable-x">
@@ -464,7 +462,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter}) {
             activeIndex={slidePosition}
             responsive={responsive}
             items={ballArr}
-            />
+          />
         </div>
       </div>
     </div>
