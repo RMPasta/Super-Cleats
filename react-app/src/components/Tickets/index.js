@@ -3,12 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { getTicketsThunk } from "../../store/ticket";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
+<<<<<<< HEAD
 import {
   getCartThunk,
   addTicketToCartThunk,
   removeTicketFromCartThunk,
 } from "../../store/cart";
 import { getItemsThunk } from "../../store/item";
+=======
+// import { addToCartThunk, getCartThunk, removeFromCartThunk} from "../../store/cart";
+>>>>>>> 1254be9 (add maps backend route and components)
 import MapContainer from "../Maps";
 import "./Tickets.css";
 
@@ -177,7 +181,25 @@ export default function Tickets() {
 
   return (
     <div className="tickets-container">
+<<<<<<< HEAD
       <div className="ticket-carousel">
+=======
+      <MapContainer />
+      {/* <div className="item-gallery">
+        {filtered?.length > 0 ?
+            <AliceCarousel
+            infinite
+            mouseTracking
+            preventEventOnTouchMove
+            disableDotsControls={isMobile}
+            activeIndex={slidePosition}
+            responsive={responsive}
+            items={filteredArr}
+            /> :
+            <div className="no-filter-found">Nothing with this combo, adjust the filters!</div>}
+      </div> */}
+      <div>
+>>>>>>> 1254be9 (add maps backend route and components)
         <AliceCarousel
           infinite
           mouseTracking

@@ -14,6 +14,10 @@ const MapContainer = () => {
       dispatch(getKey());
     }
   }, [dispatch, key]);
+<<<<<<< HEAD
+=======
+  console.log("CONTAINTER ~~~~~~~~>", key)
+>>>>>>> 1254be9 (add maps backend route and components)
   if (!key) {
     return null;
   }
