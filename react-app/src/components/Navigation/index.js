@@ -109,9 +109,21 @@ function Navigation({ setTeamPicked, teamPicked, isLoaded }) {
             >
               SUPER CLEATS
             </div>
-            {/* <NavLink exact to="/">
-              Home
-            </NavLink> */}
+            <div className="pill-shape">
+              <button className={"products" + (isProducts ? " filled" : "")} onClick={() => {
+                history.push('/')
+                setIsProducts(true)
+              }}>
+                Products
+              </button>
+              <button className={"tickets" + (!isProducts ? " filled" : "")} onClick={() => {
+                history.push('/tickets')
+                setIsProducts(false)
+              }}>
+                Tickets
+              </button>
+
+            </div>
           </li>
           <li className="nav-right-side-logged-out">
             {/* <button className='cart-button-nav cursor-pointer'>Cart</button> */}
