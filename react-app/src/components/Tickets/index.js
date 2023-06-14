@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 import { getTicketsThunk } from "../../store/ticket";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
@@ -15,9 +14,8 @@ import "./Tickets.css";
 
 export default function Tickets() {
   const dispatch = useDispatch();
-  const history = useHistory();
-  const tickets = useSelector((state) => state.ticket.tickets);
   const user = useSelector((state) => state.session.user);
+  const tickets = useSelector((state) => state.ticket.tickets);
   const cart = useSelector((state) => state.cart.cart);
   const cartTickets = useSelector((state) => state.cart.cartTickets);
   const [quantity, setQuantity] = useState(0);
@@ -46,8 +44,6 @@ export default function Tickets() {
   }, [dispatch]);
 
   if (!tickets) return <h1>Loading...</h1>;
-  console.log(tickets)
-  // if (!cart) return <h1>Loading...</h1>
 
   const addToCart = async (ticket) => {
     // e.preventDefault();
@@ -174,30 +170,22 @@ export default function Tickets() {
   ));
 
   const responsive = {
-    300: { items: 1 },
-    700: { items: 2 },
-    1000: { items: 3 },
-    1300: { items: 4 },
-    1600: { items: 5 },
+    400: { items: 1 },
+    1400: { items: 2 },
+    // 1640: { items: 3 },
   };
 
   return (
     <div className="tickets-container">
-      <MapContainer />
-      {/* <div className="item-gallery">
-        {filtered?.length > 0 ?
-            <AliceCarousel
-            infinite
-            mouseTracking
-            preventEventOnTouchMove
-            disableDotsControls={isMobile}
-            activeIndex={slidePosition}
-            responsive={responsive}
-            items={filteredArr}
-            /> :
-            <div className="no-filter-found">Nothing with this combo, adjust the filters!</div>}
-      </div> */}
-      <div>
+      <div className="ticket-carousel">
+        <AliceCarousel
+          infinite
+          mouseTracking
+          preventEventOnTouchMove
+          activeIndex={slidePosition1}
+          responsive={responsive}
+          items={ticketsArr1}
+        />
         <AliceCarousel
           infinite
           mouseTracking
@@ -206,6 +194,9 @@ export default function Tickets() {
           responsive={responsive}
           items={ticketsArr2}
         />
+      </div>
+      <div className="map-container">
+        <MapContainer />
       </div>
     </div>
   );
