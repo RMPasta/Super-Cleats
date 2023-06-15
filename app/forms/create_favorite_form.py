@@ -8,4 +8,4 @@ class CreateFavoriteForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     type = StringField('Type', validators=[DataRequired()])
     story = StringField('Story', validators=[DataRequired()])
-    team = StringField('Team', validators=[DataRequired()])
+    teams = StringField('Team', validators=[DataRequired()])

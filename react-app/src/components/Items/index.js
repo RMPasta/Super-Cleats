@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getItemsThunk } from "../../store/item";
 import AliceCarousel from "react-alice-carousel";
+import OpenModalButton from "../OpenModalButton";
 import "react-alice-carousel/lib/alice-carousel.css";
 import {
   addToCartThunk,
@@ -10,6 +11,7 @@ import {
   removeFromCartThunk,
 } from "../../store/cart";
 import "./Items.css";
+import AddFavoriteForm from "../AddFavoriteForm";
 
 export default function Items({ typeFilter, priceFilter, teamFilter }) {
   const dispatch = useDispatch();
@@ -24,6 +26,8 @@ export default function Items({ typeFilter, priceFilter, teamFilter }) {
   const [filtered, setFiltered] = useState(items);
   const [slidePosition, setSlidePosition] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+  const closeMenu = () => setShowMenu(false);
 
   // JAVASCRIPT MEDIA QUERY
   useEffect(() => {
@@ -122,6 +126,13 @@ export default function Items({ typeFilter, priceFilter, teamFilter }) {
     }
   };
 
+  const getItemTeam = (item) => {
+    if (teams && item) {
+      const team = teams.find((team) => team.id === item.team_id);
+      return team;
+    }
+  };
+
   // // FILTERED ARRAY FOR ALICE CAROUSEL
   const filteredArr = filtered?.map((item, i) =>
     item ? (
@@ -131,6 +142,12 @@ export default function Items({ typeFilter, priceFilter, teamFilter }) {
         className="item-card cursor-pointer"
         onClick={() => history.push(`/item/${item.id}`)}
       >
+          <OpenModalButton
+            className="signup-button-nav cursor-pointer"
+            buttonText="ADD FAVORITE"
+            onItemClick={closeMenu}
+            modalComponent={<AddFavoriteForm type="Item" name={item.name}  img={item.item_img} teams={getItemTeam(item)} />}
+          />
         <img
           className="card-badge"
           src={getItemBadge(item)}

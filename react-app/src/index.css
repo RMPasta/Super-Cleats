@@ -72,13 +72,20 @@ label {
 select {
     box-shadow: 2px 2px 2px grey;
     border: 1px solid grey;
-    outline: none
+    outline: none;
 }
 
 input {
     box-shadow: 2px 2px 2px grey;
     border: 1px solid grey;
-    outline: none
+    outline: none;
+}
+
+textarea {
+    box-shadow: 2px 2px 2px grey;
+    border: 1px solid grey;
+    outline: none;
+    height: 80px;
 }
 
 .alice-carousel__next-btn-item.__inactive {

@@ -1,5 +1,7 @@
 .favorite-card {
-    background-color: white;
+    background-color: whitesmoke;
     width: 400px;
     height: 140px;
+    border-radius: 20px;
+    padding: 20px;
 }
