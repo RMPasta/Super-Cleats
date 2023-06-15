@@ -9,6 +9,7 @@ import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import "./UsersItems.css";
 import "./carousel-style.css";
+import UsersFavorites from "../UserFavorites";
 
 export default function UsersItems() {
   const dispatch = useDispatch();
@@ -136,7 +137,8 @@ export default function UsersItems() {
           display: "flex",
           flexDirection: "column",
         }}
-      >
+        >
+        <h2>Products</h2>
         <AliceCarousel
           autoPlayInterval={3200}
           autoPlay={isNotMobile && shouldAutoPlay}
@@ -147,6 +149,10 @@ export default function UsersItems() {
           responsive={responsive}
           items={userItemsArr}
         />
+      </div>
+      <div>
+        <h2>Favorites</h2>
+        <UsersFavorites />
       </div>
     </div>
   );

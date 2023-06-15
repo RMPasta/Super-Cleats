@@ -4,6 +4,7 @@
 
 .gallery-container-user {
     display: flex;
+    flex-direction: column;
     justify-content: flex-end;
     margin-top: 100px;
     height: 88vh;
