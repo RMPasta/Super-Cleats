@@ -15,6 +15,7 @@ import Filter from "./components/Filter";
 import "./App.css";
 import Landing from "./components/Landing";
 import { getTeamsThunk } from "./store/team";
+import Favorites from "./components/Favorites";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +40,7 @@ function App() {
         setTeamPicked={setTeamPicked}
         isLoaded={isLoaded}
       />
+      <Favorites />
       {isLoaded && (
         <Switch>
           <Route exact path="/">

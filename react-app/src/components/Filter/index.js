@@ -138,6 +138,7 @@ export default function Filter({
             <select
               placeholder="Team associated with item..."
               onChange={(e) => setTeamFilter(e.target.value)}
+              onClick={(e) => e.stopPropagation()}
               className="team-select-field"
             >
               <option value="All">All</option>

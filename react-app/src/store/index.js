@@ -6,6 +6,7 @@ import team from './team';
 import cart from './cart';
 import ticket from './ticket';
 import maps from './maps';
+import favorite from './favorite';
 
 const rootReducer = combineReducers({
   session,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   team,
   cart,
   ticket,
+  favorite,
   maps
 });
 

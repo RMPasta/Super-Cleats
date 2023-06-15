@@ -21,10 +21,10 @@ class Favorite(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            'quantity': self.quantity,
-            'total_price': self.total_price,
-            'item_id': self.item_id,
-            'ticket_id': self.ticket_id,
+            'type': self.type,
+            'name': self.name,
+            'story': self.story,
+            'teams': self.teams,
             'user_id': self.user_id,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
