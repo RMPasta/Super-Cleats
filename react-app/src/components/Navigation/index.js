@@ -22,6 +22,10 @@ function Navigation({ setTeamPicked, teamPicked, isLoaded }) {
   const closeMenu = () => setShowMenu(false);
 
   useEffect(() => {
+    setIsProducts(!window.location.href.endsWith("tickets"))
+  }, [window.location.href])
+
+  useEffect(() => {
     sessionUser && isLoaded && dispatch(getCartThunk(sessionUser?.id));
     teamPicked && localStorage.setItem("teamId", teamPicked);
   }, [sessionUser, dispatch, isLoaded, teamPicked]);

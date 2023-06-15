@@ -19,7 +19,6 @@ export default function AddFavoriteForm({type, name, teams, img}) {
   const { closeModal } = useModal();
 
   useEffect(() => {
-    console.log(type, name, img, teams)
     if (!user) history.push("/");
     // fill the store so we can push new item to state
     dispatch(getFavoritesThunk());
@@ -46,7 +45,7 @@ export default function AddFavoriteForm({type, name, teams, img}) {
     if (nameState) formData.append("name", name);
     if (typeState) formData.append("type", type);
     if (story) formData.append("story", story);
-    if (teamsState.name) formData.append("teams", teamsState.name);
+    if (teamsState) formData.append("teams", teamsState);
 
     await dispatch(addFavoriteThunk(formData));
     await dispatch(getFavoritesThunk());
@@ -63,7 +62,7 @@ export default function AddFavoriteForm({type, name, teams, img}) {
         encType="multipart/form-data"
       >
         <div className="add-favorites-inputs">
-        <img src={img} alt={nameState} />
+        <img src={img} alt={nameState} className="card-img" />
         <div>{nameState}</div>
         <div>{typeState}</div>
           {/* <label>

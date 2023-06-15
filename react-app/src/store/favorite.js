@@ -69,7 +69,7 @@ export const editFavoriteThunk = (favorite, favoriteId) => async (dispatch) => {
 };
 
 export const deleteFavoriteThunk = (favoriteId) => async (dispatch) => {
-    const response = await fetch(`/api/Favorites/${favoriteId}`, {
+    const response = await fetch(`/api/favorites/${favoriteId}`, {
         method: "DELETE",
 		body: JSON.stringify()
 	});

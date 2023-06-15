@@ -11,6 +11,7 @@ import {
 } from "../../store/cart";
 import { getItemsThunk } from "../../store/item";
 import AddFavoriteForm from "../AddFavoriteForm";
+import DeleteFavoriteModal from "../DeleteFavoriteModal";
 import MapContainer from "../Maps";
 import "./Tickets.css";
 
@@ -23,14 +24,13 @@ export default function Tickets() {
   const cartTickets = useSelector((state) => state.cart.cartTickets);
   const favorites = useSelector((state) => state.favorite.favorites);
   const usersFavorites = favorites?.filter((favorite) => favorite.user_id === user?.id);
-  const userFavoritesNames = usersFavorites?.map(favorite => favorite.name)
+  const userFavoritesTeams = usersFavorites?.map(favorite => favorite.teams)
   const [quantity, setQuantity] = useState(0);
   const [total, setTotal] = useState(0);
   const [slidePosition1, setSlidePosition1] = useState(0);
   const [slidePosition2, setSlidePosition2] = useState(0);
   const [showMenu, setShowMenu] = useState(false);
   const closeMenu = () => setShowMenu(false);
-
 
   useEffect(() => {
     if (cart) setQuantity(cart.quantity);
@@ -96,33 +96,13 @@ export default function Tickets() {
     return finalDate;
   };
 
-  const getTicketTeam = (item) => {
-    if (teams && item) {
-      const team = teams.find((team) => team.id === item.team_id);
-      return team;
-    }
-  };
+  const getFavorite = (teams) => {
+    return usersFavorites.filter(favorite => favorite.teams === teams)[0]
+  }
 
   const ticketsArr1 = tickets.slice(0, tickets.length / 2).map((ticket, i) => (
     <div className="ticket-card">
-          {( //if item does not belong to user, render one of the add or remove favorite buttons
-          user && user.id !== ticket.user_id ?
-          !userFavoritesNames.includes(ticket.name) ?
-          <OpenModalButton
-            className="favorite-button cursor-pointer"
-            buttonText={(<i className="far fa-heart"></i>)}
-            onticketClick={closeMenu}
-            modalComponent={<AddFavoriteForm type="Ticket" name={ticket.match}  img={ticket.ticket_img} teams={ticket.match.split(" vs ").join(",")} />}
-          /> :
-          //this needs to be a "delete favorite modal"
-          <OpenModalButton
-            className="unfavorite-button cursor-pointer"
-            buttonText={(<i className="fas fa-heart"></i>)}
-            onTicketClick={closeMenu}
-            modalComponent={<AddFavoriteForm type="Ticket" name={ticket.match}  img={ticket.ticket_img} teams={ticket.match.split(" vs ").join(",")} />}
-          />
-          : <></>
-        )}
+
       <img
         className="ticket-img"
         src={ticket.ticket_img}
@@ -158,6 +138,22 @@ export default function Tickets() {
           Remove from cart
         </button>
       ) : <></>}
+                {( //if item does not belong to user, render one of the add or remove favorite buttons
+          !userFavoritesTeams.includes(ticket.match) ?
+          <OpenModalButton
+            className="favorite-button cursor-pointer"
+            buttonText={(<i className="far fa-heart test-heart"></i>)}
+            onticketClick={closeMenu}
+            modalComponent={<AddFavoriteForm type="Ticket" name={ticket.match}  img={ticket.ticket_img} teams={ticket.match} />}
+          /> :
+          //this needs to be a "delete favorite modal"
+          <OpenModalButton
+            className="unfavorite-button cursor-pointer"
+            buttonText={(<i className="fas fa-heart test-heart"></i>)}
+            onTicketClick={closeMenu}
+            modalComponent={<DeleteFavoriteModal favorite={getFavorite(ticket.match)} setSlidePosition={setSlidePosition1} index={i} />}
+          />
+        )}
     </div>
   ));
 
@@ -198,7 +194,22 @@ export default function Tickets() {
           Remove from cart
         </button>
       ) : <></>}
-
+                {( //if item does not belong to user, render one of the add or remove favorite buttons
+          !userFavoritesTeams.includes(ticket.match) ?
+          <OpenModalButton
+            className="favorite-button cursor-pointer"
+            buttonText={(<i className="far fa-heart test-heart"></i>)}
+            onticketClick={closeMenu}
+            modalComponent={<AddFavoriteForm type="Ticket" name={ticket.match}  img={ticket.ticket_img} teams={ticket.match} />}
+          /> :
+          //this needs to be a "delete favorite modal"
+          <OpenModalButton
+            className="unfavorite-button cursor-pointer"
+            buttonText={(<i className="fas fa-heart test-heart"></i>)}
+            onTicketClick={closeMenu}
+            modalComponent={<DeleteFavoriteModal favorite={getFavorite(ticket.match)} setSlidePosition={setSlidePosition1} index={i} />}
+          />
+        )}
     </div>
   ));
 

@@ -10,12 +10,6 @@ export default function Favorites() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const favorites = useSelector((state) => state.favorite.favorites);
-  console.log(favorites)
-//   const [quantity, setQuantity] = useState(0);
-//   const [total, setTotal] = useState(0);
-//   const [slidePosition1, setSlidePosition1] = useState(0);
-//   const [slidePosition2, setSlidePosition2] = useState(0);
-
 
   useEffect(() => {
     dispatch(getFavoritesThunk());

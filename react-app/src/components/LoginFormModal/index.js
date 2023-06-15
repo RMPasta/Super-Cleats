@@ -45,7 +45,6 @@ function LoginFormModal() {
       //     hasErrors = true;
       //   }
       // }
-      console.log("Server Side Error")
       // setErrors(data);
       return;
     } else {
