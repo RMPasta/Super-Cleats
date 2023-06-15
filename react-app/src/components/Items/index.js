@@ -135,7 +135,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter }) {
       return team;
     }
   };
-  console.log(userFavoritesNames)
+
   // // FILTERED ARRAY FOR ALICE CAROUSEL
   const filteredArr = filtered?.map((item, i) =>
     item ? (
