@@ -66,8 +66,10 @@ function Maps({ apiKey }) {
                 key={index}
                 position={location}
                 onMouseOver={() => {
-                  setHoveredMarkerName(ticket.stadium);
-                  setCurrentLocation(currentLocation);
+                  if (zoomLevel <= 13) {
+                    setHoveredMarkerName(ticket.stadium);
+                    setCurrentLocation(currentLocation);
+                  }
                 }}
                 onMouseOut={() => {
                   setHoveredMarkerName(null);
