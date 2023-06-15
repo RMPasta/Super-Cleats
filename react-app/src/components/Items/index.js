@@ -237,6 +237,24 @@ export default function Items({ typeFilter, priceFilter, teamFilter }) {
         className="item-card cursor-pointer"
         onClick={() => history.push(`/item/${item.id}`)}
       >
+          {( //if item does not belong to user, render one of the add or remove favorite buttons
+          user && user.id !== item.user_id ?
+          !userFavoritesNames.includes(item.name) ?
+          <OpenModalButton
+            className="favorite-button cursor-pointer"
+            buttonText={(<i className="far fa-heart"></i>)}
+            onItemClick={closeMenu}
+            modalComponent={<AddFavoriteForm type="Item" name={item.name}  img={item.item_img} teams={getItemTeam(item)} />}
+          /> :
+          //this needs to be a "delete favorite modal"
+          <OpenModalButton
+            className="unfavorite-button cursor-pointer"
+            buttonText={(<i className="fas fa-heart"></i>)}
+            onItemClick={closeMenu}
+            modalComponent={<AddFavoriteForm type="Item" name={item.name}  img={item.item_img} teams={getItemTeam(item)} />}
+          />
+          : <></>
+        )}
         <img
           className="card-badge"
           src={getItemBadge(item)}
@@ -306,6 +324,24 @@ export default function Items({ typeFilter, priceFilter, teamFilter }) {
         className="item-card cursor-pointer"
         onClick={() => history.push(`/item/${item.id}`)}
       >
+          {( //if item does not belong to user, render one of the add or remove favorite buttons
+          user && user.id !== item.user_id ?
+          !userFavoritesNames.includes(item.name) ?
+          <OpenModalButton
+            className="favorite-button cursor-pointer"
+            buttonText={(<i className="far fa-heart"></i>)}
+            onItemClick={closeMenu}
+            modalComponent={<AddFavoriteForm type="Item" name={item.name}  img={item.item_img} teams={getItemTeam(item)} />}
+          /> :
+          //this needs to be a "delete favorite modal"
+          <OpenModalButton
+            className="unfavorite-button cursor-pointer"
+            buttonText={(<i className="fas fa-heart"></i>)}
+            onItemClick={closeMenu}
+            modalComponent={<AddFavoriteForm type="Item" name={item.name}  img={item.item_img} teams={getItemTeam(item)} />}
+          />
+          : <></>
+        )}
         <img
           className="card-badge"
           src={getItemBadge(item)}
@@ -376,6 +412,24 @@ export default function Items({ typeFilter, priceFilter, teamFilter }) {
         className="item-card cursor-pointer"
         onClick={() => history.push(`/item/${item.id}`)}
       >
+          {( //if item does not belong to user, render one of the add or remove favorite buttons
+          user && user.id !== item.user_id ?
+          !userFavoritesNames.includes(item.name) ?
+          <OpenModalButton
+            className="favorite-button cursor-pointer"
+            buttonText={(<i className="far fa-heart"></i>)}
+            onItemClick={closeMenu}
+            modalComponent={<AddFavoriteForm type="Item" name={item.name}  img={item.item_img} teams={getItemTeam(item)} />}
+          /> :
+          //this needs to be a "delete favorite modal"
+          <OpenModalButton
+            className="unfavorite-button cursor-pointer"
+            buttonText={(<i className="fas fa-heart"></i>)}
+            onItemClick={closeMenu}
+            modalComponent={<AddFavoriteForm type="Item" name={item.name}  img={item.item_img} teams={getItemTeam(item)} />}
+          />
+          : <></>
+        )}
         <img
           className="card-badge"
           src={getItemBadge(item)}
