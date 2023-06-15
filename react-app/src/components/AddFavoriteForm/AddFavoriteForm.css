@@ -1,3 +1,42 @@
 .textarea {
     border: 1px solid black;
 }
+
+.error-container-story {
+    height: 38px;
+    width: 330px;
+    color: red;
+}
+
+.add-favorites-inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.favorite-button {
+    display: flex;
+    border: none;
+    background-color: white;
+    width: fit-content;
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+.favorite-button:hover {
+    color: red;
+}
+
+.unfavorite-button {
+    display: flex;
+    border: none;
+    background-color: white;
+    width: fit-content;
+    font-size: 24px;
+    margin-top: 10px;
+    color: red;
+}
+
+.unfavorite-button:hover {
+    color: black;
+}

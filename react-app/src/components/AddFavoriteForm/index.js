@@ -39,13 +39,6 @@ export default function AddFavoriteForm({type, name, teams, img}) {
       setErrors((errors) => ({ ...errors, story: "Story must be between 10 and 900 characters" }));
       hasErrors = true;
     }
-    if (!teams) {
-      setErrors((errors) => ({
-        ...errors,
-        teams: "Please choose one or more team",
-      }));
-      hasErrors = true;
-    }
     if (hasErrors) return;
 
     const formData = new FormData();
@@ -69,15 +62,11 @@ export default function AddFavoriteForm({type, name, teams, img}) {
         onSubmit={handleSubmit}
         encType="multipart/form-data"
       >
-        {/* <div className="error-container">
-          {errors.name && <p>{errors.name}</p>}
-          {errors.type && <p>{errors.type}</p>}
-          {errors.story && <p>{errors.story}</p>}
-          {errors.teams && <p>{errors.teams}</p>}
-        </div> */}
-        <div className="add-item-inputs">
+        <div className="add-favorites-inputs">
         <img src={img} alt={nameState} />
-          <label>
+        <div>{nameState}</div>
+        <div>{typeState}</div>
+          {/* <label>
             Name
             <input
               type="text"
@@ -96,8 +85,11 @@ export default function AddFavoriteForm({type, name, teams, img}) {
               onChange={(e) => setTypeState(e.target.value)}
               disabled={true}
             />
-          </label>
+          </label> */}
           <label>
+            <div className="error-container-story">
+            {errors.story && <p>{errors.story}</p>}
+            </div>
             Story
             <textarea
               className="textarea"

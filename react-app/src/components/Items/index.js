@@ -21,6 +21,9 @@ export default function Items({ typeFilter, priceFilter, teamFilter }) {
   const cart = useSelector((state) => state.cart.cart);
   const cartItems = useSelector((state) => state.cart.cartItems);
   const teams = useSelector((state) => state.team.teams);
+  const favorites = useSelector((state) => state.favorite.favorites);
+  const usersFavorites = favorites?.filter((favorite) => favorite.user_id === user?.id);
+  const userFavoritesNames = usersFavorites?.map(favorite => favorite.name)
   const [quantity, setQuantity] = useState(0);
   const [total, setTotal] = useState(0);
   const [filtered, setFiltered] = useState(items);
@@ -132,7 +135,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter }) {
       return team;
     }
   };
-
+  console.log(userFavoritesNames)
   // // FILTERED ARRAY FOR ALICE CAROUSEL
   const filteredArr = filtered?.map((item, i) =>
     item ? (
@@ -142,12 +145,25 @@ export default function Items({ typeFilter, priceFilter, teamFilter }) {
         className="item-card cursor-pointer"
         onClick={() => history.push(`/item/${item.id}`)}
       >
+
+        {( //if item does not belong to user, render one of the add or remove favorite buttons
+          user && user.id !== item.user_id ?
+          !userFavoritesNames.includes(item.name) ?
           <OpenModalButton
-            className="signup-button-nav cursor-pointer"
-            buttonText="ADD FAVORITE"
+            className="favorite-button cursor-pointer"
+            buttonText={(<i className="far fa-heart"></i>)}
+            onItemClick={closeMenu}
+            modalComponent={<AddFavoriteForm type="Item" name={item.name}  img={item.item_img} teams={getItemTeam(item)} />}
+          /> :
+          //this needs to be a "delete favorite modal"
+          <OpenModalButton
+            className="unfavorite-button cursor-pointer"
+            buttonText={(<i className="fas fa-heart"></i>)}
             onItemClick={closeMenu}
             modalComponent={<AddFavoriteForm type="Item" name={item.name}  img={item.item_img} teams={getItemTeam(item)} />}
           />
+          : <></>
+        )}
         <img
           className="card-badge"
           src={getItemBadge(item)}

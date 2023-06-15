@@ -150,7 +150,7 @@ export default function UsersItems() {
           items={userItemsArr}
         />
       </div>
-      <div>
+      <div className="favorites-container">
         <h2>Favorites</h2>
         <UsersFavorites />
       </div>

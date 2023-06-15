@@ -55,7 +55,6 @@ export default function DeleteModal({item, setSlidePosition, index}) {
           {!explosion ?
           <div className='countdown'>{deleted}</div> :
           <img src={gif} alt="explosion" className={explosionDisplay} />}
-          {/* <div className='explosion' ></div>} */}
         </div>}
       </div>
     </>

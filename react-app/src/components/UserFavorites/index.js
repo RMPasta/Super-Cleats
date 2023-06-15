@@ -57,18 +57,17 @@ export default function UsersFavorites() {
 //   };
 
   const responsive = {
-    400: { items: 1 },
-    700: { items: 2 },
-    900: { items: 3 },
-    1300: { items: 4 },
-    1500: { items: 5 },
+    300: { items: 1 },
+    900: { items: 2 },
+    1300: { items: 3 },
+    1500: { items: 4 },
   };
 
   const usersFavoritesArr = usersFavorites.map(favorite => (
     <div className="favorite-card">
         <div>Type: {favorite.type}</div>
         <div>Name: {favorite.name}</div>
-        <div>Story: {favorite.story}</div>
+        <div className="story">Story: {favorite.story}</div>
         <div>Teams: {favorite.teams}</div>
     </div>
   ))
@@ -76,9 +75,8 @@ export default function UsersFavorites() {
   return (
     <div>
       <div
-        className="alice-container"
         style={{
-          width: "90%",
+          width: "100%",
           margin: "0 auto",
           display: "flex",
           flexDirection: "column",
