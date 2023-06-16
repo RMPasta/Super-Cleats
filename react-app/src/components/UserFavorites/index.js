@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getFavoritesThunk } from "../../store/favorite";
 import OpenModalButton from "../OpenModalButton";
+import DeleteFavoriteModal from "../DeleteFavoriteModal";
 // import EditFavoritesForm from "../EditFavoritesForm";
 import DeleteModal from "../DeleteModal";
 import AliceCarousel from "react-alice-carousel";
@@ -13,13 +14,15 @@ import "./UserFavorites.css";
 export default function UsersFavorites() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [showMenu, setShowMenu] = useState(false);
   const favorites = useSelector((state) => state.favorite.favorites);
   const user = useSelector((state) => state.session.user);
   const teams = useSelector((state) => state.team.teams);
   const [isNotMobile, setIsNotMobile] = useState(true);
   const [shouldAutoPlay, setShouldAutoPlay] = useState(true);
   const [slidePosition, setSlidePosition] = useState(0);
+  const [showMenu, setShowMenu] = useState(false);
+  const closeMenu = () => setShowMenu(false);
+
 
   const usersFavorites = favorites?.filter((favorite) => favorite.user_id === user?.id);
 
@@ -65,6 +68,13 @@ export default function UsersFavorites() {
 
   const usersFavoritesArr = usersFavorites.map(favorite => (
     <div className="favorite-card">
+      {console.log(favorite)}
+        <OpenModalButton
+          className="unfavorite-button cursor-pointer"
+          buttonText={(<i className="fas fa-heart test-heart"></i>)}
+          onTicketClick={closeMenu}
+          modalComponent={<DeleteFavoriteModal favorite={favorite} setSlidePosition={setSlidePosition} index={0} />}
+        />
         <div className="favorite-name">{favorite.name}</div>
         <div className="story scrollable-y">Story: {favorite.story}</div>
     </div>

@@ -3,7 +3,7 @@ import { useModal } from "../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCartThunk, getCartThunk } from "../../store/cart";
 import "./CheckOutModal.css";
-import { addPurchaseThunk } from "../../store/purchase";
+import { addPurchaseThunk, getPurchasesThunk } from "../../store/purchase";
 
 export default function CheckOutModal({ isNotMobile, closeMenu }) {
   const dispatch = useDispatch();
@@ -40,6 +40,7 @@ export default function CheckOutModal({ isNotMobile, closeMenu }) {
     const timeout2 = setTimeout(async () => {
       await dispatch(clearCartThunk(cart.id));
       await dispatch(getCartThunk(cart.id));
+      await dispatch(getPurchasesThunk())
       closeModal();
       closeMenu();
     }, [5000]);

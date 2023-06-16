@@ -44,7 +44,7 @@ export default function DeleteFavoriteModal({favorite, setSlidePosition, index})
       <div className='delete-modal'>
         {!deleted ?
             <div>
-            <p>Are You sure you want to unfavorite this?</p>
+            <p>Are you sure you want to unfavorite this?</p>
             <div className='delete-buttons-container'>
                 <button className='yes-button cursor-pointer' onClick={() => handleDelete(favorite.id)}>Yes</button>
                 <button className='no-button cursor-pointer' onClick={() => closeModal()}>No</button>

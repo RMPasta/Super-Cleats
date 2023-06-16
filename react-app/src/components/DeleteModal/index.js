@@ -45,7 +45,7 @@ export default function DeleteModal({item, setSlidePosition, index}) {
       <div className='delete-modal'>
         {!deleted ?
         <div>
-          <p>Are You sure you want to delete this?</p>
+          <p>Are you sure you want to delete this?</p>
           <div className='delete-buttons-container'>
               <button className='yes-button cursor-pointer' onClick={() => handleDelete(item.id)}>Yes</button>
               <button className='no-button cursor-pointer' onClick={() => closeModal()}>No</button>

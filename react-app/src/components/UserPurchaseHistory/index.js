@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPurchasesThunk } from "../../store/purchase";
 import { getItemsThunk } from "../../store/item";
@@ -9,6 +9,7 @@ export default function UserPurchaseHistory() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const items = useSelector((state) => state.item.items);
+  const teams = useSelector((state) => state.team.teams);
   const tickets = useSelector((state) => state.ticket.tickets);
   const purchases = useSelector((state) => state.purchase.purchases);
 
@@ -45,7 +46,7 @@ export default function UserPurchaseHistory() {
                   ) : <></>}
                   {purchase.ticket_id ? (
                     <div>
-                      <img src={ticket.ticket_img} className="cart-item-image" />
+                      <img src={ticket?.ticket_img} className="cart-item-image" />
                       <div>{ticket.match}</div>
                     </div>
                   ) : <></>}
