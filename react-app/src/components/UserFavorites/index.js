@@ -68,7 +68,6 @@ export default function UsersFavorites() {
 
   const usersFavoritesArr = usersFavorites.map(favorite => (
     <div className="favorite-card">
-      {console.log(favorite)}
         <OpenModalButton
           className="unfavorite-button cursor-pointer"
           buttonText={(<i className="fas fa-heart test-heart"></i>)}
@@ -84,12 +83,13 @@ export default function UsersFavorites() {
     <div>
       <div
         style={{
-          width: "80%",
+          // width: "80%",
           margin: "0 auto",
           display: "flex",
           flexDirection: "column",
         }}
       >
+        {usersFavorites.length > 0 ?
         <AliceCarousel
           autoPlayInterval={3200}
           autoPlay={isNotMobile && shouldAutoPlay}
@@ -99,7 +99,7 @@ export default function UsersFavorites() {
           activeIndex={slidePosition}
           responsive={responsive}
           items={usersFavoritesArr}
-        />
+        /> : <h2 className="userpage-h2">Find things you love and click the heart!</h2>}
       </div>
     </div>
   );

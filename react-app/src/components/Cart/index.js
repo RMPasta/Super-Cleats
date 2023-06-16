@@ -165,7 +165,7 @@ export default function Cart({ setShowMenu }) {
         <div className="subtotal">${cart.total_price}</div>
       </div>
       <div className="checkout-section">
-        {cartItems?.length > 0 || cartTickets.length > 0 ? (
+        {cartItems?.length > 0 || cartTickets?.length > 0 ? (
           <OpenModalButton
             className="checkout-button cursor-pointer"
             buttonText="Check Out"

@@ -26,7 +26,7 @@ export default function UserPurchaseHistory() {
 
   return (
     <div className="history-display">
-        {usersPurchases.map(purchase => {
+        {usersPurchases.length > 0 ? usersPurchases.map(purchase => {
           const item = items?.find(item => item.id === purchase.item_id);
           const ticket = tickets?.find(ticket => ticket.id === purchase.ticket_id);
           return (
@@ -48,7 +48,7 @@ export default function UserPurchaseHistory() {
                   {/* <div className="purchase-name">{purchase.order}</div> */}
               </div>
           )
-        })}
+        }) : <h2 className="userpage-h2">Buy some things! You won't regret it.</h2>}
     </div>
   );
 }

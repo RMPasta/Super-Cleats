@@ -140,6 +140,7 @@ export default function UsersItems() {
         }}
         >
         <h2>Products</h2>
+        {userItemsArr.length > 0 ?
         <AliceCarousel
           autoPlayInterval={3200}
           autoPlay={isNotMobile && shouldAutoPlay}
@@ -149,7 +150,7 @@ export default function UsersItems() {
           activeIndex={slidePosition}
           responsive={responsive}
           items={userItemsArr}
-        />
+        /> : <h2>Create some items and start selling big!</h2>}
       </div>
       <div className="favorites-container">
         <h2>Favorites</h2>
