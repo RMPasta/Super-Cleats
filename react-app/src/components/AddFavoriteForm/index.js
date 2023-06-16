@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addItemThunk } from "../../store/item";
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { getFavoritesThunk, addFavoriteThunk } from "../../store/favorite";
@@ -94,7 +93,7 @@ export default function AddFavoriteForm({type, name, teams, img}) {
               className="textarea"
               type="text"
               value={story}
-              placeholder="How was your experience with this product?"
+              placeholder="Tell us why you love this"
               onChange={(e) => setStory(e.target.value)}
             />
           </label>

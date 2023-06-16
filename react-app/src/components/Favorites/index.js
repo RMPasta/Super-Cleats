@@ -10,7 +10,7 @@ export default function Favorites() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const favorites = useSelector((state) => state.favorite.favorites);
-console.log(favorites)
+
   useEffect(() => {
     dispatch(getFavoritesThunk());
   }, [dispatch]);
@@ -21,7 +21,6 @@ console.log(favorites)
     <div>Type: {favorite.type}</div>
     <div>Name: {favorite.name}</div>
     <div className="story">Story: {favorite.story}</div>
-    <div>Teams: {favorite.teams}</div>
 </div>
   ));
 
@@ -36,7 +35,7 @@ console.log(favorites)
     <div className="items-header-container">
         <h2 className="favorites-header">THE PEOPLE HAVE SPOKEN</h2>
         <AliceCarousel
-          autoPlayInterval={4200}
+          autoPlayInterval={2800}
           autoPlay
           infinite
           mouseTracking

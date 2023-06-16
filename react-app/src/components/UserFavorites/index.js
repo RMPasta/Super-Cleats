@@ -69,7 +69,6 @@ export default function UsersFavorites() {
         <div>Type: {favorite.type}</div>
         <div>Name: {favorite.name}</div>
         <div className="story">Story: {favorite.story}</div>
-        <div>Teams: {favorite.teams}</div>
     </div>
   ))
 
