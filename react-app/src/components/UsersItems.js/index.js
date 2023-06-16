@@ -6,10 +6,11 @@ import OpenModalButton from "../OpenModalButton";
 import EditItemForm from "../EditItemForm";
 import DeleteModal from "../DeleteModal";
 import AliceCarousel from "react-alice-carousel";
+import UsersFavorites from "../UserFavorites";
+import UserPurchaseHistory from "../UserPurchaseHistory";
 import "react-alice-carousel/lib/alice-carousel.css";
 import "./UsersItems.css";
 import "./carousel-style.css";
-import UsersFavorites from "../UserFavorites";
 
 export default function UsersItems() {
   const dispatch = useDispatch();
@@ -153,6 +154,10 @@ export default function UsersItems() {
       <div className="favorites-container">
         <h2>Favorites</h2>
         <UsersFavorites />
+      </div>
+      <div className="favorites-container">
+        <h2>Purchase History</h2>
+        <UserPurchaseHistory />
       </div>
     </div>
   );

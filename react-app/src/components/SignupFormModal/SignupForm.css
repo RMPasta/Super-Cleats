@@ -13,13 +13,13 @@ label {
 }
 
 input {
-    min-width: 200px;
+    min-width: 220px;
 }
 
 select {
-    min-width: 200px;
+    min-width: 210px;
 }
 
 .modal-padding-bottom {
-    padding-bottom: 100px;
+    padding-bottom: 10px;
 }

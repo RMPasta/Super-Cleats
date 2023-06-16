@@ -90,11 +90,11 @@ function SignupFormModal() {
 	return (
 		<div className="form-modal-container">
 			<form className="form-modal" onSubmit={handleSubmit}>
-			<div className="error-container">
+			{/* <div className="error-container">
           		{errors.email && <p>{errors.email}</p>}
           		{errors.username && <p>{errors.username}</p>}
           		{errors.password && <p>{errors.password}</p>}
-        	</div>
+        	</div> */}
 			<h1>Sign Up</h1>
 				<label>
 					Email
@@ -103,6 +103,9 @@ function SignupFormModal() {
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
 					/>
+					<div className="error">
+						{errors.email && <p>{errors.email}</p>}
+					</div>
 				</label>
 				<label>
 					Username
@@ -111,6 +114,9 @@ function SignupFormModal() {
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
 					/>
+					<div className="error">
+						{errors.username && <p>{errors.username}</p>}
+					</div>
 				</label>
 				<label>
 					Password
@@ -119,6 +125,9 @@ function SignupFormModal() {
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
 					/>
+					<div className="error">
+						{errors.password && <p>{errors.password}</p>}
+					</div>
 				</label>
 				<label>
 					Confirm Password
@@ -127,6 +136,9 @@ function SignupFormModal() {
 						value={confirmPassword}
 						onChange={(e) => setConfirmPassword(e.target.value)}
 					/>
+					<div className="error">
+						{/* {errors.password && <p>{errors.password}</p>} */}
+					</div>
 				</label>
 				<button type="submit" className="submit-button cursor-pointer">Sign Up</button>
 			</form>

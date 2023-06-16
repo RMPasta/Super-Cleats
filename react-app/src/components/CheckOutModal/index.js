@@ -28,6 +28,13 @@ export default function CheckOutModal({ isNotMobile, closeMenu }) {
         formData.append("item_id", item.id);
         dispatch(addPurchaseThunk(formData))
       })
+      cartTickets.forEach(ticket => {
+        const formData = new FormData();
+        formData.append("price", Number(ticket.price));
+        formData.append("order", Number(1));
+        formData.append("ticket_id", ticket.id);
+        dispatch(addPurchaseThunk(formData))
+      })
       setLoading(false);
     }, [3000]);
     const timeout2 = setTimeout(async () => {

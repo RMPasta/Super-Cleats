@@ -1,0 +1,13 @@
+.history-display {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+}
+
+.purchase-card {
+    display: flex;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.95);
+    min-width: 280px;
+    margin: 0 auto;
+}

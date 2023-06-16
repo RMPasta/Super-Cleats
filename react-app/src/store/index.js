@@ -7,6 +7,7 @@ import cart from './cart';
 import ticket from './ticket';
 import maps from './maps';
 import favorite from './favorite';
+import purchase from './purchase';
 
 const rootReducer = combineReducers({
   session,
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
   cart,
   ticket,
   favorite,
-  maps
+  maps,
+  purchase
 });
 
 

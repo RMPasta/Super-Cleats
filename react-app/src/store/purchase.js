@@ -1,7 +1,7 @@
 const GET_PURCHASES = "purchases/GET_PURCHASES";
 const ADD_PURCHASE = "purchases/ADD_PURCHASE";
-const EDIT_PURCHASE = "purchases/EDIT_PURCHASE";
-const DELETE_PURCHASE = "purchases/DELETE_PURCHASE";
+// const EDIT_PURCHASE = "purchases/EDIT_PURCHASE";
+// const DELETE_PURCHASE = "purchases/DELETE_PURCHASE";
 
 const getPurchases = (purchase) => ({
 	type: GET_PURCHASES,
@@ -25,7 +25,7 @@ const addPurchase = (purchase) => ({
 // });
 
 
-const initialState = { purchases: null, userItems: null };
+const initialState = { purchases: null, userPurchases: null };
 
 export const getPurchasesThunk = () => async (dispatch) => {
 	const response = await fetch("/api/purchase_history/", {
@@ -35,10 +35,11 @@ export const getPurchasesThunk = () => async (dispatch) => {
 	});
 	if (response.ok) {
 		const data = await response.json();
+		console.log('PURCHASE DATAAAAAAA', data)
 		if (data.errors) {
 			return;
 		}
-		dispatch(getPurchases(data.purchases));
+		dispatch(getPurchases(data.purchase_history));
 	}
 };
 
@@ -84,28 +85,28 @@ export const addPurchaseThunk = (purchase) => async (dispatch) => {
 // 	}
 // };
 
-// export default function reducer(state = initialState, action) {
-// 	switch (action.type) {
-// 		case GET_ITEMS: {
-//             const newState = {...state, items: action.payload}
-// 			return newState;
-// 		}
-// 		case ADD_ITEM: {
-//             const newState = {...state}
-// 			newState.items.push(action.payload)
-// 			return newState;
-// 		}
-// 		case EDIT_ITEM: {
-//             const newState = {...state}
-// 			newState.items[action.payload.id] = action.payload
-// 			return newState;
-// 		}
-// 		case DELETE_ITEM: {
-//             const newState = {...state}
-// 			delete newState.items[action.payload]
-// 			return newState;
-// 		}
-// 		default:
-// 			return state;
-// 	}
-// }
+export default function reducer(state = initialState, action) {
+	switch (action.type) {
+		case GET_PURCHASES: {
+            const newState = {...state, purchases: action.payload}
+			return newState;
+		}
+		case ADD_PURCHASE: {
+            const newState = {...state}
+			newState.purchases.push(action.payload)
+			return newState;
+		}
+		// case EDIT_PURCHASE: {
+        //     const newState = {...state}
+		// 	newState.purchases[action.payload.id] = action.payload
+		// 	return newState;
+		// }
+		// case DELETE_PURCHASE: {
+        //     const newState = {...state}
+		// 	delete newState.purchases[action.payload]
+		// 	return newState;
+		// }
+		default:
+			return state;
+	}
+}

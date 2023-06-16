@@ -11,7 +11,8 @@ purchase_history_routes = Blueprint('purchase_history', __name__)
 @purchase_history_routes.route('/')
 def purchase_history():
     purchase_history = PurchaseHistory.query.all()
-    return {'purchase_history': purchase.to_dict() for purchase in purchase_history}
+    print("purchASE HISTORYYYYYYYY", purchase_history)
+    return {'purchase_history': [purchase.to_dict() for purchase in purchase_history]}
 
 
 @purchase_history_routes.route('/', methods=["POST"])

@@ -62,18 +62,19 @@ function LoginFormModal() {
     <>
     <div className="form-modal-container">
       <form className="form-modal-login" onSubmit={handleSubmit}>
-      <div className="error-container">
-          {errors.email && <p>{errors.email}</p>}
-          {errors.password && <p>{errors.password}</p>}
-        </div>
-      <h1>Log In</h1>
+      {/* <div className="error-container">
+        </div> */}
+      <h1 className="login-h1">Log In</h1>
         <label>
           Email
           <input
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-          />
+            />
+            <div className="error">
+              {errors.password && <p>{errors.password}</p>}
+            </div>
         </label>
         <label>
           Password
@@ -81,7 +82,10 @@ function LoginFormModal() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-          />
+            />
+            <div className="error">
+              {errors.email && <p>{errors.email}</p>}
+            </div>
         </label>
         <button className="submit-button cursor-pointer" type="submit">Log In</button>
       </form>
