@@ -43,7 +43,6 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/">
-            {}
             {user || teamPicked ? (
               <>
                 <Teams />
@@ -86,7 +85,11 @@ function App() {
             <UsersItems />
           </Route>
           <Route path="/tickets">
+          {user || teamPicked ? (
             <Tickets />
+          ) : (
+            <Landing setTeamPicked={setTeamPicked} teamPicked={teamPicked} />
+          )}
           </Route>
         </Switch>
       )}
