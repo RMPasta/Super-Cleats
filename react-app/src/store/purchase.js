@@ -25,7 +25,7 @@ const addPurchase = (purchase) => ({
 // });
 
 
-const initialState = { purchases: null, userPurchases: null };
+const initialState = { purchases: [] };
 
 export const getPurchasesThunk = () => async (dispatch) => {
 	const response = await fetch("/api/purchase_history/", {
@@ -35,7 +35,6 @@ export const getPurchasesThunk = () => async (dispatch) => {
 	});
 	if (response.ok) {
 		const data = await response.json();
-		console.log('PURCHASE DATAAAAAAA', data)
 		if (data.errors) {
 			return;
 		}
