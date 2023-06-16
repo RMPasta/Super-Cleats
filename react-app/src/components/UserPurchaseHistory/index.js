@@ -23,13 +23,6 @@ export default function UserPurchaseHistory() {
 
   if (!purchases) return <h1>...Loading</h1>;
   if (!user) return <></>;
-  // const usersPurchasesItemsArr = usersPurchases.map(purchase => (
-  //   <div className="purchase-card">
-  //       <div>{items.find(item => item.id === purchase.item_id)}</div>
-  //       <div className="purchase-name">{purchase.order}</div>
-  //       <div className="story scrollable-y">{purchase.price}</div>
-  //   </div>
-  // ))
 
   return (
     <div className="history-display">
@@ -42,15 +35,16 @@ export default function UserPurchaseHistory() {
                     <div>
                       <img src={item.item_img} className="cart-item-image" />
                       <div>{item.name}</div>
+                      <div>$ {purchase.price}</div>
                     </div>
                   ) : <></>}
                   {purchase.ticket_id ? (
                     <div>
                       <img src={ticket?.ticket_img} className="cart-item-image" />
                       <div>{ticket.match}</div>
+                      <div>$ {purchase.price}</div>
                     </div>
                   ) : <></>}
-                  <div className="story scrollable-y">{purchase.price}</div>
                   {/* <div className="purchase-name">{purchase.order}</div> */}
               </div>
           )

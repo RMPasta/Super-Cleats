@@ -6,8 +6,12 @@
 
 .purchase-card {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.95);
     min-width: 280px;
     margin: 0 auto;
+    border-radius: 10px;
 }
