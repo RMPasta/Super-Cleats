@@ -40,7 +40,6 @@ function App() {
         setTeamPicked={setTeamPicked}
         isLoaded={isLoaded}
       />
-      <Favorites />
       {isLoaded && (
         <Switch>
           <Route exact path="/">
@@ -49,6 +48,7 @@ function App() {
               <>
                 <Teams />
                 <ItemsPageHeader />
+                <Favorites />
                 <div className="filter-items-container">
                   <div className="filter-app">
                     <Filter

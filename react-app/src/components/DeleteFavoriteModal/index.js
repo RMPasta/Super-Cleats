@@ -10,7 +10,7 @@ export default function DeleteFavoriteModal({favorite, setSlidePosition, index})
     const [deleted, setDeleted] = useState(false);
     const [confirmed, setConfirmed] = useState(false);
     const [confirmedDisplay, setConfirmedDisplay] = useState("hidden");
-    console.log("DELETE MODAL FAVORITE ~~~~~>", favorite)
+
     const handleDelete = async (itemId) => {
       setDeleted(3)
       const timeout1 = setTimeout(() => {

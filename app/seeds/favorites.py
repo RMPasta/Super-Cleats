@@ -6,73 +6,73 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_favorites():
     favorite1 = Favorite(
-        type="item",
-        name='red cleats',
+        type="Item",
+        name='clown cleats',
         story='these things were amazing! i wish i could wear them everywhere',
         teams="Manchester United",
-        user_id='1'
+        user_id='4'
     )
     favorite2 = Favorite(
-        type="item",
+        type="Item",
         name='blue cleats',
         story='wow they are great and blue! i got some for my friend',
         teams="Manchester City",
         user_id='2'
     )
     favorite3 = Favorite(
-        type="item",
+        type="Item",
         name='green cleats',
         story='love these green cleats! i wore them to the london stadium just last week',
         teams="West Ham",
         user_id='3'
     )
     favorite4 = Favorite(
-        type="item",
-        name='yellow cleats',
+        type="Item",
+        name='classy orange',
         story='too sharp!!!',
         teams="Brentford",
         user_id='4'
     )
     favorite5 = Favorite(
-        type="item",
+        type="Item",
         name='beige cleats',
         story='i ran a bunch in these and i did get a blister. they look cool though',
         teams="Liverpool",
         user_id='5'
     )
     favorite6 = Favorite(
-        type="ticket",
+        type="Ticket",
         name='Everton vs Brighton',
         story='this was really a day to remember. class act out there today up there',
-        teams="Everton, Brighton",
+        teams="Everton vs Brighton",
         user_id='1'
     )
     favorite7 = Favorite(
-        type="ticket",
+        type="Ticket",
         name='Liverpool vs Chelsea',
         story='match of the season in my opinion!',
-        teams="Liverpool, Chelsea",
+        teams="Liverpool vs Chelsea",
         user_id='2'
     )
     favorite8 = Favorite(
-        type="ticket",
+        type="Ticket",
         name='Manchester City vs Tottenham Hotspur',
         story='what a day at the etihad... we crushed \'em',
-        teams="Manchester City, Tottenham Hotspur",
+        teams="Manchester City vs Tottenham Hotspur",
         user_id='3'
     )
     favorite9 = Favorite(
-        type="ticket",
+        type="Ticket",
         name='Brighton vs Manchester United',
         story='this was the best day of my life and i\'ve lived a lot of days',
-        teams="Brighton, Manchester United",
+        teams="Brighton vs Manchester United",
         user_id='4'
     )
     favorite10 = Favorite(
-        type="ticket",
+        type="Ticket",
         name='Leeds United vs West Ham',
         story='west ham were all over the place today. what a crazy time!',
-        teams="Leeds United, West Ham",
+        teams="Leeds United vs West Ham",
         user_id='5'
     )
 

@@ -140,11 +140,8 @@ export default function Items({ typeFilter, priceFilter, teamFilter }) {
     }
   };
 
-  const getFavorite = (item) => {
-    console.log(item)
-    const teamName = teams.find((team) => team.id === item.team_id);
-    console.log(teamName)
-    return usersFavorites.filter(favorite => favorite.teams === teamName)[0]
+  const getFavorite = (team) => {
+    return usersFavorites.filter(favorite => favorite.teams === team)[0]
   }
 
   // // FILTERED ARRAY FOR ALICE CAROUSEL
@@ -169,14 +166,14 @@ export default function Items({ typeFilter, priceFilter, teamFilter }) {
             className="favorite-button cursor-pointer"
             buttonText={(<i className="far fa-heart"></i>)}
             onItemClick={closeMenu}
-            modalComponent={<AddFavoriteForm type="Item" name={item.name}  img={item.item_img} teams={getItemTeam(item)} />}
+            modalComponent={<AddFavoriteForm type="Item" name={item.name}  img={item.item_img} teams={getItemTeam(item).name} />}
           /> :
           //this needs to be a "delete favorite modal"
           <OpenModalButton
             className="unfavorite-button cursor-pointer"
             buttonText={(<i className="fas fa-heart test-heart"></i>)}
             onTicketClick={closeMenu}
-            modalComponent={<DeleteFavoriteModal favorite={getFavorite(item)} setSlidePosition={setSlidePosition} index={i} />}
+            modalComponent={<DeleteFavoriteModal favorite={getFavorite(getItemTeam(item).name)} setSlidePosition={setSlidePosition} index={i} />}
           />
           : <></>
         )}
@@ -262,14 +259,14 @@ export default function Items({ typeFilter, priceFilter, teamFilter }) {
             className="favorite-button cursor-pointer"
             buttonText={(<i className="far fa-heart"></i>)}
             onItemClick={closeMenu}
-            modalComponent={<AddFavoriteForm type="Item" name={item.name}  img={item.item_img} teams={getItemTeam(item)} />}
+            modalComponent={<AddFavoriteForm type="Item" name={item.name}  img={item.item_img} teams={getItemTeam(item).name} />}
           /> :
           //this needs to be a "delete favorite modal"
           <OpenModalButton
             className="unfavorite-button cursor-pointer"
             buttonText={(<i className="fas fa-heart test-heart"></i>)}
             onTicketClick={closeMenu}
-            modalComponent={<DeleteFavoriteModal favorite={getFavorite(getItemTeam(item).name)} setSlidePosition={setSlidePosition1} index={i} />}
+            modalComponent={<DeleteFavoriteModal favorite={getFavorite(getItemTeam(item).name)} setSlidePosition={setSlidePosition} index={i} />}
           />
           : <></>
         )}
@@ -350,14 +347,14 @@ export default function Items({ typeFilter, priceFilter, teamFilter }) {
             className="favorite-button cursor-pointer"
             buttonText={(<i className="far fa-heart"></i>)}
             onItemClick={closeMenu}
-            modalComponent={<AddFavoriteForm type="Item" name={item.name}  img={item.item_img} teams={getItemTeam(item)} />}
+            modalComponent={<AddFavoriteForm type="Item" name={item.name}  img={item.item_img} teams={getItemTeam(item).name} />}
           /> :
           //this needs to be a "delete favorite modal"
           <OpenModalButton
             className="unfavorite-button cursor-pointer"
             buttonText={(<i className="fas fa-heart test-heart"></i>)}
             onTicketClick={closeMenu}
-            modalComponent={<DeleteFavoriteModal favorite={getFavorite(getItemTeam(item).name)} setSlidePosition={setSlidePosition2} index={i} />}
+            modalComponent={<DeleteFavoriteModal favorite={getFavorite(getItemTeam(item).name)} setSlidePosition={setSlidePosition} index={i} />}
           />
           : <></>
         )}
@@ -439,14 +436,14 @@ export default function Items({ typeFilter, priceFilter, teamFilter }) {
             className="favorite-button cursor-pointer"
             buttonText={(<i className="far fa-heart"></i>)}
             onItemClick={closeMenu}
-            modalComponent={<AddFavoriteForm type="Item" name={item.name}  img={item.item_img} teams={getItemTeam(item)} />}
+            modalComponent={<AddFavoriteForm type="Item" name={item.name}  img={item.item_img} teams={getItemTeam(item).name} />}
           /> :
           //this needs to be a "delete favorite modal"
           <OpenModalButton
             className="unfavorite-button cursor-pointer"
             buttonText={(<i className="fas fa-heart test-heart"></i>)}
             onTicketClick={closeMenu}
-            modalComponent={<DeleteFavoriteModal favorite={getFavorite(getItemTeam(item).name)} setSlidePosition={setSlidePosition3} index={i} />}
+            modalComponent={<DeleteFavoriteModal favorite={getFavorite(getItemTeam(item).name)} setSlidePosition={setSlidePosition} index={i} />}
           />
           : <></>
         )}
