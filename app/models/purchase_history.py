@@ -16,7 +16,6 @@ class PurchaseHistory(db.Model):
     updated_at = db.Column(db.Date, default=datetime.today)
 
     users = db.relationship("User", back_populates="purchase_history")
-    teams = db.relationship("Team", back_populates="purchase_history")
 
     def to_dict(self):
         return {

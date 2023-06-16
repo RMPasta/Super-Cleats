@@ -1,20 +1,27 @@
 .favorite-card {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
     background-color: rgba(255, 255, 255, 0.95);
-    width: 400px;
-    height: 200px;
+    width: 360px;
+    height: 120px;
+    border: 1px solid rgba(128, 128, 128, 0.285);
+    /* box-shadow: 1px 1px 1px rgba(128, 128, 128, 0.685); */
     border-radius: 20px;
-    padding: 5px;
+    padding: 40px 5px;
     margin: 0 10px;
+    font-size: 18px;
+}
+
+.favorite-name {
+    font-weight: bold;
 }
 
 .story {
     display: flex;
     flex-wrap: wrap;
     max-width: 400px;
-    overflow-y: scroll;
-    margin: 0 auto;
+    max-height: 150px;
+    margin-top: 20px;
 }

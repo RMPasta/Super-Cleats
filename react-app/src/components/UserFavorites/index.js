@@ -65,10 +65,8 @@ export default function UsersFavorites() {
 
   const usersFavoritesArr = usersFavorites.map(favorite => (
     <div className="favorite-card">
-
-        <div>Type: {favorite.type}</div>
-        <div>Name: {favorite.name}</div>
-        <div className="story">Story: {favorite.story}</div>
+        <div className="favorite-name">{favorite.name}</div>
+        <div className="story scrollable-y">Story: {favorite.story}</div>
     </div>
   ))
 

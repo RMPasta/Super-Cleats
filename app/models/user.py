@@ -16,6 +16,7 @@ class User(db.Model, UserMixin):
 
     items = db.relationship("Item", back_populates="users", cascade="all, delete-orphan")
     favorites = db.relationship("Favorite", back_populates="users", cascade="all, delete-orphan")
+    purchase_history = db.relationship("PurchaseHistory", back_populates="users", cascade="all, delete-orphan")
     carts = db.relationship("Cart", back_populates="users", cascade="all, delete-orphan")
 
     @property
