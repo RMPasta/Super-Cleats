@@ -7,5 +7,5 @@ from ..aws_helpers import ALLOWED_EXTENSIONS
 class CreatePurchaseForm(FlaskForm):
     price = IntegerField('Name', validators=[DataRequired()])
     order = IntegerField('Type', validators=[DataRequired()])
-    item_id = IntegerField('Story', validators=[DataRequired()])
-    user_id = IntegerField('Team', validators=[DataRequired()])
+    item_id = IntegerField('Item Id')
+    ticket_id = IntegerField('Ticket Id')

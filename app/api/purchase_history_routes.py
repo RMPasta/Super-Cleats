@@ -14,7 +14,7 @@ def purchase_history():
     return {'purchase_history': purchase.to_dict() for purchase in purchase_history}
 
 
-@purchase_history.route('/', methods=["POST"])
+@purchase_history_routes.route('/', methods=["POST"])
 def add_purchase_history():
     """
     Add purchase_history
@@ -28,6 +28,7 @@ def add_purchase_history():
             price=form.data['price'],
             order=form.data['order'],
             item_id=form.data['item_id'],
+            ticket_id=form.data['ticket_id'],
             user_id=user_id,
         )
         db.session.add(purchase)

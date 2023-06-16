@@ -10,7 +10,8 @@ class PurchaseHistory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     price = db.Column(db.Integer, nullable=False)
     order = db.Column(db.Integer, nullable=False)
-    item_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('items.id')))
+    item_id = db.Column(db.Integer)
+    ticket_id = db.Column(db.Integer)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     created_at = db.Column(db.Date, default=datetime.today)
     updated_at = db.Column(db.Date, default=datetime.today)
@@ -23,6 +24,7 @@ class PurchaseHistory(db.Model):
             'price': self.price,
             'order': self.order,
             'item_id': self.item_id,
+            'ticket_id': self.ticket_id,
             'user_id': self.user_id,
             'created_at': self.created_at,
             'updated_at': self.updated_at,

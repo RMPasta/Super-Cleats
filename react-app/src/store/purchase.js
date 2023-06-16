@@ -28,7 +28,7 @@ const addPurchase = (purchase) => ({
 const initialState = { purchases: null, userItems: null };
 
 export const getPurchasesThunk = () => async (dispatch) => {
-	const response = await fetch("/api/purchases/", {
+	const response = await fetch("/api/purchase_history/", {
 		headers: {
 			"Content-Type": "application/json",
 		},
@@ -43,7 +43,7 @@ export const getPurchasesThunk = () => async (dispatch) => {
 };
 
 export const addPurchaseThunk = (purchase) => async (dispatch) => {
-	const response = await fetch("/api/purchase_hisrtory", {
+	const response = await fetch("/api/purchase_history/", {
 		method: "POST",
 		body: purchase
 	});
