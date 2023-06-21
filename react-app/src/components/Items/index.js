@@ -97,7 +97,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter }) {
   //   const handleDragStart = (e) => e.preventDefault();
 
   const addToCart = async (item) => {
-    setAdding(true)
+    setAdding(true);
     // e.preventDefault();
     // e.stopPropagation();
     const newQty = quantity + 1;
@@ -113,7 +113,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter }) {
       })
     );
     await dispatch(getCartThunk(cart.id));
-    setAdding(false)
+    setAdding(false);
   };
 
   const removeItem = async (item) => {
@@ -320,7 +320,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter }) {
               </button> : <button className="add-to-cart cursor-pointer"              onClick={(e) => {
                   e.stopPropagation();
                   e.preventDefault();
-                }}>Loading</button>)
+                }}> Cart Loading</button>)
           ) : (
             (!adding ? <button
               className="remove-from-cart cursor-pointer"
@@ -523,7 +523,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter }) {
                 </button> : <button className="add-to-cart cursor-pointer"              onClick={(e) => {
                     e.stopPropagation();
                     e.preventDefault();
-                  }}>Loading</button>)
+                  }}>Cart Loading</button>)
             ) : (
               (!adding ? <button
                 className="remove-from-cart cursor-pointer"

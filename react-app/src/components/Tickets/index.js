@@ -27,6 +27,7 @@ export default function Tickets() {
   const userFavoritesTeams = usersFavorites?.map(favorite => favorite.teams)
   const [quantity, setQuantity] = useState(0);
   const [total, setTotal] = useState(0);
+  const [adding, setAdding] = useState(false);
   const [slidePosition1, setSlidePosition1] = useState(0);
   const [slidePosition2, setSlidePosition2] = useState(0);
   const [showMenu, setShowMenu] = useState(false);
@@ -54,6 +55,7 @@ export default function Tickets() {
   if (!tickets) return <h1>Loading...</h1>;
 
   const addToCart = async (ticket) => {
+    setAdding(true);
     // e.preventDefault();
     // e.stopPropagation();
     const newQty = quantity + 1;
@@ -69,6 +71,7 @@ export default function Tickets() {
       })
     );
     await dispatch(getCartThunk(cart.id));
+    setAdding(false);
   };
 
   const removeTicket = async (ticket) => {
@@ -115,28 +118,41 @@ export default function Tickets() {
       {user ? cartTickets &&
       cartTickets.filter((cartTicket) => cartTicket.id === ticket.id).length ===
         0 ? (
-        <button
-          className="add-to-cart cursor-pointer"
-          onClick={(e) => {
-            e.stopPropagation();
-            e.preventDefault();
-            setSlidePosition1(i);
-            addToCart(ticket);
-          }}
-        >
-          Add to cart
-        </button>
+          (!adding ? <button
+            className="add-to-cart cursor-pointer"
+            onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+              setSlidePosition1(i);
+              addToCart(ticket);
+            }}
+          >
+            Add to cart
+          </button> : <button className="add-to-cart cursor-pointer"              onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+            }}>Cart Loading</button>)
       ) : (
-        <button
+        (!adding ? <button
           className="remove-from-cart cursor-pointer"
           onClick={(e) => {
             e.stopPropagation();
+            e.preventDefault();
             setSlidePosition1(i);
             removeTicket(ticket);
           }}
         >
           Remove from cart
-        </button>
+        </button> :
+        <button
+        className="remove-from-cart cursor-pointer"
+        onClick={(e) => {
+          e.stopPropagation();
+          e.preventDefault();
+        }}
+      >
+        Cart Loading
+      </button>)
       ) : <></>}
                 {( //if item does not belong to user, render one of the add or remove favorite buttons
                 user ?
@@ -173,28 +189,41 @@ export default function Tickets() {
       {user ? cartTickets &&
       cartTickets.filter((cartTicket) => cartTicket.id === ticket.id).length ===
         0 ? (
-        <button
-          className="add-to-cart cursor-pointer"
-          onClick={(e) => {
-            e.stopPropagation();
-            e.preventDefault();
-            setSlidePosition2(i);
-            addToCart(ticket);
-          }}
-        >
-          Add to cart
-        </button>
+          (!adding ? <button
+            className="add-to-cart cursor-pointer"
+            onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+              setSlidePosition1(i);
+              addToCart(ticket);
+            }}
+          >
+            Add to cart
+          </button> : <button className="add-to-cart cursor-pointer"              onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+            }}>Cart Loading</button>)
       ) : (
-        <button
+        (!adding ? <button
           className="remove-from-cart cursor-pointer"
           onClick={(e) => {
             e.stopPropagation();
-            setSlidePosition2(i);
+            e.preventDefault();
+            setSlidePosition1(i);
             removeTicket(ticket);
           }}
         >
           Remove from cart
-        </button>
+        </button> :
+        <button
+        className="remove-from-cart cursor-pointer"
+        onClick={(e) => {
+          e.stopPropagation();
+          e.preventDefault();
+        }}
+      >
+        Cart Loading
+      </button>)
       ) : <></>}
                 {( //if item does not belong to user, render one of the add or remove favorite buttons
                 user ?
