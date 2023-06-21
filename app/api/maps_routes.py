@@ -12,5 +12,4 @@ def maps_key():
     """
     Get google maps key
     """
-    print(key)
     return {'googleMapsAPIKey': key}

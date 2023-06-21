@@ -29,6 +29,8 @@ export default function UserPurchaseHistory() {
         {usersPurchases.length > 0 ? usersPurchases.map(purchase => {
           const item = items?.find(item => item.id === purchase.item_id);
           const ticket = tickets?.find(ticket => ticket.id === purchase.ticket_id);
+
+          if (!ticket) return <></>
           return (
             <div className="purchase-card" key={purchase.id}>
                   {purchase.item_id ? (

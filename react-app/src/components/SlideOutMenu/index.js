@@ -113,12 +113,14 @@ export default function SlideOutMenu({ setTeamPicked }) {
               <a
                 className="a-wrapper"
                 href="https://github.com/RMPasta/Super-Cleats"
-              >
+                target="blank"
+                >
                 GitHub Repo <i className="fab fa-github"></i>
               </a>
               <a
                 className="a-wrapper"
                 href="https://www.linkedin.com/in/ryan-malmos/"
+                target="blank"
               >
                 Linkedin <i className="fab fa-linkedin"></i>
               </a>

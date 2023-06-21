@@ -36,14 +36,14 @@ export default function CheckOutModal({ isNotMobile, closeMenu }) {
         dispatch(addPurchaseThunk(formData))
       })
       setLoading(false);
-    }, [3000]);
+    }, [2000]);
     const timeout2 = setTimeout(async () => {
       await dispatch(clearCartThunk(cart.id));
       await dispatch(getCartThunk(cart.id));
       await dispatch(getPurchasesThunk())
       closeModal();
       closeMenu();
-    }, [5000]);
+    }, [3000]);
     return () => {
       clearTimeout(timeout1);
       clearTimeout(timeout2);

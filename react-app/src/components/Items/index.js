@@ -27,6 +27,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter }) {
   const userFavoritesNames = usersFavorites?.map(favorite => favorite.name)
   const [quantity, setQuantity] = useState(0);
   const [total, setTotal] = useState(0);
+  const [adding, setAdding] = useState(false);
   const [filtered, setFiltered] = useState(items);
   const [slidePosition, setSlidePosition] = useState(0);
   const [slidePosition1, setSlidePosition1] = useState(0);
@@ -91,10 +92,12 @@ export default function Items({ typeFilter, priceFilter, teamFilter }) {
 
   if (!items) return <h1>Loading...</h1>;
   // if (!cart) return <h1>Loading...</h1>
+  // if (adding) return <div>ADDING</div>
 
   //   const handleDragStart = (e) => e.preventDefault();
 
   const addToCart = async (item) => {
+    setAdding(true)
     // e.preventDefault();
     // e.stopPropagation();
     const newQty = quantity + 1;
@@ -110,6 +113,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter }) {
       })
     );
     await dispatch(getCartThunk(cart.id));
+    setAdding(false)
   };
 
   const removeItem = async (item) => {
@@ -144,6 +148,10 @@ export default function Items({ typeFilter, priceFilter, teamFilter }) {
     return usersFavorites.filter(favorite => favorite.teams === team)[0]
   }
 
+  // each array for the carousel has nested ternaries to prevent quantity and total
+  // bug in the cart. these change the button to a none functional "loading" button
+  // to prevent quantity and totals being skipped during button clicks
+
   // // FILTERED ARRAY FOR ALICE CAROUSEL
   const filteredArr = filtered?.map((item, i) =>
     item ? (
@@ -161,7 +169,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter }) {
         <img className="card-img" src={item?.item_img} alt={item.name} />
         {( //if item does not belong to user, render one of the add or remove favorite buttons
           user && user.id !== item.user_id ?
-          !userFavoritesNames.includes(item.name) ?
+          !userFavoritesNames?.includes(item.name) ?
           <OpenModalButton
             className="favorite-button cursor-pointer"
             buttonText={(<i className="far fa-heart"></i>)}
@@ -192,27 +200,41 @@ export default function Items({ typeFilter, priceFilter, teamFilter }) {
           cartItems &&
           cartItems.filter((cartItem) => cartItem.id === item.id).length ===
             0 ? (
-            <button
+            (!adding ? <button
               className="add-to-cart cursor-pointer"
               onClick={(e) => {
                 e.stopPropagation();
+                e.preventDefault();
                 setSlidePosition(i);
                 addToCart(item);
               }}
             >
               Add to cart
-            </button>
+            </button> : <button className="add-to-cart cursor-pointer"              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+              }}>Cart Loading</button>)
           ) : (
-            <button
+            (!adding ? <button
               className="remove-from-cart cursor-pointer"
               onClick={(e) => {
                 e.stopPropagation();
+                e.preventDefault();
                 setSlidePosition(i);
                 removeItem(item);
               }}
             >
               Remove from cart
-            </button>
+            </button> :
+            <button
+            className="remove-from-cart cursor-pointer"
+            onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+            }}
+          >
+            Cart Loading
+          </button>)
           )
         ) : (
           user && (
@@ -254,7 +276,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter }) {
         <img className="card-img" src={item.item_img} alt={item.name} />
         {( //if item does not belong to user, render one of the add or remove favorite buttons
           user && user.id !== item.user_id ?
-          !userFavoritesNames.includes(item.name) ?
+          !userFavoritesNames?.includes(item.name) ?
           <OpenModalButton
             className="favorite-button cursor-pointer"
             buttonText={(<i className="far fa-heart"></i>)}
@@ -285,27 +307,41 @@ export default function Items({ typeFilter, priceFilter, teamFilter }) {
           cartItems &&
           cartItems.filter((cartItem) => cartItem.id === item.id).length ===
             0 ? (
-            <button
-              className="add-to-cart cursor-pointer"
-              onClick={(e) => {
-                e.stopPropagation();
-                setSlidePosition(i);
-                addToCart(item);
-              }}
-            >
-              Add to cart
-            </button>
+              (!adding ? <button
+                className="add-to-cart cursor-pointer"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  setSlidePosition(i);
+                  addToCart(item);
+                }}
+              >
+                Add to cart
+              </button> : <button className="add-to-cart cursor-pointer"              onClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                }}>Loading</button>)
           ) : (
-            <button
+            (!adding ? <button
               className="remove-from-cart cursor-pointer"
               onClick={(e) => {
                 e.stopPropagation();
+                e.preventDefault();
                 setSlidePosition(i);
                 removeItem(item);
               }}
             >
               Remove from cart
-            </button>
+            </button> :
+            <button
+            className="remove-from-cart cursor-pointer"
+            onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+            }}
+          >
+            Cart Loading
+          </button>)
           )
         ) : (
           user && (
@@ -342,7 +378,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter }) {
         <img className="card-img" src={item.item_img} alt={item.name} />
         {( //if item does not belong to user, render one of the add or remove favorite buttons
           user && user.id !== item.user_id ?
-          !userFavoritesNames.includes(item.name) ?
+          !userFavoritesNames?.includes(item.name) ?
           <OpenModalButton
             className="favorite-button cursor-pointer"
             buttonText={(<i className="far fa-heart"></i>)}
@@ -372,28 +408,41 @@ export default function Items({ typeFilter, priceFilter, teamFilter }) {
             cartItems &&
             cartItems.filter((cartItem) => cartItem.id === item.id).length ===
               0 ? (
-              <button
-                className="add-to-cart cursor-pointer"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  e.preventDefault();
-                  setSlidePosition(i);
-                  addToCart(item);
-                }}
-              >
-                Add to cart
-              </button>
+                (!adding ? <button
+                  className="add-to-cart cursor-pointer"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    setSlidePosition(i);
+                    addToCart(item);
+                  }}
+                >
+                  Add to cart
+                </button> : <button className="add-to-cart cursor-pointer"              onClick={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                  }}>Loading</button>)
             ) : (
-              <button
+              (!adding ? <button
                 className="remove-from-cart cursor-pointer"
                 onClick={(e) => {
                   e.stopPropagation();
+                  e.preventDefault();
                   setSlidePosition(i);
                   removeItem(item);
                 }}
               >
                 Remove from cart
-              </button>
+              </button> :
+              <button
+              className="remove-from-cart cursor-pointer"
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+              }}
+            >
+              Cart Loading
+            </button>)
             )
           ) : (
             user && (
@@ -431,7 +480,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter }) {
         <img className="card-img" src={item.item_img} alt={item.name} />
         {( //if item does not belong to user, render one of the add or remove favorite buttons
           user && user.id !== item.user_id ?
-          !userFavoritesNames.includes(item.name) ?
+          !userFavoritesNames?.includes(item.name) ?
           <OpenModalButton
             className="favorite-button cursor-pointer"
             buttonText={(<i className="far fa-heart"></i>)}
@@ -461,28 +510,41 @@ export default function Items({ typeFilter, priceFilter, teamFilter }) {
             cartItems &&
             cartItems.filter((cartItem) => cartItem.id === item.id).length ===
               0 ? (
-              <button
-                className="add-to-cart cursor-pointer"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setSlidePosition(i);
-                  // e.preventDefault();
-                  addToCart(item);
-                }}
-              >
-                Add to cart
-              </button>
+                (!adding ? <button
+                  className="add-to-cart cursor-pointer"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    setSlidePosition(i);
+                    addToCart(item);
+                  }}
+                >
+                  Add to cart
+                </button> : <button className="add-to-cart cursor-pointer"              onClick={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                  }}>Loading</button>)
             ) : (
-              <button
+              (!adding ? <button
                 className="remove-from-cart cursor-pointer"
                 onClick={(e) => {
                   e.stopPropagation();
+                  e.preventDefault();
                   setSlidePosition(i);
                   removeItem(item);
                 }}
               >
                 Remove from cart
-              </button>
+              </button> :
+              <button
+              className="remove-from-cart cursor-pointer"
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+              }}
+            >
+              Cart Loading
+            </button>)
             )
           ) : (
             user && (
@@ -533,7 +595,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter }) {
             mouseTracking
             preventEventOnTouchMove
             disableDotsControls={isMobile}
-            activeIndex={slidePosition}
+            activeIndex={slidePosition1}
             responsive={responsive}
             items={cleatsArr}
           />
@@ -545,7 +607,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter }) {
             mouseTracking
             preventEventOnTouchMove
             disableDotsControls={isMobile}
-            activeIndex={slidePosition}
+            activeIndex={slidePosition2}
             responsive={responsive}
             items={socksArr}
           />
@@ -557,7 +619,7 @@ export default function Items({ typeFilter, priceFilter, teamFilter }) {
             mouseTracking
             preventEventOnTouchMove
             disableDotsControls={isMobile}
-            activeIndex={slidePosition}
+            activeIndex={slidePosition3}
             responsive={responsive}
             items={ballArr}
           />

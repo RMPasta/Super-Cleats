@@ -94,71 +94,87 @@ export default function Cart({ setShowMenu }) {
       </div>
       <div className="map-container  scrollable-y">
         {cartItems &&
-          cartItems.map((item) => (
-            <div
-              className="cart-item-info cursor-pointer"
-              key={item.id}
-              onClick={() => {
-                history.push(`/item/${item.id}`);
-                setShowMenu(false);
-              }}
-            >
-              <div className="item-info">
-                <div>
-                  {item.name.length > 25
-                    ? item.name.slice(0, 25) + "..."
-                    : item.name}
+          cartItems.map((item) => {
+            let clicked = false;
+            return (
+              <div
+                className="cart-item-info cursor-pointer"
+                key={item.id}
+                onClick={() => {
+                  history.push(`/item/${item.id}`);
+                  setShowMenu(false);
+                }}
+              >
+                <div className="item-info">
+                  <div>
+                    {item.name.length > 25
+                      ? item.name.slice(0, 25) + "..."
+                      : item.name}
+                  </div>
                 </div>
-              </div>
-              <div className="image-trash-container">
-                <div>${item.price}</div>
-                <img
-                  src={item.item_img}
-                  className="cart-item-image"
-                  alt={item.name}
-                />
-                <i
+                <div className="image-trash-container">
+                  <div>${item.price}</div>
+                  <img
+                    src={item.item_img}
+                    className="cart-item-image"
+                    alt={item.name}
+                  />
+                  {!clicked ?
+                  <i
                   className="fa fa-trash cursor-pointer"
                   id="cart-trash"
                   onClick={(e) => {
                     e.stopPropagation();
                     removeItem(item);
                   }}
-                ></i>
-              </div>
-            </div>
-          ))}
-        {cartTickets &&
-          cartTickets.map((ticket) => (
-            <div
-              className="cart-item-info cursor-pointer"
-              key={ticket.id}
-              // onClick={() => {
-              //   history.push(`/item/${item.id}`);
-              //   setShowMenu(false);
-              // }}
-            >
-              <div className="item-info">
-                <div>{ticket.match}</div>
-              </div>
-              <div className="image-trash-container">
-                <div>${ticket.price}</div>
-                <img
-                  src={ticket.ticket_img}
-                  className="cart-item-image"
-                  alt={ticket.match}
-                />
+                ></i> :
                 <i
+                className="fa fa-trash cursor-pointer"
+                id="cart-trash"
+                ></i>}
+                </div>
+              </div>
+            )
+          })}
+        {cartTickets &&
+          cartTickets.map((ticket) => {
+            let clicked = false;
+            return (
+              <div
+                className="cart-item-info cursor-pointer"
+                key={ticket.id}
+                // onClick={() => {
+                //   history.push(`/item/${item.id}`);
+                //   setShowMenu(false);
+                // }}
+              >
+                <div className="item-info">
+                  <div>{ticket.match}</div>
+                </div>
+                <div className="image-trash-container">
+                  <div>${ticket.price}</div>
+                  <img
+                    src={ticket.ticket_img}
+                    className="cart-item-image"
+                    alt={ticket.match}
+                  />
+                  {!clicked ?
+                  <i
                   className="fa fa-trash cursor-pointer"
                   id="cart-trash"
                   onClick={(e) => {
                     e.stopPropagation();
                     removeTicket(ticket);
                   }}
-                ></i>
+                ></i> :
+                <i
+                className="fa fa-trash cursor-pointer"
+                id="cart-trash"
+                ></i>}
+                </div>
               </div>
-            </div>
-          ))}
+            )
+          })}
       </div>
       <div className="subtotal-container">
         <div className="subtotal">Subtotal</div>

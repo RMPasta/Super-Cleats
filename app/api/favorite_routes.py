@@ -26,14 +26,7 @@ def add_favorite():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         user_id = current_user.id
-        # favorite_img=form.data['favorite_img']
-        # print("BACKEND favorite_img ~~~~~~~>", favorite_img)
-        # favorite_img.filename = get_unique_filename(favorite_img.filename)
-        # upload = upload_file_to_s3(favorite_img)
 
-        # if "url" not in upload:
-        #     return {'errors': [upload]}
-        print("FORM DATA ~~~~~~~~~~~~~~~> ", form.data)
         favorite = Favorite(
             name=form.data['name'],
             type=form.data['type'],
