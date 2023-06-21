@@ -9,28 +9,28 @@ export default function DeleteModal({item, setSlidePosition, index}) {
     const { closeModal } = useModal();
     const dispatch = useDispatch();
     const [deleted, setDeleted] = useState(false)
-    const [explosion, setExplosion] = useState(false)
-    const [explosionDisplay, setExplosionDisplay] = useState("hidden")
+    const [confirmed, setConfirmed] = useState(false);
+    const [confirmedDisplay, setConfirmedDisplay] = useState("hidden");
 
-    const handleDelete = async (itemId) => {
-      setDeleted(3)
-      const timeout1 = setTimeout(() => {
-        setDeleted(2)
-      }, [900])
-      const timeout2 = setTimeout(() => {
-        setDeleted(1)
-      }, [1800])
-      const timeout3 = setTimeout(async () => {
-        setExplosion(true)
-        await dispatch(deleteItemThunk(itemId))
-        await dispatch(getItemsThunk())
-      }, [2700])
-      const timeout4 = setTimeout(async () => {
-        setExplosionDisplay("explosion")
-      }, [2400])
-      const timeout5 = setTimeout(async () => {
-        closeModal();
-      }, [5500])
+      const handleDelete = async (itemId) => {
+        setDeleted(3)
+        const timeout1 = setTimeout(() => {
+          setDeleted(2)
+        }, [700])
+        const timeout2 = setTimeout(() => {
+          setDeleted(1)
+        }, [1400])
+        const timeout3 = setTimeout(async () => {
+          setConfirmed(true)
+          await dispatch(deleteItemThunk(itemId))
+          await dispatch(getItemsThunk())
+        }, [2100])
+        const timeout4 = setTimeout(async () => {
+          setConfirmedDisplay("confirmed")
+        }, [2000])
+        const timeout5 = setTimeout(async () => {
+          closeModal();
+        }, [3000])
       setSlidePosition(index);
         return () => {
           clearTimeout(timeout1)
@@ -52,9 +52,9 @@ export default function DeleteModal({item, setSlidePosition, index}) {
           </div>
         </div> :
         <div>
-          {!explosion ?
-          <div className='countdown'>{deleted}</div> :
-          <img src={gif} alt="explosion" className={explosionDisplay} />}
+            {!confirmed ?
+            <div className='countdown'>{deleted}</div> :
+            <i alt="confirmation" className={confirmedDisplay + " fas fa-check"} ></i>}
         </div>}
       </div>
     </>
