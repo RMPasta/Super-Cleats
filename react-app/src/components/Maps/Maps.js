@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import {
   GoogleMap,
@@ -13,10 +13,12 @@ const center = {
 };
 
 function Maps({ apiKey }) {
-    const tickets = useSelector((state) => state.ticket.tickets);
-    const [hoveredMarker, setHoveredMarker] = useState(null);
-    const [zoomLevel, setZoomLevel] = useState(8);
-    const [mapCenter, setMapCenter] = useState(center);
+  const tickets = useSelector((state) => state.ticket.tickets);
+  const [hoveredMarkerName, setHoveredMarkerName] = useState(null);
+  const [zoomLevel, setZoomLevel] = useState(8);
+  const [mapCenter, setMapCenter] = useState(center);
+  const [currentLocation, setCurrentLocation] = useState(null);
+  const [typeId, setTypeId] = useState("roadmap");
 
   const containerStyle = {
     width: "100%",
