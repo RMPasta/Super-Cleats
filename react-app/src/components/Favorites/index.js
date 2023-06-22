@@ -17,9 +17,9 @@ export default function Favorites() {
 
   const favoritesArr = favorites?.map((favorite, i) => (
     <div className="favorite-card">
-    <div className="favorite-name">{favorite.name}</div>
-    <div className="story scrollable-y">Story: {favorite.story}</div>
-</div>
+      <div className="favorite-name">{favorite.name}</div>
+      <div className="story scrollable-y">Story: {favorite.story}</div>
+    </div>
   ));
 
   const responsive = {
