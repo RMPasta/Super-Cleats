@@ -33,26 +33,70 @@ export default function SearchBar({ searchType }) {
       const searchResultsClassName = "search-results scrollable-y" + (showMenu ? " results-visible" : " results-hidden");
 
     if (!items) return <></>
+    if (!tickets) return <></>
 
   return (
     <div ref={searchRef}>
         <input
         type="text"
-        // value={searchInput}
+        value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
         placeholder={"Search " + (searchType === "tickets" ? "Tickets" : "Products") + "..."}
         onFocus={() => setShowMenu(true)}
         />
-        {/* showResults && searchInput.length > 0 ? "search-results search-results-visible scrollable-y" : "search-results search-results-hidden scrollable-y" */}
         <div className={searchResultsClassName}>
-            {searchType === "items" && items.filter(item => item.name.toLowerCase().includes(searchInput.toLowerCase()) || item.description.toLowerCase().includes(searchInput.toLowerCase())).slice(0, 20).map(item => (
-                <div key={item.id} onClick={(e) => {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    setShowMenu(false)
-                    history.push(`/item/${item.id}`);
-                }}>{item.name}</div>
-            ))}
+            {searchType === "items" ? items.filter(item => item.name.toLowerCase().includes(searchInput.toLowerCase()) ||
+            item.description.toLowerCase().includes(searchInput.toLowerCase())).slice(0, 10).map(item => (
+                <div
+                className="cart-item-info cursor-pointer result-card"
+                key={item.id}
+                onClick={() => {
+                  history.push(`/item/${item.id}`);
+                  setShowMenu(false);
+                }}
+              >
+                <div className="item-info">
+                  <div>
+                    {item.name.length > 25
+                      ? item.name.slice(0, 25) + "..."
+                      : item.name}
+                  </div>
+                </div>
+                <div className="image-trash-container">
+                  <div>${item.price}</div>
+                  <img
+                    src={item.item_img}
+                    className="cart-item-image"
+                    alt={item.name}
+                  />
+                </div>
+              </div>
+            )) :
+            tickets.filter(ticket => ticket.match.toLowerCase().includes(searchInput.toLowerCase()) ||
+            ticket.stadium.toLowerCase().includes(searchInput.toLowerCase())).map((ticket) => {
+                return (
+                  <div
+                    className="cart-item-info cursor-pointer result-card"
+                    key={ticket.id}
+                    // onClick={() => {
+                    //   history.push(`/item/${item.id}`);
+                    //   setShowMenu(false);
+                    // }}
+                  >
+                    <div className="item-info">
+                      <div>{ticket.match}</div>
+                    </div>
+                    <div className="image-trash-container">
+                      <div>${ticket.price}</div>
+                      <img
+                        src={ticket.ticket_img}
+                        className="cart-item-image"
+                        alt={ticket.match}
+                      />
+                    </div>
+                  </div>
+            )
+            })}
         </div>
     </div>
   )

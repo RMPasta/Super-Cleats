@@ -57,6 +57,7 @@ function Navigation({ setTeamPicked, teamPicked, isLoaded, setSearchInput, setSe
               className="logo cursor-pointer"
               onClick={() => {
                 history.push("/");
+                setSearchType("items")
               }}
               >
               SUPER <p className="cleats">CLEATS</p>
@@ -91,14 +92,14 @@ function Navigation({ setTeamPicked, teamPicked, isLoaded, setSearchInput, setSe
               buttonText="Create Item"
               onItemClick={closeMenu}
               modalComponent={<AddItemForm showMenu={showMenu} />}
-            />
+              />
             {teamPicked && (
               <img
-                className="favorite-team-nav"
-                src={team.badge_img}
-                alt={team.name}
+              className="favorite-team-nav"
+              src={team.badge_img}
+              alt={team.name}
               />
-            )}
+              )}
             <div className="cart-section-nav">
               {cart.quantity}
               <SlideOutCart />
@@ -113,20 +114,23 @@ function Navigation({ setTeamPicked, teamPicked, isLoaded, setSearchInput, setSe
               className="logo cursor-pointer"
               onClick={() => {
                 history.push("/");
+                setSearchType("items")
               }}
-            >
+              >
               SUPER CLEATS
             </div>
             <div className="pill-shape">
               <button className={"products" + (isProducts ? " filled" : "")} onClick={() => {
                 history.push('/')
                 setIsProducts(true)
+                setSearchType("items")
               }}>
                 Products
               </button>
               <button className={"tickets" + (!isProducts ? " filled" : "")} onClick={() => {
                 history.push('/tickets')
                 setIsProducts(false)
+                setSearchType("tickets")
               }}>
                 Tickets
               </button>
@@ -137,9 +141,9 @@ function Navigation({ setTeamPicked, teamPicked, isLoaded, setSearchInput, setSe
             {/* <button className='cart-button-nav cursor-pointer'>Cart</button> */}
             {teamPicked && (
               <img
-                className="favorite-team-nav"
-                src={team.badge_img}
-                alt={team.name}
+              className="favorite-team-nav"
+              src={team.badge_img}
+              alt={team.name}
               />
             )}
             <OpenModalButton

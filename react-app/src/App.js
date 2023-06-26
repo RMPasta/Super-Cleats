@@ -25,7 +25,7 @@ function App() {
   const [typeFilter, setTypeFilter] = useState("All");
   const [priceFilter, setPriceFilter] = useState("All");
   const [teamFilter, setTeamFilter] = useState("All");
-  const [searchType, setSearchType] = useState("")
+  const [searchType, setSearchType] = useState("items")
   const teamId = localStorage.getItem("teamId");
 
   useEffect(() => {
