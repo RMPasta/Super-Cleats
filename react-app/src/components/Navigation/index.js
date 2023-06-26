@@ -10,8 +10,9 @@ import SlideOutMenu from "../SlideOutMenu";
 import SlideOutCart from "../SlideOutCart";
 import { getCartThunk } from "../../store/cart";
 import "./Navigation.css";
+import SearchBar from "../SearchBar";
 
-function Navigation({ setTeamPicked, teamPicked, isLoaded }) {
+function Navigation({ setTeamPicked, teamPicked, isLoaded, setSearchInput, setSearchType, searchType }) {
   const sessionUser = useSelector((state) => state.session.user);
   const cart = useSelector((state) => state.cart.cart);
   const teams = useSelector((state) => state.team.teams);
@@ -56,6 +57,7 @@ function Navigation({ setTeamPicked, teamPicked, isLoaded }) {
               className="logo cursor-pointer"
               onClick={() => {
                 history.push("/");
+                setSearchType("items")
               }}
               >
               SUPER <p className="cleats">CLEATS</p>
@@ -64,18 +66,21 @@ function Navigation({ setTeamPicked, teamPicked, isLoaded }) {
               <button className={"products" + (isProducts ? " filled" : "")} onClick={() => {
                 history.push('/')
                 setIsProducts(true)
+                setSearchType("items")
               }}>
                 Products
               </button>
               <button className={"tickets" + (!isProducts ? " filled" : "")} onClick={() => {
                 history.push('/tickets')
                 setIsProducts(false)
+                setSearchType("tickets")
               }}>
                 Tickets
               </button>
 
             </div>
           </li>
+          <li className="search-container"><SearchBar setSearchInput={setSearchInput} searchType={searchType} /></li>
           <li className="nav-right-side-logged-in">
             <div className="user-profile-button">
               <NavLink exact to="/user" style={linkStyle}>
@@ -87,14 +92,14 @@ function Navigation({ setTeamPicked, teamPicked, isLoaded }) {
               buttonText="Create Item"
               onItemClick={closeMenu}
               modalComponent={<AddItemForm showMenu={showMenu} />}
-            />
+              />
             {teamPicked && (
               <img
-                className="favorite-team-nav"
-                src={team.badge_img}
-                alt={team.name}
+              className="favorite-team-nav"
+              src={team.badge_img}
+              alt={team.name}
               />
-            )}
+              )}
             <div className="cart-section-nav">
               {cart.quantity}
               <SlideOutCart />
@@ -109,20 +114,23 @@ function Navigation({ setTeamPicked, teamPicked, isLoaded }) {
               className="logo cursor-pointer"
               onClick={() => {
                 history.push("/");
+                setSearchType("items")
               }}
-            >
+              >
               SUPER CLEATS
             </div>
             <div className="pill-shape">
               <button className={"products" + (isProducts ? " filled" : "")} onClick={() => {
                 history.push('/')
                 setIsProducts(true)
+                setSearchType("items")
               }}>
                 Products
               </button>
               <button className={"tickets" + (!isProducts ? " filled" : "")} onClick={() => {
                 history.push('/tickets')
                 setIsProducts(false)
+                setSearchType("tickets")
               }}>
                 Tickets
               </button>
@@ -133,9 +141,9 @@ function Navigation({ setTeamPicked, teamPicked, isLoaded }) {
             {/* <button className='cart-button-nav cursor-pointer'>Cart</button> */}
             {teamPicked && (
               <img
-                className="favorite-team-nav"
-                src={team.badge_img}
-                alt={team.name}
+              className="favorite-team-nav"
+              src={team.badge_img}
+              alt={team.name}
               />
             )}
             <OpenModalButton

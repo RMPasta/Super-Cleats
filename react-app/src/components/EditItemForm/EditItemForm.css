@@ -21,13 +21,10 @@
     flex-direction: column;
 }
 
-.edit-item-inputs > label > input {
-    width: 190px;
-}
-
 .edit-img-tag {
     width: 180px;
     align-self: center;
+    padding: 20px 0;
 }
 
 .error-container {

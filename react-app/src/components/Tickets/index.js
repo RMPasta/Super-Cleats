@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { getTicketsThunk } from "../../store/ticket";
 import OpenModalButton from "../OpenModalButton";
 import AliceCarousel from "react-alice-carousel";
@@ -17,6 +18,7 @@ import "./Tickets.css";
 
 export default function Tickets() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const user = useSelector((state) => state.session.user);
   const tickets = useSelector((state) => state.ticket.tickets);
   const cart = useSelector((state) => state.cart.cart);
@@ -104,7 +106,10 @@ export default function Tickets() {
   }
 
   const ticketsArr1 = tickets.slice(0, tickets.length / 2).map((ticket, i) => (
-    <div className="ticket-card">
+    <div className="ticket-card" onClick={(e) => {
+      e.stopPropagation();
+      history.push(`/ticket/${ticket.id}`)
+    }}>
 
       <img
         className="ticket-img"
@@ -176,7 +181,10 @@ export default function Tickets() {
   ));
 
   const ticketsArr2 = tickets.slice(tickets.length / 2).map((ticket, i) => (
-    <div className="ticket-card">
+    <div className="ticket-card" onClick={(e) => {
+      e.stopPropagation();
+      history.push(`/ticket/${ticket.id}`)
+    }}>
       <img
         className="ticket-img"
         src={ticket.ticket_img}

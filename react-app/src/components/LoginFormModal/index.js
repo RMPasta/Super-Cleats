@@ -66,27 +66,28 @@ function LoginFormModal() {
         </div> */}
       <h1 className="login-h1">Log In</h1>
         <label>
-          Email
+        <div className="label-error">
+              Email
+              {errors.email && <p className="error-text">{errors.email}</p>}
+            </div>
           <input
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             />
-            <div className="error">
-              {errors.password && <p>{errors.password}</p>}
-            </div>
         </label>
         <label>
-          Password
+        <div className="label-error">
+              Password
+              {errors.password && <p className="error-text">{errors.password}</p>}
+            </div>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             />
-            <div className="error">
-              {errors.email && <p>{errors.email}</p>}
-            </div>
         </label>
+      <div className="login-cushion"></div>
         <button className="submit-button cursor-pointer" type="submit">Log In</button>
       </form>
         <button className="demo-button cursor-pointer" onClick={() => demoUser()}>Demo User</button>

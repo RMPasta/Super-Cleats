@@ -97,48 +97,48 @@ function SignupFormModal() {
         	</div> */}
 			<h1>Sign Up</h1>
 				<label>
+				<div className="label-error">
 					Email
+					{errors.email && <p className="error-text">{errors.email}</p>}
+				</div>
 					<input
 						type="text"
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
 					/>
-					<div className="error">
-						{errors.email && <p>{errors.email}</p>}
-					</div>
 				</label>
 				<label>
+				<div className="label-error">
 					Username
+					{errors.username && <p className="error-text">{errors.username}</p>}
+				</div>
 					<input
 						type="text"
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
 					/>
-					<div className="error">
-						{errors.username && <p>{errors.username}</p>}
-					</div>
 				</label>
 				<label>
-					Password
+					<div className="label-error">
+						Password
+						{errors.password && <p className="error-text">{errors.password}</p>}
+					</div>
 					<input
 						type="password"
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
 					/>
-					<div className="error">
-						{errors.password && <p>{errors.password}</p>}
-					</div>
 				</label>
 				<label>
-					Confirm Password
+					<div className="label-error">
+						Confirm Password
+					</div>
+
 					<input
 						type="password"
 						value={confirmPassword}
 						onChange={(e) => setConfirmPassword(e.target.value)}
 					/>
-					<div className="error">
-						{/* {errors.password && <p>{errors.password}</p>} */}
-					</div>
 				</label>
 				<button type="submit" className="submit-button cursor-pointer">Sign Up</button>
 			</form>

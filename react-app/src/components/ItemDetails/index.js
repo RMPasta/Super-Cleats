@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from 'react-router-dom'
 import { getItemsThunk } from '../../store/item';
 import { addToCartThunk, getCartThunk, removeFromCartThunk } from '../../store/cart';
+import OpenModalButton from "../OpenModalButton";
+import AddFavoriteForm from "../AddFavoriteForm";
+import DeleteFavoriteModal from "../DeleteFavoriteModal";
 import './ItemDetails.css'
 
 export default function ItemDetails() {
@@ -12,10 +15,15 @@ export default function ItemDetails() {
     const user = useSelector(state => state.session.user);
     const items = useSelector(state => state.item.items);
     const teams = useSelector(state => state.team.teams);
+    const favorites = useSelector((state) => state.favorite.favorites);
+    const usersFavorites = favorites?.filter((favorite) => favorite.user_id === user?.id);
+    const userFavoritesNames = usersFavorites?.map(favorite => favorite.name)
     const cart = useSelector(state => state.cart.cart);
     const cartItems = useSelector(state => state.cart.cartItems);
     const [quantity, setQuantity] = useState(0);
     const [total, setTotal] = useState(0);
+    const [showMenu, setShowMenu] = useState(false);
+    const closeMenu = () => setShowMenu(false);
 
     useEffect(() => {
         if (cart) setQuantity(cart.quantity)
@@ -48,6 +56,24 @@ export default function ItemDetails() {
         return team.badge_img;
     }
 
+    const getItemTeam = (item) => {
+        if (teams && item) {
+          const team = teams.find((team) => team.id === item.team_id);
+          return team;
+        }
+      };
+
+      const getFavorite = (team) => {
+        return usersFavorites.filter(favorite => favorite.teams === team)[0]
+      }
+
+      //declaring these to pass props as a bug fix
+      const setSlidePosition = (arg) => {
+        return arg;
+      }
+      const i = 0;
+
+
     if (!items) return <h1>Loading...</h1>
     const item = items.find(item => item.id === parseInt(id));
 
@@ -58,10 +84,30 @@ export default function ItemDetails() {
         <div className='back-container'>
             <div onClick={() => history.goBack()} className='cursor-pointer'><i className="fa fa-arrow-left"></i> Back</div>
         </div>
+                    <div className='heart-container'>
+                        {( //if item does not belong to user, render one of the add or remove favorite buttons
+                        user && user.id !== item.user_id ?
+                        !userFavoritesNames?.includes(item.name) ?
+                        <OpenModalButton
+                        className="favorite-button cursor-pointer"
+                        buttonText={(<i className="far fa-heart"></i>)}
+                        onItemClick={closeMenu}
+                        modalComponent={<AddFavoriteForm type="Item" name={item.name}  img={item.item_img} teams={getItemTeam(item).name} />}
+                        /> :
+                        //this needs to be a "delete favorite modal"
+                        <OpenModalButton
+                        className="unfavorite-button cursor-pointer"
+                        buttonText={(<i className="fas fa-heart test-heart"></i>)}
+                        onTicketClick={closeMenu}
+                        modalComponent={<DeleteFavoriteModal favorite={getFavorite(getItemTeam(item).name)} setSlidePosition={setSlidePosition} index={i} />}
+                        />
+                        : <></>
+                        )}
+                    </div>
         <div className='item-details-container'>
             <img className='item-details-image' src={item.item_img} alt={item.name} />
             <div className='item-details-right'>
-                <h3 className='item-name'>{item.name}</h3>
+                    <h3 className='item-name'>{item.name}</h3>
                 <div className='price-and-badge'>
                     <div className='item-price'>${item.price}</div>
                     <img className="item-details-badge" src={getItemBadge(item)} alt="item-team-badge" />

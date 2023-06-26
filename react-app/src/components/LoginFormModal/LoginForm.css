@@ -24,7 +24,11 @@
 }
 
 .login-h1 {
-    padding: 10px 0 140px 0;
+    padding: 20px 0;
+}
+
+.login-cushion {
+    height: 60px;
 }
 
 .error {

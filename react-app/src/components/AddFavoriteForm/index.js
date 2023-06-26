@@ -34,7 +34,7 @@ export default function AddFavoriteForm({type, name, teams, img}) {
       hasErrors = true;
     }
     if (story.length <= 10 || story.length >= 900) {
-      setErrors((errors) => ({ ...errors, story: "Story must be between 10 and 900 characters" }));
+      setErrors((errors) => ({ ...errors, story: "must be between 10 and 900 characters" }));
       hasErrors = true;
     }
     if (hasErrors) return;
@@ -85,10 +85,10 @@ export default function AddFavoriteForm({type, name, teams, img}) {
             />
           </label> */}
           <label>
-            <div className="error-container-story">
-            {errors.story && <p>{errors.story}</p>}
+          <div className="label-error">
+              Story
+              {errors.story && <p className="error-text">{errors.story}</p>}
             </div>
-            Story
             <textarea
               className="textarea"
               type="text"

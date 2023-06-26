@@ -37,7 +37,7 @@ export default function AddItemForm() {
       hasErrors = true;
     }
     if (name.length < 5 || name.length >= 100) {
-			setErrors((errors) => ({ ...errors, name: "Item name must be between 4 and 100 characters" }));
+			setErrors((errors) => ({ ...errors, name: "must be between 4 and 100 characters" }));
 			hasErrors = true;
 		  }
     if (!type) {
@@ -63,7 +63,7 @@ export default function AddItemForm() {
       hasErrors = true;
     }
     if (description.length <= 10 || description.length >= 900) {
-      setErrors((errors) => ({ ...errors, description: "Description must be between 10 and 900 characters" }));
+      setErrors((errors) => ({ ...errors, description: "must be between 10 and 900 characters" }));
       hasErrors = true;
       }
     if (!itemImg) {
@@ -105,65 +105,75 @@ export default function AddItemForm() {
         onSubmit={handleSubmit}
         encType="multipart/form-data"
       >
-        <div className="error-container">
-          {errors.name && <p>{errors.name}</p>}
-          {errors.type && <p>{errors.type}</p>}
-          {errors.price && <p>{errors.price}</p>}
-          {errors.description && <p>{errors.description}</p>}
-          {errors.itemImg && <p>{errors.itemImg}</p>}
-          {errors.teamId && <p>{errors.teamId}</p>}
-        </div>
         <div className="add-item-inputs">
           <label>
-            Name
+            <div className="label-error">
+              Name
+              {errors.name && <p className="error-text">{errors.name}</p>}
+            </div>
             <input
               type="text"
               value={name}
               placeholder="Item Name..."
               onChange={(e) => setName(e.target.value)}
-            />
+              />
           </label>
           <label>
-            Type
+            <div className="label-error">
+              Type
+              {errors.type && <p className="error-text">{errors.type}</p>}
+            </div>
             <select
               value={type}
               placeholder="Type of item..."
               onChange={(e) => setType(e.target.value)}
-            >
+              >
               <option value="cleats">Cleats</option>
               <option value="socks">Socks</option>
               <option value="ball">Ball</option>
             </select>
           </label>
           <label>
-            Price
+          <div className="label-error">
+              Price
+              {errors.price && <p className="error-text">{errors.price}</p>}
+            </div>
             <input
               type="text"
               value={price}
               placeholder="Price of item..."
               onChange={(e) => setPrice(e.target.value)}
-            />
+              />
           </label>
           <label>
-            Description
-            <input
+          <div className="label-error">
+              Description
+              {errors.description && <p className="error-text">{errors.description}</p>}
+            </div>
+            <textarea
               type="text"
               value={description}
               placeholder="Description of item..."
               onChange={(e) => setDescription(e.target.value)}
-            />
+              />
           </label>
           <label>
-            Image
+          <div className="label-error">
+              Image
+              {errors.itemImg && <p className="error-text">{errors.itemImg}</p>}
+            </div>
             <input
               className="upload-item-img-input"
               type="file"
               accept="image/*"
               onChange={(e) => setItemImg(e.target.files[0])}
-            />
+              />
           </label>
           <label>
-            Team
+          <div className="label-error">
+              Team
+              {errors.teamId && <p className="error-text">{errors.teamId}</p>}
+            </div>
             <select
               value={teamId}
               placeholder="Team associated with item..."
