@@ -76,7 +76,7 @@ export default function SearchBar({ searchType }) {
             ticket.stadium.toLowerCase().includes(searchInput.toLowerCase())).map((ticket) => {
                 return (
                   <div
-                    className="cart-item-info cursor-pointer result-card"
+                    className="cart-item-info cursor-pointer result-card-ticket"
                     key={ticket.id}
                     // onClick={() => {
                     //   history.push(`/item/${item.id}`);
@@ -85,6 +85,7 @@ export default function SearchBar({ searchType }) {
                   >
                     <div className="item-info">
                       <div>{ticket.match}</div>
+                      <div>@ {ticket.stadium}</div>
                     </div>
                     <div className="image-trash-container">
                       <div>${ticket.price}</div>
