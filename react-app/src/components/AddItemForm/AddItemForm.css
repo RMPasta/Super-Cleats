@@ -5,9 +5,10 @@
     align-items: center;
     padding: 10px 100px 0px 100px;
 }
-/* .form-modal-container {
-    padding-bottom: 100px;
-} */
+
+.form-modal-container {
+    padding: 30px;
+}
 
 .add-item-inputs {
     /* display: flex;
