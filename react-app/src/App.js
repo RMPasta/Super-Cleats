@@ -10,12 +10,13 @@ import Tickets from "./components/Tickets";
 import Teams from "./components/Teams";
 import UsersItems from "./components/UsersItems.js";
 import ItemDetails from "./components/ItemDetails";
+import TicketDetails from "./components/TicketDetails";
 import ItemsPageHeader from "./components/ItemsPageHeader";
 import Filter from "./components/Filter";
-import "./App.css";
 import Landing from "./components/Landing";
 import { getTeamsThunk } from "./store/team";
 import Favorites from "./components/Favorites";
+import "./App.css";
 
 function App() {
   const dispatch = useDispatch();
@@ -77,6 +78,9 @@ function App() {
           </Route>
           <Route path="/item/:id">
             <ItemDetails />
+          </Route>
+          <Route path="/ticket/:id">
+            <TicketDetails />
           </Route>
           <Route path="/login">
             <LoginFormPage />

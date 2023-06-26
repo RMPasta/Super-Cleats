@@ -84,9 +84,6 @@ export default function ItemDetails() {
         <div className='back-container'>
             <div onClick={() => history.goBack()} className='cursor-pointer'><i className="fa fa-arrow-left"></i> Back</div>
         </div>
-        <div className='item-details-container'>
-            <img className='item-details-image' src={item.item_img} alt={item.name} />
-            <div className='item-details-right'>
                     <div className='heart-container'>
                         {( //if item does not belong to user, render one of the add or remove favorite buttons
                         user && user.id !== item.user_id ?
@@ -107,6 +104,9 @@ export default function ItemDetails() {
                         : <></>
                         )}
                     </div>
+        <div className='item-details-container'>
+            <img className='item-details-image' src={item.item_img} alt={item.name} />
+            <div className='item-details-right'>
                     <h3 className='item-name'>{item.name}</h3>
                 <div className='price-and-badge'>
                     <div className='item-price'>${item.price}</div>
