@@ -49,8 +49,6 @@
   overflow: hidden;
 }
 
-
-
 .products {
   padding: 10px;
   background-color: whitesmoke;
@@ -70,6 +68,13 @@
   border: none;
   background-color: rgba(226, 226, 226, 0.842);
   transition: background-color .5s ease;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
 
 .login-button-nav {

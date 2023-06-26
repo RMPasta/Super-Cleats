@@ -80,7 +80,7 @@ function Navigation({ setTeamPicked, teamPicked, isLoaded, setSearchInput, setSe
 
             </div>
           </li>
-          <li><SearchBar setSearchInput={setSearchInput} searchType={searchType} /></li>
+          <li className="search-container"><SearchBar setSearchInput={setSearchInput} searchType={searchType} /></li>
           <li className="nav-right-side-logged-in">
             <div className="user-profile-button">
               <NavLink exact to="/user" style={linkStyle}>

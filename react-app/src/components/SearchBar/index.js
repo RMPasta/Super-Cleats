@@ -38,6 +38,7 @@ export default function SearchBar({ searchType }) {
   return (
     <div ref={searchRef}>
         <input
+        className="searchbar"
         type="text"
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
