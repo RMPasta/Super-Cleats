@@ -1,0 +1,13 @@
+.search-results {
+    position: absolute;
+    background-color: aliceblue;
+    height: auto;
+    max-height: 1000px;
+}
+
+.results-hidden {
+    top: -2000px;
+}
+.results-visible {
+    top: 50px;
+}

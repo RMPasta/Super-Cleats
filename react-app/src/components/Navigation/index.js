@@ -10,8 +10,9 @@ import SlideOutMenu from "../SlideOutMenu";
 import SlideOutCart from "../SlideOutCart";
 import { getCartThunk } from "../../store/cart";
 import "./Navigation.css";
+import SearchBar from "../SearchBar";
 
-function Navigation({ setTeamPicked, teamPicked, isLoaded }) {
+function Navigation({ setTeamPicked, teamPicked, isLoaded, setSearchInput, setSearchType, searchType }) {
   const sessionUser = useSelector((state) => state.session.user);
   const cart = useSelector((state) => state.cart.cart);
   const teams = useSelector((state) => state.team.teams);
@@ -64,18 +65,21 @@ function Navigation({ setTeamPicked, teamPicked, isLoaded }) {
               <button className={"products" + (isProducts ? " filled" : "")} onClick={() => {
                 history.push('/')
                 setIsProducts(true)
+                setSearchType("items")
               }}>
                 Products
               </button>
               <button className={"tickets" + (!isProducts ? " filled" : "")} onClick={() => {
                 history.push('/tickets')
                 setIsProducts(false)
+                setSearchType("tickets")
               }}>
                 Tickets
               </button>
 
             </div>
           </li>
+          <li><SearchBar setSearchInput={setSearchInput} searchType={searchType} /></li>
           <li className="nav-right-side-logged-in">
             <div className="user-profile-button">
               <NavLink exact to="/user" style={linkStyle}>

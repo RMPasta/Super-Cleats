@@ -30,7 +30,7 @@ export default function UserPurchaseHistory() {
           const item = items?.find(item => item.id === purchase.item_id);
           const ticket = tickets?.find(ticket => ticket.id === purchase.ticket_id);
 
-          if (!ticket) return <></>
+          if (!ticket) return <div key={purchase.id}></div>
           return (
             <div className="purchase-card" key={purchase.id}>
                   {purchase.item_id ? (
