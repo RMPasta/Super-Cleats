@@ -79,6 +79,10 @@ export default function SearchBar({ searchType }) {
                   <div
                     className="cart-item-info cursor-pointer result-card-ticket"
                     key={ticket.id}
+                    onClick={() => {
+                      history.push(`/ticket/${ticket.id}`);
+                      setShowMenu(false);
+                    }}
                     // onClick={() => {
                     //   history.push(`/item/${item.id}`);
                     //   setShowMenu(false);
