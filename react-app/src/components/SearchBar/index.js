@@ -2,9 +2,12 @@ import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./SearchBar.css"
+import { getItemsThunk } from "../../store/item";
+import { getTicketsThunk } from "../../store/ticket";
 
 export default function SearchBar() {
     const history = useHistory();
+    const dispatch = useDispatch();
     const searchRef = useRef();
     const items = useSelector((state) => state.item.items);
     const user = useSelector((state) => state.session.user);
@@ -14,6 +17,8 @@ export default function SearchBar() {
     const [searchType, setSearchType] = useState("")
 
     useEffect(() => {
+      dispatch(getItemsThunk())
+      dispatch(getTicketsThunk())
         if (window.location.href.endsWith("tickets")) {
           setSearchType("tickets")
         } else {
