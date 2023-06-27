@@ -57,7 +57,6 @@ function Navigation({ setTeamPicked, teamPicked, isLoaded, setSearchInput, setSe
               className="logo cursor-pointer"
               onClick={() => {
                 history.push("/");
-                setSearchType("items")
               }}
               >
               SUPER <p className="cleats">CLEATS</p>
@@ -66,14 +65,12 @@ function Navigation({ setTeamPicked, teamPicked, isLoaded, setSearchInput, setSe
               <button className={"products" + (isProducts ? " filled" : "")} onClick={() => {
                 history.push('/')
                 setIsProducts(true)
-                setSearchType("items")
               }}>
                 Products
               </button>
               <button className={"tickets" + (!isProducts ? " filled" : "")} onClick={() => {
                 history.push('/tickets')
                 setIsProducts(false)
-                setSearchType("tickets")
               }}>
                 Tickets
               </button>
@@ -114,7 +111,6 @@ function Navigation({ setTeamPicked, teamPicked, isLoaded, setSearchInput, setSe
               className="logo cursor-pointer"
               onClick={() => {
                 history.push("/");
-                setSearchType("items")
               }}
               >
               SUPER CLEATS
@@ -122,15 +118,13 @@ function Navigation({ setTeamPicked, teamPicked, isLoaded, setSearchInput, setSe
             <div className="pill-shape">
               <button className={"products" + (isProducts ? " filled" : "")} onClick={() => {
                 history.push('/')
-                setIsProducts(true)
-                setSearchType("items")
+                setIsProducts(true);
               }}>
                 Products
               </button>
               <button className={"tickets" + (!isProducts ? " filled" : "")} onClick={() => {
                 history.push('/tickets')
-                setIsProducts(false)
-                setSearchType("tickets")
+                setIsProducts(false);
               }}>
                 Tickets
               </button>

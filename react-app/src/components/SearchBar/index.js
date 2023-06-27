@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./SearchBar.css"
 
-export default function SearchBar({ searchType }) {
+export default function SearchBar() {
     const history = useHistory();
     const searchRef = useRef();
     const items = useSelector((state) => state.item.items);
@@ -11,10 +11,15 @@ export default function SearchBar({ searchType }) {
     const tickets = useSelector((state) => state.ticket.tickets);
     const [showMenu, setShowMenu] = useState(false);
     const [searchInput, setSearchInput] = useState("");
+    const [searchType, setSearchType] = useState("")
 
     useEffect(() => {
-        setSearchInput("")
-    }, [searchType])
+        if (window.location.href.endsWith("tickets")) {
+          setSearchType("tickets")
+        } else {
+          setSearchType("items")
+        }
+    }, [window.location.href])
 
     useEffect(() => {
         if (!showMenu) return;
@@ -83,10 +88,6 @@ export default function SearchBar({ searchType }) {
                       history.push(`/ticket/${ticket.id}`);
                       setShowMenu(false);
                     }}
-                    // onClick={() => {
-                    //   history.push(`/item/${item.id}`);
-                    //   setShowMenu(false);
-                    // }}
                   >
                     <div className="item-info">
                       <div>{ticket.match}</div>
