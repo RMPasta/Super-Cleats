@@ -137,6 +137,7 @@ function Navigation({ setTeamPicked, teamPicked, isLoaded, setSearchInput, setSe
 
             </div>
           </li>
+          <li className="search-container"><SearchBar setSearchInput={setSearchInput} searchType={searchType} /></li>
           <li className="nav-right-side-logged-out">
             {/* <button className='cart-button-nav cursor-pointer'>Cart</button> */}
             {teamPicked && (
