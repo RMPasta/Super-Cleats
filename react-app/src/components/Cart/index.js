@@ -143,10 +143,10 @@ export default function Cart({ setShowMenu }) {
               <div
                 className="cart-item-info cursor-pointer"
                 key={ticket.id}
-                // onClick={() => {
-                //   history.push(`/item/${item.id}`);
-                //   setShowMenu(false);
-                // }}
+                onClick={() => {
+                  history.push(`/ticket/${ticket.id}`);
+                  setShowMenu(false);
+                }}
               >
                 <div className="item-info">
                   <div>{ticket.match}</div>
