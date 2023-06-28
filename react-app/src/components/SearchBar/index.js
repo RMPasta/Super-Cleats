@@ -45,6 +45,10 @@ export default function SearchBar() {
     if (!items) return <></>
     if (!tickets) return <></>
 
+    const filteredItems = items.filter(item => item.name.toLowerCase().includes(searchInput.toLowerCase())).slice(0, 5);
+    const filteredTickets = tickets.filter(ticket => ticket.match.toLowerCase().includes(searchInput.toLowerCase()) ||
+    ticket.stadium.toLowerCase().includes(searchInput.toLowerCase())).slice(0, 5);
+
   return (
     <div ref={searchRef}>
         <input
@@ -56,8 +60,7 @@ export default function SearchBar() {
         onFocus={() => setShowMenu(true)}
         />
         <div className={searchResultsClassName}>
-            {searchType === "items" ? items.filter(item => item.name.toLowerCase().includes(searchInput.toLowerCase()) ||
-            item.description.toLowerCase().includes(searchInput.toLowerCase())).slice(0, 10).map(item => (
+            {searchType === "items" ? filteredItems.length > 0 ? filteredItems.map(item => (
                 <div
                 className="cart-item-info cursor-pointer result-card"
                 key={item.id}
@@ -82,9 +85,8 @@ export default function SearchBar() {
                   />
                 </div>
               </div>
-            )) :
-            tickets.filter(ticket => ticket.match.toLowerCase().includes(searchInput.toLowerCase()) ||
-            ticket.stadium.toLowerCase().includes(searchInput.toLowerCase())).map((ticket) => {
+            )) : <h3>No Results!</h3> :
+            filteredTickets.length > 0 ? filteredTickets.map((ticket) => {
                 return (
                   <div
                     className="cart-item-info cursor-pointer result-card-ticket"
@@ -108,7 +110,7 @@ export default function SearchBar() {
                     </div>
                   </div>
             )
-            })}
+            }) : <h3>No Results!</h3> }
         </div>
     </div>
   )

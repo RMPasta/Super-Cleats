@@ -11,16 +11,16 @@
     align-items: center;
     justify-content: center;
     position: absolute;
-    height: 160px;
-    padding: 40px 0 10px 0;
-    background-color: rgb(250, 250, 250);
+    height: 300px;
+    padding: 10px 0 10px 0;
+    background-color: rgba(250, 250, 250, 0.972);
     width: 100%;
     transition: top .6s ease-out;
     z-index: -2;
 }
 
 .results-hidden {
-    top: -300px;
+    top: -400px;
     left: 0;
 }
 
@@ -30,11 +30,15 @@
 }
 
 .result-card {
-    background-color: rgb(250, 250, 250);
+    /* background-color: rgba(250, 250, 250, 0.863); */
     width: 500px;
+    max-height: 40px;
+    min-height: 40px;
 }
 
 .result-card-ticket {
-    background-color: rgb(250, 250, 250);
+    /* background-color: rgba(250, 250, 250, 0.863); */
     width: 600px;
+    max-height: 40px;
+    min-height: 40px;
 }
