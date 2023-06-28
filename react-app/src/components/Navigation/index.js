@@ -49,6 +49,7 @@ function Navigation({ setTeamPicked, teamPicked, isLoaded, setSearchInput, setSe
 
   return (
     <ul className="nav-ul">
+      <div className="nav-background"></div>
       {sessionUser ? (
         <>
           <li className="nav-left-side">
