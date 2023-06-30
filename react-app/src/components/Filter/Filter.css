@@ -1,15 +1,11 @@
 .filter-container {
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding: 0 10px;
     /* min-width: 300px; */
-    margin: 10px 5px;
+    margin: 0 auto;
     /* border: 1px solid black; */
     width: 300px;
-}
-
-.filter-container > div {
-    margin: 20px 0;
 }
 
 .filter-top-section {
@@ -22,14 +18,13 @@
 }
 
 .type-filter {
-    display: flex;
-    /* flex-direction: column; */
-    /* justify-content: center; */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     font-weight: bold;
-    /* gap: 5px; */
     font-size: 14px;
-    width: 100%;
-    margin: 0 auto;
+    width: 50%;
+    margin: 10px auto;
+    padding: 0;
 }
 
 .filter-button {
@@ -37,10 +32,10 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    width: 80px;
-    min-width: 60px;
+    width: 70px;
+    margin: 0 auto;
     height: 30px;
-    padding: 10px 10px;
+    padding: 3px 3px;
     border-radius: 20px;
     background-color: rgb(226, 226, 226);
 }

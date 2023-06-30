@@ -154,6 +154,9 @@
     /* padding: 0 60px; */
     margin: 0 auto;
   }
+  .logo {
+    display: none;
+  }
   .nav-right-side-logged-in {
     width: 50%;
     padding-right: 10px;
@@ -168,6 +171,9 @@
     gap: 10px;
     width: 50%;
     padding-left: 10px;
+  }
+  .search-container {
+    display: none;
   }
   .favorite-team-nav {
     display: none;

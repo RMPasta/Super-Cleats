@@ -48,16 +48,13 @@ export default function Filter({
     <div className="filter-layout">
       <div className="filter-container">
         <div className="filter-top-section">
-          <div>
             <h2>Filtered by:</h2>
             <h3 className="type-tag">Type: {typeText}</h3>
             <h3 className="price-tag">Price: {priceText}</h3>
             <h3 className="team-tag">
               Team: {teams[parseInt(teamFilter) - 1]?.name || "All"}
             </h3>
-          </div>
           <ul className="type-filter cursor-pointer">
-            <div className="type-filter-top">
               <li
                 className="filter-button"
                 style={typeFilter === "All" ? active : {}}
@@ -72,8 +69,6 @@ export default function Filter({
               >
                 Cleats
               </li>
-            </div>
-            <div className="typefilter-bottom">
               <li
                 className="filter-button"
                 style={typeFilter === "socks" ? active : {}}
@@ -88,7 +83,6 @@ export default function Filter({
               >
                 Soccer Balls
               </li>
-            </div>
           </ul>
         </div>
         <div className="filter-middle cursor-pointer">
